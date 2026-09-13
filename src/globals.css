@@ -23,24 +23,14 @@ html {
   font-family:  'Shippori Mincho','Noto Sans JP', sans-serif; /* Apply Noto Sans JP and Shippori Mincho to body */
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif; /* Apply Montserrat to headings */
-}
-
-/* WebKit系ブラウザ (Chrome, Safariなど) */
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-/* Firefox */
-html {
-  scrollbar-width: none; /* スクロールバーを非表示にする */
-}
-
-/* IE/Edge */
-body {
-  -ms-overflow-style: none; /* IE/Edge でスクロールバーを非表示にする */
 }
 
 @layer utilities {
@@ -129,11 +119,7 @@ body {
 
 body {
   color: rgb(var(--foreground));
-  background-color: #008877; /* New background color */
-  background-image:
-    linear-gradient(0deg, transparent 24%, rgba(0,0,0,.1) 25%, rgba(0,0,0,.1) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, rgba(0,0,0,.1) 25%, rgba(0,0,0,.1) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1) 76%, transparent 77%, transparent);
-  background-size: 50px 50px; /* Adjust grid size as needed */
+  background-color: #fff;
   font-size: 0.95rem; /* 基本の文字サイズを少し小さくする */
   line-height: 1.8; /* 行間を広げる */
 }
@@ -144,4 +130,3 @@ body {
     line-height: 1.7;
   }
 }
-

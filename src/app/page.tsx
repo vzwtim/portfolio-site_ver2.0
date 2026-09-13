@@ -1,154 +1,94 @@
-'use client';
+import Image from "next/image";
+import Link from "next/link";
+import YouTubeFeature from "@/components/YouTubeFeature";
+import { hotelProject } from "@/data/featuredProjects";
+import styles from "./refresh.module.css";
 
-import FadeInImage from "@/components/FadeInImage";
-import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const InterestsSection = dynamic(() => import("../components/InterestsSection"), { ssr: false });
+const topics = [
+  {
+    id: "real-estate",
+    number: "01",
+    label: "Real estate / Architecture",
+    title: "不動産・建築",
+    lead: "土地と建物を観察し、事業として判断できる形へ。収支、地図、研究、設計と実践を横断します。",
+    ticker: "UNDERWRITING　FIELDWORK　ARCHITECTURE　MAP　ACQUISITION",
+    className: styles.topicScan,
+    projects: [
+      { title: hotelProject.title, text: hotelProject.synopsis, href: hotelProject.href!, image: undefined, visual: "underwriting" },
+      { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp" },
+      { title: "小屋改修実践PJ", text: "老朽化した小屋を観察し、修復と再利用によって使える状態へつないだ。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
+    ],
+  },
+  {
+    id: "culture",
+    number: "02",
+    label: "Culture / Economy / Planning",
+    title: "文化・経済・企画",
+    lead: "人が何を大切にし、どう関係をつくるか。フィールドワークと事業企画、組織への働きかけを往復します。",
+    ticker: "CULTURE　ECONOMY　PLANNING　ETHNOGRAPHY　DIALOGUE",
+    className: styles.topicAsanoha,
+    projects: [
+      { title: "南三陸エスノグラフィ", text: "写真を通して、歌津地方における「守る・守られる」関係を見つめた記録。", href: "/works/sanriku-coast", image: "/images/mv_sanriku.jpg" },
+      { title: "樹木葬事業立案", text: "市場、競合、対象、収支を整理し、自然と共生する事業の形を考えた。", href: "/works/mokumoku-pj", image: "/images/figure_mokumoku_3.png" },
+      { title: "水でつながる小川町", text: "地域を歩き、人と水の関わりをフィールドワークと提案へつないだ。", href: "/works/ogawamachi-water", image: "/images/mv_ogawamachi_1.png" },
+    ],
+  },
+  {
+    id: "digital",
+    number: "03",
+    label: "DX / Digital",
+    title: "DX・デジタル",
+    lead: "日々の小さな不便や業務の引っかかりを、地図、データ、Webアプリという使える道具に変えます。",
+    ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
+    className: styles.topicDigital,
+    projects: [
+      { title: "一種単価マップ", text: "不動産の判断材料を、地図上で直感的に比較できる形へ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png" },
+      { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png" },
+      { title: "Multi AI Chat", text: "複数のAIキャラクターとの対話を、一つの画面で試すプロトタイプ。", href: "/works/multi-ai-chat", image: "/images/appview_chat.png" },
+    ],
+  },
+];
 
 export default function Home() {
-  const heroRef = useRef(null);
-  const bgRef = useRef(null);
-  const overlayRef = useRef(null);
-  const heroTextRef = useRef(null);
-  const aboutTextRef = useRef(null);
-  const scrollContainerRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    }
-
-    const heroElement = heroRef.current;
-    if (!heroElement) return;
-
-    // Use a timeout to ensure all elements, especially from dynamic imports, are mounted
-    const timer = setTimeout(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollContainerRef.current,
-          start: "top top",
-          endTrigger: "#space-and-creation-section", // Use the ID from InterestsSection
-          end: "bottom top",
-          scrub: true,
-        }
-      });
-
-      // Animate background scale
-      timeline.to(bgRef.current, {
-        scale: 1.15,
-        ease: 'power1.inOut'
-      }, 0);
-
-      // Animate overlay opacity
-      timeline.fromTo(overlayRef.current, 
-        { opacity: 0.2 }, 
-        { opacity: 0.8, ease: 'power1.inOut' }, 
-        0
-      );
-
-              // Phase 2: heroText leaves as aboutText enters
-              timeline.to(heroTextRef.current, {
-                yPercent: -50,
-                opacity: 0,
-                ease: "power2.in",
-                duration: 0.1
-              }, 0);
-          
-              timeline.fromTo(aboutTextRef.current, 
-                { yPercent: 200, opacity: 0 },
-                { yPercent: 0, opacity: 1, ease: "power2.out", duration: 0.1 },
-                0.05
-              );
-          
-              // Phase 4: aboutText leaves
-              timeline.to(aboutTextRef.current, {
-                yPercent: -600,
-                opacity: 0.5,
-                ease: "power2.in",
-                duration: 0.1
-              }, 0.2);    }, 100); // 100ms delay to wait for dynamic components
-
-    // Cleanup
-    return () => {
-      clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* 1. FIXED HERO SECTION (BACKGROUND) */}
-      <section ref={heroRef} className="fixed top-0 left-0 w-full h-screen z-0">
-        {/* Background Image */}
-        <div ref={bgRef} className="absolute inset-0">
-          <FadeInImage
-            src="/images/mv_gomoku_1_mobile.jpg"
-            alt="Gomoku Rice"
-            fill
-            className="block md:hidden object-cover"
-            loading="eager"
-            sizes="100vw"
-          />
-          <FadeInImage
-            src="/images/mv_gomoku_1.jpg"
-            alt="Gomoku Rice"
-            fill
-            className="hidden md:block object-cover"
-            loading="eager"
-            sizes="100vw"
-          />
+    <main className={styles.page}>
+      <section className={styles.masthead} aria-labelledby="home-title">
+        <div className={styles.scanBeam} aria-hidden="true" />
+        <div className={styles.mastCopy}>
+          <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
+          <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
+          <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
+          <nav className={styles.actions} aria-label="興味のある分野">
+            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
+          </nav>
         </div>
-        
-        {/* Overlay for darkening effect */}
-        <div ref={overlayRef} className="absolute inset-0 bg-black opacity-0"></div>
-
-        {/* Text Content Container (also fixed) */}
-        <div className="relative h-full flex items-center justify-center text-center px-4 md:px-20">
-          <div className="max-w-4xl mx-auto">
-            
-            {/* Hero Text */}
-            <div ref={heroTextRef} className="absolute inset-0 flex justify-center items-center">
-              <h1
-                className="text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-normal md:tracking-wider"
-                style={{ fontFamily: '"Shippori Mincho", serif' }}
-              >
-                ぼくは、五目飯。
-              </h1>
-            </div>
-            
-            {/* About Text - Initially hidden */}
-            <div ref={aboutTextRef} className="opacity-0">
-              <div className="w-24 h-px bg-white/50 mx-auto mb-8"></div>
-              <p className="text-white text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                ひとつに絞れない。<br />
-                空間も、仕組みも、体験も。<br />
-                いろんなことに手を出しちゃう。<br />
-                気づくとアレンジも加えてる。<br />
-                でも最後は、ちゃんとおいしくなる。<br />
-                それが僕のつくり方。
-              </p>
-            </div>
-          </div>
-        </div>
+        <figure className={styles.heroPlate}>
+          <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
+          <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
+        </figure>
       </section>
 
-      {/* 2. SCROLLABLE MAIN CONTENT (FOREGROUND) */}
-      <div className="relative z-10">
-        {/* Spacer div to create scroll area for the hero animation */}
-        <div ref={scrollContainerRef} className="h-[300vh]"></div>
-
-        {/* Real content starts here, with a background color to obscure the fixed hero */}
-        <div className="bg-white">
-          <InterestsSection />
-        </div>
-      </div>
-      
-    </div>
+      {topics.map((topic) => (
+        <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`}>
+          <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
+          <div className={styles.orbitField} aria-hidden="true"><i /><i /><i /></div>
+          <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
+          {topic.id === "real-estate" && <div className={styles.scanTracks} aria-hidden="true"><i /><i /><i /></div>}
+          <header className={styles.topicHeader}>
+            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p></div>
+          </header>
+          <div className={styles.topicProjects}>
+            {topic.projects.map((project, index) => (
+              <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
+                {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>OPERATING ASSET</span><i /><i /><i /><b>COMPARE / DECIDE</b></div>}
+                <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}</h3><p>{project.text}</p><Link href={project.href} className={styles.topicLink}>詳しく見る&nbsp; →</Link></div>
+              </article>
+            ))}
+          </div>
+          {topic.id === "culture" && <YouTubeFeature channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
+          <div className={styles.movingRule} aria-hidden="true" />
+        </section>
+      ))}
+    </main>
   );
 }
