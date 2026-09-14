@@ -89,7 +89,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/watch?v=AV41DNDRaMk&t=2s" uploadsHandle="vzwtim" />}
+          {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
           <div className={styles.movingRule} aria-hidden="true" />
         </section>
       ))}

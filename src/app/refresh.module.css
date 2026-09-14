@@ -90,13 +90,13 @@
 .topicHeader h2 { font-family: "Shippori Mincho","Yu Mincho",serif; font-size: clamp(3rem,7vw,7rem); font-weight: 400; line-height: 1.1; margin: .6rem 0 1.5rem; }
 .topicLead { font-size: clamp(1rem,1.5vw,1.25rem); line-height: 2; max-width: 42rem; }
 .topicProjects { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(320px,.8fr); grid-template-rows:repeat(2,minmax(0,1fr)); column-gap:var(--project-gap-x); row-gap:var(--project-gap-y); padding-inline:var(--page-gutter); }
-.topicProject { align-self:end; background:transparent; border-top:1px solid currentColor; overflow:hidden; }
+.topicProject { align-self:end; background:transparent; overflow:hidden; }
 .topicProjectLead { grid-row:1/3; align-self:stretch; }
 .topicProject:not(.topicProjectLead) { align-self:stretch; display:block; }
 .topicProject:not(.topicProjectLead) .topicImage { aspect-ratio:16/7; }
 .topicImage { aspect-ratio: 16/10; overflow: hidden; position: relative; }
 .topicImage::after { background:linear-gradient(135deg,transparent 45%,rgba(0,0,0,.34)); content:""; inset:0; opacity:0; position:absolute; transition:opacity 600ms ease; }
-.topicImage img { object-fit: cover; transition: filter 800ms ease, transform 900ms cubic-bezier(.16,1,.3,1); }
+.topicImage img { backface-visibility:hidden; object-fit:cover; transform:scale(1.001); transition:transform 1400ms cubic-bezier(.25,.46,.45,.94); will-change:transform; }
 .projectLink { color:inherit; display:block; height:100%; text-decoration:none; }
 .projectLink:focus-visible { outline:3px solid var(--red); outline-offset:-3px; }
 .imageAction { align-items:center; bottom:1.25rem; color:#fff; display:flex; font:700 .64rem/1 Arial,sans-serif; gap:.75rem; letter-spacing:.16em; opacity:0; position:absolute; right:1.25rem; transform:translateY(.75rem); transition:opacity 450ms ease,transform 650ms cubic-bezier(.16,1,.3,1); z-index:2; }
@@ -142,18 +142,19 @@
 .scanTracks i:nth-child(2){animation:visibleScanY 4.8s linear infinite .8s;height:38%;left:68%;top:-38%;width:2px;}
 .scanTracks i:nth-child(3){animation:visibleScanX 5.4s linear infinite 1.4s;background:#bb5555;height:2px;left:-25%;top:72%;width:25%;}
 .movingRule { animation: ruleTravel 10s linear infinite; background: linear-gradient(90deg,transparent,var(--red),var(--green),transparent); bottom: 0; height: 3px; left: -35%; position: absolute; width: 35%; z-index: 3; }
-.videoFeature { align-items:stretch; background:rgba(255,255,255,.72); border:1px solid rgba(187,85,85,.42); box-shadow:0 1.5rem 4rem rgba(68,40,35,.08); color:var(--ink); display:grid; grid-template-columns:minmax(0,1.15fr) minmax(15rem,.85fr); margin:clamp(2rem,4vw,4rem) 0 0 var(--page-gutter); width:min(46rem,calc(100% - var(--page-gutter) * 2)); }
-.videoCopy { align-self:center; padding:clamp(1.25rem,2.2vw,2rem); }
-.videoCopy h3 { font-family:"Shippori Mincho","Yu Mincho",serif; font-size:clamp(1.45rem,2.3vw,2.15rem); font-weight:400; margin:.5rem 0; }
-.videoCopy > p:not(.meta) { font-size:.86rem; line-height:1.75; }
-.youtubeLink { color:var(--ink); display:inline-flex; margin-top:1rem; min-height:44px; align-items:center; text-decoration-color:var(--red); text-underline-offset:.5rem; }
-.videoFrame { aspect-ratio:16/9; }
-.videoFrame iframe { border: 0; height: 100%; width: 100%; }
-.videoActivator { background:#eee; border:0; color:#fff; cursor:pointer; height:100%; overflow:hidden; padding:0; position:relative; width:100%; }
-.videoActivator::after { background:linear-gradient(0deg,rgba(0,0,0,.58),transparent 55%); content:""; inset:0; position:absolute; }
-.videoActivator img { object-fit:cover; transition:transform 700ms cubic-bezier(.22,1,.36,1); }
-.videoActivator span { bottom:1.5rem; font:700 .72rem/1 Arial,sans-serif; left:1.5rem; letter-spacing:.15em; position:absolute; z-index:1; }
-.videoActivator:focus-visible { outline:4px solid var(--red); outline-offset:-4px; }
+.videoFeature { color:var(--ink); margin:clamp(4rem,7vw,7rem) 0 0; }
+.videoFeatureHeader { align-items:end; display:flex; gap:2rem; justify-content:space-between; margin:0 var(--page-gutter) 1.5rem; max-width:62rem; }
+.videoFeatureHeader h3 { font-family:"Shippori Mincho","Yu Mincho",serif; font-size:clamp(1.8rem,3vw,3rem); font-weight:400; margin:.45rem 0 0; }
+.videoFeatureHeader > p { font-size:.84rem; line-height:1.8; margin:0; max-width:20rem; }
+.videoRail { display:grid; gap:clamp(1rem,2vw,1.75rem); grid-auto-columns:min(76vw,42rem); grid-auto-flow:column; overflow-x:auto; overscroll-behavior-inline:contain; padding:0 var(--page-gutter) 1.25rem; scroll-padding-inline:var(--page-gutter); scroll-snap-type:x mandatory; scrollbar-color:var(--red) transparent; scrollbar-width:thin; }
+.videoCard { background:rgba(255,255,255,.76); box-shadow:0 1.5rem 4rem rgba(68,40,35,.09); min-width:0; scroll-snap-align:start; }
+.videoFrame { aspect-ratio:16/9; background:#111; overflow:hidden; position:relative; width:100%; }
+.videoFrame iframe { border:0; display:block; height:100%; inset:0; position:absolute; width:100%; }
+.videoCardCopy { align-items:baseline; display:grid; gap:.35rem 1.5rem; grid-template-columns:1fr auto; padding:1.15rem 1.3rem 1.35rem; }
+.videoCardCopy span { color:var(--red); font:700 .62rem/1.4 Arial,sans-serif; grid-column:1/-1; letter-spacing:.15em; text-transform:uppercase; }
+.videoCardCopy h4 { font-family:"Shippori Mincho","Yu Mincho",serif; font-size:clamp(1.2rem,2vw,1.7rem); font-weight:400; margin:0; }
+.videoCardCopy p { font-size:.76rem; line-height:1.7; margin:0; max-width:16rem; }
+.youtubeLink { align-items:center; color:var(--ink); display:inline-flex; margin:1rem var(--page-gutter) 0; min-height:44px; text-decoration-color:var(--red); text-underline-offset:.5rem; }
 
 @keyframes revealPlate { from { clip-path: inset(0 0 100% 0); transform: scale(1.025); } to { clip-path: inset(0); transform: scale(1); } }
 @keyframes patternDrift { to { transform: translate3d(70px,40px,0); } }
@@ -171,7 +172,7 @@
 .page[data-motion-ready="true"] [data-reveal="image"] { clip-path:inset(8% 0 8% 0); transform:translate3d(0,2rem,0) scale(1.035); }
 .page[data-motion-ready="true"] [data-reveal][data-visible="true"] { clip-path:inset(0); opacity:1; transform:translate3d(0,0,0) scale(1); }
 @media (max-width: 760px) {
-  .masthead, .caseGrid, .noteStrip, .topicHeader, .topicProjects, .videoFeature { grid-template-columns: 1fr; }
+  .masthead, .caseGrid, .noteStrip, .topicHeader, .topicProjects { grid-template-columns: 1fr; }
   .masthead { align-content: start; padding-top: 7.5rem; }
   .heroPlate { min-height: 58svh; }
   .sectionHead { align-items: flex-start; flex-direction: column; gap: .5rem; }
@@ -188,7 +189,9 @@
   .topicDigital::before { background-size: 32px 32px; }
   .backgroundIndex { font-size:11rem; right:.5rem; top:6rem; }
   .orbitField { height:22rem; opacity:.65; right:-45%; top:14rem; width:22rem; }
-  .videoFeature { grid-template-columns:1fr; margin:2rem var(--page-gutter) 0; width:auto; }
+  .videoFeatureHeader { align-items:start; flex-direction:column; gap:.75rem; }
+  .videoRail { grid-auto-columns:calc(100vw - var(--page-gutter) * 2); }
+  .videoCardCopy { grid-template-columns:1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   .heroImage, .masthead::before, .scanBeam, .topic::before, .topic::after, .movingRule, .underwritingVisual::before, .orbitField i, .scanTracks i { animation:none; }
@@ -198,10 +201,9 @@
   .page *, .page *::before, .page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 @media (hover:hover) and (pointer:fine) {
-  .projectLink:hover .topicImage img { filter:saturate(.82) contrast(1.06); transform:scale(1.075); }
+  .projectLink:hover .topicImage img { transform:scale(1.06); }
   .projectLink:hover .topicImage::after,.projectLink:hover .imageAction { opacity:1; }
   .projectLink:hover .imageAction { transform:translateY(0); }
   .projectLink:hover .titleArrow { opacity:1; transform:translate(0,0); }
   .projectLink:hover .underwritingVisual::before { transform:scale(1.04); }
 }
-@media (hover:hover) and (pointer:fine) { .videoActivator:hover img { transform:scale(1.025); } }
