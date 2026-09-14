@@ -15,7 +15,7 @@ interface YouTubeFeatureProps {
 export default function YouTubeFeature({ videoId, channelUrl, uploadsHandle, title = "旧街道を、自転車でたどる。" }: YouTubeFeatureProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const embedSource = videoId
-    ? `https://www.youtube-nocookie.com/embed/${videoId}`
+    ? `https://www.youtube-nocookie.com/embed/${videoId}?start=2&rel=0`
     : `https://www.youtube-nocookie.com/embed?listType=user_uploads&list=${encodeURIComponent(uploadsHandle)}`;
   return (
     <article className={styles.videoFeature} aria-label="YouTubeで展開する旅の記録">

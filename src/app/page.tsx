@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
+import HomeMotion from "@/components/HomeMotion";
 import { hotelProject } from "@/data/featuredProjects";
 import styles from "./refresh.module.css";
 
@@ -22,10 +23,10 @@ const topics = [
   {
     id: "culture",
     number: "02",
-    label: "Culture / Economy / Planning",
-    title: "文化・経済・企画",
+    label: "Culture / Planning",
+    title: "文化・企画",
     lead: "人が何を大切にし、どう関係をつくるか。フィールドワークと事業企画、組織への働きかけを往復します。",
-    ticker: "CULTURE　ECONOMY　PLANNING　ETHNOGRAPHY　DIALOGUE",
+    ticker: "CULTURE　PLANNING　ETHNOGRAPHY　DIALOGUE　FIELDWORK",
     className: styles.topicAsanoha,
     projects: [
       { title: "南三陸エスノグラフィ", text: "写真を通して、歌津地方における「守る・守られる」関係を見つめた記録。", href: "/works/sanriku-coast", image: "/images/mv_sanriku.jpg" },
@@ -51,10 +52,11 @@ const topics = [
 
 export default function Home() {
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-home-motion>
+      <HomeMotion />
       <section className={styles.masthead} aria-labelledby="home-title">
         <div className={styles.scanBeam} aria-hidden="true" />
-        <div className={styles.mastCopy}>
+        <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
           <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
           <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
@@ -62,7 +64,7 @@ export default function Home() {
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
           </nav>
         </div>
-        <figure className={styles.heroPlate}>
+        <figure className={styles.heroPlate} data-reveal="image">
           <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
           <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
         </figure>
@@ -74,18 +76,20 @@ export default function Home() {
           <div className={styles.orbitField} aria-hidden="true"><i /><i /><i /></div>
           <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
           {topic.id === "real-estate" && <div className={styles.scanTracks} aria-hidden="true"><i /><i /><i /></div>}
-          <header className={styles.topicHeader}>
+          <header className={styles.topicHeader} data-reveal="copy">
             <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p></div>
           </header>
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (
-              <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
-                {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>OPERATING ASSET</span><i /><i /><i /><b>COMPARE / DECIDE</b></div>}
-                <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}</h3><p>{project.text}</p><Link href={project.href} className={styles.topicLink}>詳しく見る&nbsp; →</Link></div>
+              <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
+                <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
+                  {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>OPERATING ASSET</span><i /><i /><i /><b>COMPARE / DECIDE</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
+                </Link>
               </article>
             ))}
           </div>
-          {topic.id === "culture" && <YouTubeFeature channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
+          {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/watch?v=AV41DNDRaMk&t=2s" uploadsHandle="vzwtim" />}
           <div className={styles.movingRule} aria-hidden="true" />
         </section>
       ))}
