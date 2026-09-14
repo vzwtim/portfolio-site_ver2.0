@@ -29,9 +29,9 @@ const topics = [
     ticker: "CULTURE　PLANNING　ETHNOGRAPHY　DIALOGUE　FIELDWORK",
     className: styles.topicAsanoha,
     projects: [
-      { title: "南三陸エスノグラフィ", text: "写真を通して、歌津地方における「守る・守られる」関係を見つめた記録。", href: "/works/sanriku-coast", image: "/images/mv_sanriku.jpg" },
-      { title: "樹木葬事業立案", text: "市場、競合、対象、収支を整理し、自然と共生する事業の形を考えた。", href: "/works/mokumoku-pj", image: "/images/figure_mokumoku_3.png" },
-      { title: "水でつながる小川町", text: "地域を歩き、人と水の関わりをフィールドワークと提案へつないだ。", href: "/works/ogawamachi-water", image: "/images/mv_ogawamachi_1.png" },
+      { title: "建築コンペ講師サポート", text: "地方自治体とともに行う建築コンペで、学生へ伴走する講師の活動をサポート。", href: "/works/competition-mentor-support", image: undefined, visual: "COMPETITION / MENTORING" },
+      { title: "社内文化部企画", text: "社内の文化部で、立場を越えた交流と新しい関心が生まれる企画づくりに取り組む。", href: "/works/company-culture-club", image: undefined, visual: "CULTURE / COMMUNITY" },
+      { title: "組織風土改革プロジェクト", text: "経営企画の一員として、対話と仕組みの両面から組織風土の改善に取り組む。", href: "/works/organizational-culture-reform", image: undefined, visual: "ORGANIZATION / DIALOGUE" },
     ],
   },
   {
@@ -43,9 +43,9 @@ const topics = [
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
     projects: [
-      { title: "一種単価マップ", text: "不動産の判断材料を、地図上で直感的に比較できる形へ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png" },
+      { title: "社内DX勉強会", text: "デジタルを一部の専門知識にせず、社内で学び合い、業務に持ち帰るための勉強会。", href: "/works/internal-dx-workshop", image: undefined, visual: "DX / LEARNING" },
       { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png" },
-      { title: "Multi AI Chat", text: "複数のAIキャラクターとの対話を、一つの画面で試すプロトタイプ。", href: "/works/multi-ai-chat", image: "/images/appview_chat.png" },
+      { title: "イシュードリブン / 一週間マップ", text: "一週間の業務を可視化し、時間ではなく解くべきイシューから仕事を捉え直す試み。", href: "/works/issue-driven-week-map", image: undefined, visual: "ISSUE / WEEK MAP" },
     ],
   },
 ];
@@ -83,7 +83,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>OPERATING ASSET</span><i /><i /><i /><b>COMPARE / DECIDE</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>

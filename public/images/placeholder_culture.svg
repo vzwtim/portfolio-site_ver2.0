@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">文化企画プロジェクト仮ビジュアル</title>
+  <desc id="desc">写真を追加するまで使用する麻の葉を想起させる抽象的な図形</desc>
+  <rect width="1600" height="900" fill="#f4e7e2"/>
+  <g fill="none" stroke="#bb5555" stroke-width="2" opacity=".45">
+    <circle cx="1180" cy="230" r="320"/><circle cx="1180" cy="230" r="210"/><circle cx="1180" cy="230" r="100"/>
+    <path d="M0 650 420 230l420 420-420 420zM420 650l420-420 420 420-420 420z"/>
+  </g>
+  <text x="100" y="790" fill="#111311" font-family="Arial, sans-serif" font-size="30" letter-spacing="9">CULTURE / WORK IN PROGRESS</text>
+</svg>
