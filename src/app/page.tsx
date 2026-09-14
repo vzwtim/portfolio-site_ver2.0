@@ -1,3 +1,4 @@
+import CuriosityHero from "@/components/CuriosityHero";
 import Image from "next/image";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
@@ -52,21 +53,8 @@ const topics = [
 export default function Home() {
   return (
     <main className={styles.page}>
-      <section className={styles.masthead} aria-labelledby="home-title">
-        <div className={styles.scanBeam} aria-hidden="true" />
-        <div className={styles.mastCopy}>
-          <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
-          <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
-          <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
-          <nav className={styles.actions} aria-label="興味のある分野">
-            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
-          </nav>
-        </div>
-        <figure className={styles.heroPlate}>
-          <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
-          <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
-        </figure>
-      </section>
+      <CuriosityHero />
+      <div className={styles.editorialIntro}><p className={styles.meta}>SELECTED EXPLORATIONS / 01 — 03</p><p>見る。考える。つくってみる。<br /><span>興味を起点に、分野を横断する。</span></p><Link href="/works">すべての作品を見る ↗</Link></div>
 
       {topics.map((topic) => (
         <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`}>
