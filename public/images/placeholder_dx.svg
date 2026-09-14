@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">DXプロジェクト仮ビジュアル</title>
+  <desc id="desc">写真と図版を追加するまで使用する緑色の抽象的なグリッド</desc>
+  <rect width="1600" height="900" fill="#101513"/>
+  <g stroke="#008877" stroke-width="2" opacity=".44">
+    <path d="M0 150h1600M0 300h1600M0 450h1600M0 600h1600M0 750h1600"/>
+    <path d="M200 0v900M400 0v900M600 0v900M800 0v900M1000 0v900M1200 0v900M1400 0v900"/>
+  </g>
+  <circle cx="800" cy="450" r="210" fill="none" stroke="#bb5555" stroke-width="3"/>
+  <circle cx="800" cy="450" r="12" fill="#bb5555"/>
+  <text x="100" y="790" fill="#fff" font-family="Arial, sans-serif" font-size="30" letter-spacing="9">DX / WORK IN PROGRESS</text>
+</svg>
