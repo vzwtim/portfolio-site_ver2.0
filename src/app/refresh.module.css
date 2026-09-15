@@ -74,6 +74,12 @@
 .caseNumber { color: var(--red); font: 400 clamp(4rem, 9vw, 9rem)/.8 Georgia, serif; margin: 0 0 2rem; }
 .caseTitle { font-family: "Shippori Mincho", "Yu Mincho", serif; font-size: clamp(2rem, 4.2vw, 4.5rem); font-weight: 400; line-height: 1.25; margin: .75rem 0 1.5rem; }
 .body { font-size: 1rem; line-height: 2; max-width: 48rem; }
+.caseHero { aspect-ratio: 16/8.5; margin: clamp(3rem,7vw,6rem) 0 0; overflow:hidden; position:relative; }
+.caseHero::after { background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.62)); content:""; inset:0; pointer-events:none; position:absolute; }
+.caseHero img { object-fit:cover; transform:scale(1.002); }
+.caseHero figcaption { align-items:flex-end; bottom:0; color:#fff; display:flex; font:600 .66rem/1.5 Arial,sans-serif; justify-content:space-between; left:0; letter-spacing:.12em; padding:1.25rem 1.5rem; position:absolute; right:0; text-transform:uppercase; z-index:1; }
+.caseHero figcaption span:last-child { letter-spacing:.04em; text-align:right; text-transform:none; }
+.sourceNote { color:#676d69; font-size:.72rem; line-height:1.7; margin-top:2rem; }
 .facts { border-top: 1px solid var(--ink); margin: 0; }
 .fact { border-bottom: 1px solid #d1d1cc; padding: 1rem 0; }
 .fact dt { color: #666; font-size: .72rem; letter-spacing: .12em; margin-bottom: .45rem; }
@@ -176,6 +182,8 @@
   .masthead { align-content: start; padding-top: 7.5rem; }
   .heroPlate { min-height: 58svh; }
   .sectionHead { align-items: flex-start; flex-direction: column; gap: .5rem; }
+  .caseHero { aspect-ratio:4/5; margin-inline:calc(var(--page-gutter) * -1); }
+  .caseHero figcaption { align-items:flex-start; flex-direction:column; gap:.35rem; }
   .masthead::before { inset: 0 20% 50% -30%; opacity: .28; }
   .topic { padding-block: 6rem 4rem; }
   .topicHeader { padding-inline:var(--page-gutter); }

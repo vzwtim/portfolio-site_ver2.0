@@ -2,42 +2,67 @@
   {
     "id": "internal-dx-workshop",
     "title": "社内DX勉強会",
-    "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。写真と実施記録は後日追加予定。",
-    "images": ["/images/placeholder_dx.svg"],
+    "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。",
+    "images": [
+      "/images/portfolio/dx-workshop-01.webp",
+      "/images/portfolio/dx-workshop-02.webp"
+    ],
     "bgColor": "#DDEFEA",
-    "tags": ["design-programming", "workshop"]
-  },
-  {
-    "id": "issue-driven-week-map",
-    "title": "イシュードリブン / 一週間マップ",
-    "description": "一週間の業務と時間の使い方をマップとして可視化し、作業量ではなく解くべきイシューから仕事を捉え直す試み。日々の業務を観察可能な形にし、優先順位を考えるための道具として整理している。図版は後日追加予定。",
-    "images": ["/images/placeholder_dx.svg"],
-    "bgColor": "#DDEFEA",
-    "tags": ["data-analysis", "design-programming"]
+    "tags": [
+      "design-programming",
+      "workshop"
+    ]
   },
   {
     "id": "competition-mentor-support",
-    "title": "建築コンペ講師サポート",
-    "description": "学生時代の同期・先輩が地方自治体とともに運営する建築コンペで、講師の活動をサポート。参加者の思考と提案づくりに伴走するため、運営と学びの場を支えている。写真と活動記録は後日追加予定。",
-    "images": ["/images/placeholder_culture.svg"],
+    "title": "日光市今市U35実践アイデアコンペ",
+    "description": "若手の建築・まちづくり提案を地域での実践につなげる日光市今市のコンペ。企画・運営のサポートを通じて、参加者と地域の対話の場づくりに関わっている。",
+    "images": [
+      "/images/portfolio/maki-competition-cover.webp",
+      "/images/portfolio/maki-site-01.webp",
+      "/images/portfolio/maki-section.webp"
+    ],
+    "link": "https://makicompe.com/nikko/entry",
     "bgColor": "#F4E7E2",
-    "tags": ["architecture", "workshop"]
+    "tags": [
+      "architecture",
+      "workshop"
+    ]
   },
   {
     "id": "company-culture-club",
     "title": "社内文化部企画",
-    "description": "社内の文化部で、立場や部署を越えた交流と新しい関心が生まれる企画づくりに取り組む活動。参加する人が自然に関われる場と体験の設計を進めている。写真と実施記録は後日追加予定。",
-    "images": ["/images/placeholder_culture.svg"],
+    "description": "社内の文化部で、地図会、ワイン会、ビール会を企画。立場や部署を越えて、新しい関心と会話が自然に生まれる場と体験を設計している。",
+    "images": [
+      "/images/portfolio/culture-beer-05.jpg",
+      "/images/portfolio/culture-beer-01.jpg",
+      "/images/portfolio/culture-map-03.webp",
+      "/images/portfolio/culture-map-04.jpg",
+      "/images/portfolio/culture-map-05.jpg",
+      "/images/portfolio/culture-wine-05.jpg",
+      "/images/portfolio/culture-wine-01.jpg",
+      "/images/portfolio/culture-wine-02.jpg",
+      "/images/portfolio/culture-beer-02.jpg",
+      "/images/portfolio/culture-beer-04.jpg"
+    ],
     "bgColor": "#F4E7E2",
-    "tags": ["living", "workshop"]
+    "tags": [
+      "living",
+      "workshop"
+    ]
   },
   {
     "id": "organizational-culture-reform",
     "title": "組織風土改革プロジェクト",
-    "description": "社内の経営企画において、対話と仕組みの両面から組織風土の改善に取り組むプロジェクト。組織の状態を観察し、働く人の声を今後の変化へつなぐ活動に参画している。図版は後日追加予定。",
-    "images": ["/images/placeholder_culture.svg"],
+    "description": "社内の経営企画において、対話と仕組みの両面から組織風土の改善に取り組むプロジェクト。組織の状態を観察し、働く人の声を今後の変化へつなぐ活動に参画している。",
+    "images": [
+      "/images/portfolio/org-culture-reform.jpg"
+    ],
     "bgColor": "#F4E7E2",
-    "tags": ["research", "workshop"]
+    "tags": [
+      "research",
+      "workshop"
+    ]
   },
   {
     "id": "realestate-map2",

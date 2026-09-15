@@ -15,7 +15,7 @@ const topics = [
     ticker: "UNDERWRITING　FIELDWORK　ARCHITECTURE　MAP　ACQUISITION",
     className: styles.topicScan,
     projects: [
-      { title: hotelProject.title, text: hotelProject.synopsis, href: hotelProject.href!, image: undefined, visual: "underwriting" },
+      { title: hotelProject.title, text: hotelProject.synopsis, href: hotelProject.href!, image: hotelProject.image, visual: "underwriting" },
       { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp" },
       { title: "小屋改修実践PJ", text: "老朽化した小屋を観察し、修復と再利用によって使える状態へつないだ。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
     ],
@@ -29,9 +29,9 @@ const topics = [
     ticker: "CULTURE　PLANNING　ETHNOGRAPHY　DIALOGUE　FIELDWORK",
     className: styles.topicAsanoha,
     projects: [
-      { title: "建築コンペ講師サポート", text: "地方自治体とともに行う建築コンペで、学生へ伴走する講師の活動をサポート。", href: "/works/competition-mentor-support", image: undefined, visual: "COMPETITION / MENTORING" },
-      { title: "社内文化部企画", text: "社内の文化部で、立場を越えた交流と新しい関心が生まれる企画づくりに取り組む。", href: "/works/company-culture-club", image: undefined, visual: "CULTURE / COMMUNITY" },
-      { title: "組織風土改革プロジェクト", text: "経営企画の一員として、対話と仕組みの両面から組織風土の改善に取り組む。", href: "/works/organizational-culture-reform", image: undefined, visual: "ORGANIZATION / DIALOGUE" },
+      { title: "日光市今市U35実践アイデアコンペ", text: "若手の建築・まちづくり提案を地域での実践につなげるコンペで、企画・運営をサポート。", href: "/works/competition-mentor-support", image: "/images/portfolio/maki-competition-cover.webp", visual: "COMPETITION / COMMUNITY" },
+      { title: "社内文化部企画", text: "地図会、ワイン会、ビール会を通じ、立場を越えた交流と新しい関心が生まれる場を企画。", href: "/works/company-culture-club", image: "/images/portfolio/culture-beer-05.jpg", visual: "CULTURE / COMMUNITY" },
+      { title: "組織風土改革プロジェクト", text: "経営企画の一員として、対話と仕組みの両面から組織風土の改善に取り組む。", href: "/works/organizational-culture-reform", image: "/images/portfolio/org-culture-reform.jpg", visual: "ORGANIZATION / DIALOGUE" },
     ],
   },
   {
@@ -43,9 +43,9 @@ const topics = [
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
     projects: [
-      { title: "社内DX勉強会", text: "デジタルを一部の専門知識にせず、社内で学び合い、業務に持ち帰るための勉強会。", href: "/works/internal-dx-workshop", image: undefined, visual: "DX / LEARNING" },
+      { title: "社内DX勉強会", text: "デジタルを一部の専門知識にせず、社内で学び合い、業務に持ち帰るための勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", visual: "DX / LEARNING" },
       { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png" },
-      { title: "イシュードリブン / 一週間マップ", text: "一週間の業務を可視化し、時間ではなく解くべきイシューから仕事を捉え直す試み。", href: "/works/issue-driven-week-map", image: undefined, visual: "ISSUE / WEEK MAP" },
+      { title: "一種単価マップ", text: "東京都の土地価格を、容積率を踏まえた一種単価で比較できるインタラクティブマップ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png", visual: "LAND / UNIT PRICE MAP" },
     ],
   },
 ];

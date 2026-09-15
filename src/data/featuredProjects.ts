@@ -14,6 +14,7 @@ export interface FeaturedProject {
   synopsis: string;
   href?: string;
   image?: string;
+  imageAlt?: string;
 }
 
 export const hotelProject: FeaturedProject = {
@@ -32,6 +33,8 @@ export const hotelProject: FeaturedProject = {
   synopsis:
     "住宅・オフィスを中心としてきた会社で、オペレーショナルアセットとしてのホテルをどう評価するか。既存の住宅収支を置き換えるのではなく、運営方式と事業リスクを比較できる判断材料へ組み直した。",
   href: "/projects/hotel-underwriting",
+  image: "/images/portfolio/hotel-aerial-placeholder.webp",
+  imageAlt: "東京の都市を見渡す俯瞰写真（計画地とは異なるイメージ）",
 };
 
 export const featuredProjects: FeaturedProject[] = [
