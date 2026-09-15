@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { hotelProject } from "@/data/featuredProjects";
@@ -23,6 +24,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <p className={styles.eyebrow} style={{ marginTop: "4rem" }}>{hotelProject.domain} / {hotelProject.index}</p>
         <h1 className={styles.caseTitle}>{hotelProject.title}</h1>
         <p className={styles.body}>{hotelProject.synopsis}</p>
+        {hotelProject.image && (
+          <figure className={styles.caseHero}>
+            <Image
+              src={hotelProject.image}
+              alt={hotelProject.imageAlt ?? ""}
+              fill
+              priority
+              sizes="(max-width: 760px) 100vw, 88vw"
+            />
+            <figcaption>
+              <span>REFERENCE VIEW / TOKYO</span>
+              <span>計画地・対象物件とは異なる仮イメージ</span>
+            </figcaption>
+          </figure>
+        )}
         <dl className={styles.facts} style={{ marginTop: "4rem" }}>
           <div className={styles.fact}><dt>ROLE / 担当</dt><dd>{hotelProject.roleSummary}</dd></div>
           <div className={styles.fact}><dt>PERIOD / 期間</dt><dd>{hotelProject.periodLabel}</dd></div>
@@ -53,6 +69,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <aside className={styles.section} style={{ borderTop: "1px solid #111311" }}>
         <p className={styles.meta}>SCOPE NOTE</p>
         <p className={styles.body}>契約に伴う詳細実務は上司が担当しました。また、売却と保有不動産のポートフォリオ分析は別案件であり、このホテル案件の成果には含めていません。</p>
+        <p className={styles.sourceNote}>仮イメージ写真：Melvin Loi / Wikimedia Commons（CC BY-SA 4.0）</p>
       </aside>
     </main>
   );
