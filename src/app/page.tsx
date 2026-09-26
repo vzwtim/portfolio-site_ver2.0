@@ -56,18 +56,38 @@ export default function Home() {
       <HomeMotion />
       <section className={styles.masthead} aria-labelledby="home-title">
         <div className={styles.scanBeam} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.mastCopy} data-reveal="copy">
-          <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
-          <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
-          <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
+          <div className={styles.heroStatus}><span>Yudai Baba / Portfolio</span><span>Tokyo · 2026</span></div>
+          <h1 id="home-title" className={styles.title}><span>境界は、</span><br /><em>素材だ。</em></h1>
+          <p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />離れているものを混ぜて、まだない仕組みをつくる。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
-            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
+            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}><small>{topic.number}</small>{topic.title}<b>↘</b></Link>)}
           </nav>
         </div>
-        <figure className={styles.heroPlate} data-reveal="image">
-          <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
-          <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
-        </figure>
+        <div className={styles.heroSystem} data-reveal="image">
+          <div className={styles.systemBar}><span>GOMOKU / THINKING SYSTEM</span><span className={styles.liveDot}>LIVE</span></div>
+          <figure className={styles.heroPlate}>
+            <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="異なる素材が一つの器に集まった五目飯" fill priority sizes="(max-width: 760px) 100vw, 52vw" />
+            <div className={styles.crosshair} aria-hidden="true"><i /><i /></div>
+            <figcaption className={styles.plateLabel}>Five ingredients. One perspective.</figcaption>
+          </figure>
+          <div className={styles.systemMap} aria-label="思考領域の関係図">
+            <span>ARCHITECTURE</span><i aria-hidden="true" /><span>BUSINESS</span><i aria-hidden="true" /><span>CULTURE</span><i aria-hidden="true" /><span>CODE</span>
+          </div>
+        </div>
+        <p className={styles.verticalNote} aria-hidden="true">観察・越境・実装</p>
+      </section>
+
+      <section className={styles.manifesto} aria-label="Manifesto">
+        <p className={styles.manifestoIndex}>00 — MANIFESTO</p>
+        <p className={styles.manifestoLead}>専門性は、<br />閉じるためではなく<br /><strong>越境するためにある。</strong></p>
+        <div className={styles.manifestoBody}>
+          <p>土地を数字だけで見ない。組織を制度だけで見ない。技術を効率化だけで終わらせない。</p>
+          <p>現場で見つけた違和感を、構想へ。構想を、人が使えるプロトタイプへ。</p>
+          <Link href="/about">THINKING &amp; JOURNEY <span>↗</span></Link>
+        </div>
+        <div className={styles.manifestoTicker} aria-hidden="true"><span>OBSERVE / CONNECT / BUILD / REFRAME / </span><span>OBSERVE / CONNECT / BUILD / REFRAME / </span></div>
       </section>
 
       {topics.map((topic) => (
