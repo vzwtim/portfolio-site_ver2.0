@@ -262,3 +262,71 @@
   .projectLink:hover .titleArrow { opacity:1; transform:translate(0,0); }
   .projectLink:hover .underwritingVisual::before { transform:scale(1.04); }
 }
+
+/* Gomoku: four clashing disciplines, one working surface. */
+.page { --acid:#dfff38; --coral:#ff7357; --blue:#4439ee; --pink:#f6a7d4; --black:#151515; }
+.masthead { background:var(--coral); color:var(--black); display:block; min-height:100svh; overflow:hidden; padding:clamp(7rem,10vw,9rem) var(--page-gutter) 1.4rem; }
+.masthead::before { display:none; }
+.heroTopline,.heroBottomline { align-items:center; display:flex; font:800 .7rem/1.35 Arial,sans-serif; justify-content:space-between; letter-spacing:.09em; position:relative; z-index:5; }
+.heroTopline { border-bottom:2px solid var(--black); padding-bottom:.7rem; }
+.heroHeadline { isolation:isolate; margin-top:clamp(1.2rem,3vw,3rem); position:relative; z-index:4; }
+.heroKicker { background:var(--acid); display:table; font:800 clamp(.7rem,1vw,.95rem)/1.2 Arial,sans-serif; letter-spacing:.04em; margin:0 0 .75rem; padding:.45rem .7rem; transform:rotate(-2deg); }
+.title { font-family:Arial,"Noto Sans JP",sans-serif; font-size:clamp(5rem,12vw,12.5rem); font-weight:900; letter-spacing:-.1em; line-height:.96; margin:0; position:relative; }
+.title > span { display:block; width:max-content; }
+.title > span:nth-child(2) { color:#fffdf4; margin-left:15%; }
+.title > span:nth-child(3) { color:var(--acid); margin-left:2%; white-space:nowrap; }
+.period { color:var(--black); }
+.heroCollage { height:min(58vw,720px); position:absolute; right:var(--page-gutter); top:16%; width:53%; z-index:2; }
+.heroCollage figure { border:5px solid var(--black); box-shadow:10px 10px 0 var(--black); margin:0; overflow:hidden; position:absolute; }
+.heroCollage img { object-fit:cover; transition:filter .5s,transform .6s; }
+.heroCollage figure:hover img { filter:saturate(1.3); transform:scale(1.06); }
+.heroCollage figcaption { background:var(--black); bottom:0; color:#fff; font:800 .63rem/1 Arial,sans-serif; left:0; letter-spacing:.1em; padding:.6rem .8rem; position:absolute; }
+.collageCity { height:69%; right:0; top:0; transform:rotate(5deg); width:71%; }
+.collageCulture { bottom:5%; height:40%; left:2%; transform:rotate(-8deg); width:52%; z-index:2; }
+.collageCode { bottom:0; height:33%; right:0; transform:rotate(6deg); width:48%; z-index:3; }
+.collageStamp { align-items:center; background:var(--acid); border:3px solid var(--black); border-radius:50%; display:flex; flex-direction:column; font:900 clamp(1.3rem,3vw,3.2rem)/.9 Arial,sans-serif; height:clamp(5.5rem,11vw,11rem); justify-content:center; left:0; position:absolute; text-align:center; top:5%; transform:rotate(-13deg); width:clamp(5.5rem,11vw,11rem); z-index:4; }
+.collageStamp span { font-size:.18em; letter-spacing:.15em; margin-top:.6em; }
+.heroBottomline { align-items:end; margin-top:clamp(3rem,5vw,5rem); }
+.heroBottomline p { font-size:clamp(.85rem,1.2vw,1.1rem); letter-spacing:0; line-height:1.7; margin:0; }
+.heroBottomline a { border:2px solid var(--black); color:var(--black); display:flex; gap:2.5rem; padding:.8rem 1rem; text-decoration:none; }
+.heroBottomline a:hover { background:var(--black); color:var(--acid); }
+.manifesto { background:var(--acid); color:var(--black); display:grid; gap:1.5rem 3rem; grid-template-columns:1fr 2fr; padding:clamp(3rem,5vw,5rem) var(--page-gutter); scroll-margin-top:4rem; }
+.manifestoIndex { align-items:start; border-top:3px solid var(--black); color:var(--black); display:flex; font:900 .8rem Arial,sans-serif; justify-content:space-between; padding-top:.5rem; }
+.manifestoLead { font-family:Arial,"Noto Sans JP",sans-serif; font-size:clamp(3rem,7vw,7.5rem); font-weight:900; letter-spacing:-.085em; line-height:1.12; margin:0; }
+.manifestoLead span { color:var(--blue); }
+.manifestoBody { align-self:start; border:0; grid-column:2; max-width:42rem; padding:0; }
+.manifestoBody p { font-size:clamp(1rem,1.5vw,1.35rem); font-weight:700; line-height:1.8; }
+.manifestoBody a { background:var(--black); color:#fff; gap:3rem; padding:1rem 1.2rem; }
+.manifestoBody a span { color:var(--acid); }
+.manifestoKeywords { border-top:2px solid var(--black); display:flex; font:900 clamp(1.3rem,3.6vw,3.8rem)/1 Arial,sans-serif; gap:1rem; grid-column:1/-1; justify-content:space-between; letter-spacing:-.07em; margin-top:2rem; overflow:hidden; padding-top:1rem; }
+.topic { padding-block:clamp(3rem,5vw,5rem); }
+.topicHeader h2 { font-family:Arial,"Noto Sans JP",sans-serif; font-weight:900; letter-spacing:-.07em; }
+.topicScan { background:#ece6fa; }
+.topicAsanoha { background:var(--pink); }
+.topicDigital { background:var(--blue); }
+.topicDigital::before { opacity:.18; }
+.topicDigital .topicProjectCopy { border-color:var(--acid); }
+.topicDigital .titleArrow { color:var(--acid); }
+.topicScan .backgroundIndex,.topicAsanoha .backgroundIndex,.topicDigital .backgroundIndex { color:transparent; opacity:.2; }
+@media (max-width:760px) {
+  .masthead { min-height:0; padding:6.7rem 1.1rem 1.25rem; }
+  .heroTopline { font-size:.52rem; }
+  .heroHeadline { margin-top:1.5rem; }
+  .heroKicker { margin-bottom:.8rem; }
+  .title { font-size:clamp(3.5rem,17vw,7rem); line-height:1.04; }
+  .title > span:nth-child(2) { margin-left:8%; }
+  .title > span:nth-child(3) { margin-left:0; }
+  .heroCollage { height:75vw; margin:1.8rem auto 0; position:relative; right:auto; top:auto; width:89%; }
+  .heroCollage figure { border-width:3px; box-shadow:6px 6px 0 var(--black); }
+  .collageStamp { left:-6%; top:0; }
+  .heroBottomline { align-items:start; gap:1rem; margin-top:2.5rem; }
+  .heroBottomline p { font-size:.7rem; }
+  .heroBottomline a { font-size:.55rem; gap:.5rem; padding:.55rem; white-space:nowrap; }
+  .manifesto { display:block; padding:3.5rem 1.1rem; }
+  .manifestoIndex { margin-bottom:2rem; }
+  .manifestoLead { font-size:clamp(2.5rem,10vw,4.5rem); }
+  .manifestoBody { margin-top:2rem; }
+  .manifestoBody p { font-size:1rem; }
+  .manifestoKeywords { flex-wrap:wrap; gap:.7rem; font-size:1.3rem; }
+}
+@media (prefers-reduced-motion:reduce) { .heroCollage img { transition:none; } }
