@@ -55,19 +55,25 @@ export default function Home() {
     <main className={styles.page} data-home-motion>
       <HomeMotion />
       <section className={styles.masthead} aria-labelledby="home-title">
-        <div className={styles.scanBeam} aria-hidden="true" />
-        <div className={styles.mastCopy} data-reveal="copy">
-          <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
-          <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
-          <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
-          <nav className={styles.actions} aria-label="興味のある分野">
-            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
-          </nav>
+        <div className={styles.heroTopline}><span>YUDAI BABA / 五目飯</span><span>PORTFOLIO — 2026</span></div>
+        <div className={styles.heroHeadline} data-reveal="copy">
+          <p className={styles.heroKicker}>異なるものが、出会うとき。</p>
+          <h1 id="home-title" className={styles.title}><span>まぜる。</span><span>ずらす。</span><span>つくる<span className={styles.period}>。</span></span></h1>
         </div>
-        <figure className={styles.heroPlate} data-reveal="image">
-          <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
-          <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
-        </figure>
+        <div className={styles.heroCollage} data-reveal="image" aria-label="活動を象徴する写真のコラージュ">
+          <figure className={styles.collageCity}><Image src="/images/mv_kagurazaka_1.png" alt="街を歩き、建築や暮らしを観察する" fill priority sizes="(max-width: 760px) 68vw, 32vw" /><figcaption>01 / OBSERVE</figcaption></figure>
+          <figure className={styles.collageCulture}><Image src="/images/portfolio/culture-beer-05.jpg" alt="文化部の企画で交わる人とアイデア" fill sizes="(max-width: 760px) 46vw, 20vw" /><figcaption>02 / CONNECT</figcaption></figure>
+          <figure className={styles.collageCode}><Image src="/images/map_realestate_1.png" alt="一種単価マップの画面" fill sizes="(max-width: 760px) 48vw, 19vw" /><figcaption>03 / BUILD</figcaption></figure>
+          <span className={styles.collageStamp}>五<br />目<br />飯<span>GOMOKU</span></span>
+        </div>
+        <div className={styles.heroBottomline}><p>建築 × 不動産 × 文化 × デジタル<br />分野の境界から、使える仕組みをつくる。</p><Link href="#manifesto">SCROLL TO EXPLORE <span>↓</span></Link></div>
+      </section>
+
+      <section id="manifesto" className={styles.manifesto} aria-label="Manifesto">
+        <div className={styles.manifestoIndex}>00 / WHAT I DO <span>↘</span></div>
+        <h2 className={styles.manifestoLead}>専門を<span>越える。</span><br />違和感を<span>形にする。</span></h2>
+        <div className={styles.manifestoBody}><p>街を歩いて観察する。事業の数字を読む。人が動く場を企画する。必要なら、自分で道具をつくる。</p><p>一つの肩書きでは収まらない仕事を、現場から始める。</p><Link href="/about">ABOUT MY THINKING <span>↗</span></Link></div>
+        <div className={styles.manifestoKeywords} aria-hidden="true"><span>FIELD</span><span>IDEA</span><span>CODE</span><span>CULTURE</span></div>
       </section>
 
       {topics.map((topic) => (
