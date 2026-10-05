@@ -87,7 +87,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage}><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>

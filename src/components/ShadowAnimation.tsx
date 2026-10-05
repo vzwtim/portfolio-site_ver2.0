@@ -12,7 +12,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
   // useRepelEffect related hooks removed
 
   return (
-    <div className="relative w-full overflow-hidden mb-[-1px]">
+    <div className="footerScene relative w-full overflow-hidden mb-[-1px]">
       {/* 背景画像 */}
       <motion.img
         src="/images/back.svg"

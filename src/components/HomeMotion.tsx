@@ -49,12 +49,26 @@ export default function HomeMotion() {
       const pointer = (event: PointerEvent) => {
         if (!fine.matches || event.pointerType !== "mouse") return;
         const target = (event.target as Element).closest<HTMLElement>("[data-magnetic]");
+        const card = (event.target as Element).closest<HTMLElement>("[data-project-image]");
+        if (card) {
+          const bounds = card.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width;
+          const y = (event.clientY - bounds.top) / bounds.height;
+          card.style.setProperty("--hover-x", `${x * 100}%`);
+          card.style.setProperty("--hover-y", `${y * 100}%`);
+          card.style.setProperty("--tilt-x", `${(0.5 - y) * 3}deg`);
+          card.style.setProperty("--tilt-y", `${(x - 0.5) * 3}deg`);
+        }
         if (!target) return;
         const rect = target.getBoundingClientRect();
         target.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .14}px`);
         target.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .2}px`);
       };
       const resetPointer = (event: PointerEvent) => {
+        const card = (event.target as Element).closest<HTMLElement>("[data-project-image]");
+        if (card && !(event.relatedTarget instanceof Node && card.contains(event.relatedTarget))) {
+          card.style.removeProperty("--tilt-x"); card.style.removeProperty("--tilt-y");
+        }
         const target = (event.target as Element).closest<HTMLElement>("[data-magnetic]");
         if (!target || (event.relatedTarget instanceof Node && target.contains(event.relatedTarget))) return;
         target.style.removeProperty("--magnet-x"); target.style.removeProperty("--magnet-y");
@@ -70,6 +84,9 @@ export default function HomeMotion() {
         cancelAnimationFrame(frame); reveal.disconnect(); activity.disconnect();
         window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule);
         page.removeEventListener("pointermove", pointer); page.removeEventListener("pointerout", resetPointer); page.removeEventListener("focusin", focus);
+        page.querySelectorAll<HTMLElement>("[data-project-image]").forEach(card => {
+          ["--hover-x", "--hover-y", "--tilt-x", "--tilt-y"].forEach(property => card.style.removeProperty(property));
+        });
         delete page.dataset.motionReady;
         page.style.removeProperty("--reading-progress");
         sections.forEach(section => { delete section.dataset.motionActive; section.style.removeProperty("--section-shift"); section.style.removeProperty("--image-shift"); });

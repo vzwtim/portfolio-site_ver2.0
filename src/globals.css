@@ -130,3 +130,8 @@ body {
     line-height: 1.7;
   }
 }
+
+/* Invert the monochrome landscape, preserving the colored petals and links. */
+.footerScene { background:#000; }
+.footerScene > img { filter:invert(1); }
+.footerScene footer { background:#fff; color:#111311; }
