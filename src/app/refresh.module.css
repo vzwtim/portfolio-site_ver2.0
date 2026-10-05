@@ -332,3 +332,18 @@
   .topicImage, .codeWindow { transform:none !important; }
   .circuitNode { animation:none !important; }
 }
+
+/* A pen sequence: structure → joinery → furniture → services → material → dimensions. */
+.blueprint { opacity:.4; }
+.draftingLayer { stroke:currentColor; stroke-width:.48; }
+.draftingLayer[data-drafting-layer="walls"] { stroke-width:.72; }
+.materialLayer { stroke-width:.28; opacity:.45; }
+.draftStroke { vector-effect:non-scaling-stroke; stroke-dasharray:1; stroke-dashoffset:0; }
+.page[data-motion-ready="true"] .draftStroke { animation:writeDrawing var(--draw-duration,.85s) cubic-bezier(.45,0,.2,1) var(--draw-delay,0s) both; }
+.page[data-motion-ready="true"] .planAnnotations { animation:drawingLabels 1s ease 9.7s both; }
+@keyframes writeDrawing { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+@keyframes drawingLabels { from { opacity:0; } to { opacity:.6; } }
+@media (prefers-reduced-motion:reduce) {
+  .page[data-motion-ready="true"] .draftStroke, .page[data-motion-ready="true"] .planAnnotations { animation:none !important; }
+  .draftStroke { stroke-dashoffset:0; }
+}
