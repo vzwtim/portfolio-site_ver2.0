@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import HomeMotion from "@/components/HomeMotion";
+import { IngredientField, BlueprintField, DigitalField } from "@/components/FieldBackdrop";
 import { hotelProject } from "@/data/featuredProjects";
 import styles from "./refresh.module.css";
 
@@ -54,36 +55,39 @@ export default function Home() {
   return (
     <main className={styles.page} data-home-motion>
       <HomeMotion />
-      <section className={styles.masthead} aria-labelledby="home-title">
+      <div className={styles.readingProgress} aria-hidden="true" />
+      <section className={styles.masthead} aria-labelledby="home-title" data-motion-section>
+        <IngredientField />
         <div className={styles.scanBeam} aria-hidden="true" />
         <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
-          <h1 id="home-title" className={styles.title}>ぼくは、<br />五目飯。</h1>
+          <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><span>ぼくは、</span></span><span className={styles.titleLine}><span>五目飯。</span></span></h1>
           <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
-            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
+            {topics.map((topic) => <Link className={styles.textLink} data-magnetic href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
           </nav>
         </div>
         <figure className={styles.heroPlate} data-reveal="image">
-          <Image className={styles.heroImage} src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
+          <Image className={styles.heroImage} data-parallax="image" src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
           <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
         </figure>
       </section>
 
       {topics.map((topic) => (
-        <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`}>
+        <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`} data-motion-section>
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
-          <div className={styles.orbitField} aria-hidden="true"><i /><i /><i /></div>
+          {topic.id === "real-estate" && <BlueprintField />}
+          {topic.id === "digital" && <DigitalField />}
           <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
-          {topic.id === "real-estate" && <div className={styles.scanTracks} aria-hidden="true"><i /><i /><i /></div>}
+
           <header className={styles.topicHeader} data-reveal="copy">
-            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p></div>
+            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}><span>{topic.title}</span></h2><p className={styles.topicLead}>{topic.lead}</p></div>
           </header>
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage}><Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage}><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>
