@@ -31,7 +31,15 @@ export default function HomeMotion() {
           const rect = section.getBoundingClientRect();
           const progress = Math.max(-1, Math.min(1, (height / 2 - rect.top - rect.height / 2) / height));
           section.style.setProperty("--section-shift", `${progress * 64}px`);
-          section.style.setProperty("--image-shift", `${progress * 26}px`);
+          section.style.setProperty("--image-shift", `${progress * 38}px`);
+          const chapter = Math.max(0, Math.min(1, (height * .7 - rect.top) / Math.max(height, rect.height)));
+          section.style.setProperty("--chapter-progress", String(chapter));
+          if (!section.id) {
+            const exit = Math.max(0, Math.min(1, -rect.top / height));
+            section.style.setProperty("--hero-zoom", String(1.12 - exit * .1));
+            section.style.setProperty("--hero-inset", `${(1 - exit) * 4}%`);
+            section.style.setProperty("--hero-copy-shift", `${exit * -55}px`);
+          }
         });
         const total = page.offsetHeight - height;
         page.style.setProperty("--reading-progress", String(Math.max(0, Math.min(1, -page.getBoundingClientRect().top / Math.max(1, total)))));
@@ -46,6 +54,20 @@ export default function HomeMotion() {
         schedule();
       });
       sections.forEach(section => activity.observe(section));
+      let pointerFrame = 0;
+      const followers = new Map<HTMLElement, { x: number; y: number; targetX: number; targetY: number }>();
+      const follow = () => {
+        pointerFrame = 0;
+        let moving = false;
+        followers.forEach((position, card) => {
+          position.x += (position.targetX - position.x) * .13;
+          position.y += (position.targetY - position.y) * .13;
+          card.style.setProperty("--hover-x", `${position.x}%`);
+          card.style.setProperty("--hover-y", `${position.y}%`);
+          if (Math.abs(position.targetX - position.x) + Math.abs(position.targetY - position.y) > .05) moving = true;
+        });
+        if (moving) pointerFrame = requestAnimationFrame(follow);
+      };
       const pointer = (event: PointerEvent) => {
         if (!fine.matches || event.pointerType !== "mouse") return;
         const target = (event.target as Element).closest<HTMLElement>("[data-magnetic]");
@@ -54,8 +76,10 @@ export default function HomeMotion() {
           const bounds = card.getBoundingClientRect();
           const x = (event.clientX - bounds.left) / bounds.width;
           const y = (event.clientY - bounds.top) / bounds.height;
-          card.style.setProperty("--hover-x", `${x * 100}%`);
-          card.style.setProperty("--hover-y", `${y * 100}%`);
+          const position = followers.get(card) ?? { x: 50, y: 50, targetX: 50, targetY: 50 };
+          position.targetX = x * 100; position.targetY = y * 100;
+          followers.set(card, position);
+          if (!pointerFrame) pointerFrame = requestAnimationFrame(follow);
           card.style.setProperty("--tilt-x", `${(0.5 - y) * 3}deg`);
           card.style.setProperty("--tilt-y", `${(x - 0.5) * 3}deg`);
         }
@@ -68,6 +92,7 @@ export default function HomeMotion() {
         const card = (event.target as Element).closest<HTMLElement>("[data-project-image]");
         if (card && !(event.relatedTarget instanceof Node && card.contains(event.relatedTarget))) {
           card.style.removeProperty("--tilt-x"); card.style.removeProperty("--tilt-y");
+          followers.delete(card);
         }
         const target = (event.target as Element).closest<HTMLElement>("[data-magnetic]");
         if (!target || (event.relatedTarget instanceof Node && target.contains(event.relatedTarget))) return;
@@ -81,7 +106,7 @@ export default function HomeMotion() {
       page.addEventListener("focusin", focus);
       schedule();
       dispose = () => {
-        cancelAnimationFrame(frame); reveal.disconnect(); activity.disconnect();
+        cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); followers.clear(); reveal.disconnect(); activity.disconnect();
         window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule);
         page.removeEventListener("pointermove", pointer); page.removeEventListener("pointerout", resetPointer); page.removeEventListener("focusin", focus);
         page.querySelectorAll<HTMLElement>("[data-project-image]").forEach(card => {
@@ -89,7 +114,7 @@ export default function HomeMotion() {
         });
         delete page.dataset.motionReady;
         page.style.removeProperty("--reading-progress");
-        sections.forEach(section => { delete section.dataset.motionActive; section.style.removeProperty("--section-shift"); section.style.removeProperty("--image-shift"); });
+        sections.forEach(section => { delete section.dataset.motionActive; section.style.removeProperty("--section-shift"); section.style.removeProperty("--image-shift"); ["--chapter-progress", "--hero-zoom", "--hero-inset", "--hero-copy-shift"].forEach(property => section.style.removeProperty(property)); });
         page.querySelectorAll<HTMLElement>("[data-magnetic]").forEach(target => { target.style.removeProperty("--magnet-x"); target.style.removeProperty("--magnet-y"); });
       };
     };

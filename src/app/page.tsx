@@ -51,6 +51,10 @@ const topics = [
   },
 ];
 
+function MotionLetters({ text }: { text: string }) {
+  return <span className={styles.motionLetters} aria-label={text}>{Array.from(text).map((letter, i) => <span key={i} aria-hidden="true" style={{ "--letter-index": i } as React.CSSProperties}>{letter}</span>)}</span>;
+}
+
 export default function Home() {
   return (
     <main className={styles.page} data-home-motion>
@@ -61,7 +65,7 @@ export default function Home() {
         <div className={styles.scanBeam} aria-hidden="true" />
         <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
-          <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><span>ぼくは、</span></span><span className={styles.titleLine}><span>五目飯。</span></span></h1>
+          <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
           <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
             {topics.map((topic) => <Link className={styles.textLink} data-magnetic href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
@@ -81,7 +85,8 @@ export default function Home() {
           <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
 
           <header className={styles.topicHeader} data-reveal="copy">
-            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}><span>{topic.title}</span></h2><p className={styles.topicLead}>{topic.lead}</p></div>
+            <span className={styles.chapterNumber} aria-hidden="true">{topic.number} / 03</span>
+            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}><MotionLetters text={topic.title} /></h2><p className={styles.topicLead}>{topic.lead}</p><div className={styles.chapterProgress} aria-hidden="true"><i /></div></div>
           </header>
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (

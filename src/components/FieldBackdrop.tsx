@@ -338,13 +338,55 @@ const drawingStages = [
   }
 ];
 
+// Detail strokes are discrete so a joint, fitting or seam gets its own pen movement.
+const detailStages = [
+  { name: "joinery", start: 6.8, paths: [
+    ...Array.from({ length: 17 }, (_, i) => `M${220+i*12} 150v8M${220+i*12} 154h6`),
+    ...Array.from({ length: 17 }, (_, i) => `M${536+i*12} 522v8M${536+i*12} 526h6`),
+    ...Array.from({ length: 13 }, (_, i) => `M451 ${353+i*4}h12`),
+    ...[218,260,302,344].map(x => `M${x} 189h38v16h-38Z`),
+    "M216 215h72v25h-72Z", "M294 215h72v25h-72Z",
+    "M362 370h27v18h-27Z", "M395 370h27v18h-27Z",
+    "M594 280h46v20h-46Z", "M646 280h46v20h-46Z",
+    "M497 417h130v12H497Z", "M521 417v12", "M550 417v12", "M579 417v12", "M608 417v12",
+  ] },
+  { name: "floor-joints", start: 8.8, paths: [
+    ...Array.from({ length: 16 }, (_, row) => Array.from({ length: 5 }, (_, col) =>
+      `M${198+col*54+(row%2)*27} ${174+row*9}v9`)).flat(),
+    ...Array.from({ length: 15 }, (_, i) => `M490 ${190+i*9}H770`),
+    ...Array.from({ length: 40 }, (_, i) => { const x=492+(i%8)*34; const y=190+Math.floor(i/8)*27; return `M${x} ${y}v9`; }),
+    ...Array.from({ length: 12 }, (_, i) => `M320 ${352+i*14}H470`),
+    ...Array.from({ length: 10 }, (_, i) => `M${327+i*14} 342V512`),
+    ...Array.from({ length: 10 }, (_, i) => `M660 ${351+i*16}H772`),
+    ...Array.from({ length: 7 }, (_, i) => `M${664+i*16} 342V513`),
+  ] },
+  { name: "lighting", start: 10.8, paths: [
+    ...[[445,238],[515,285],[394,348],[568,380],[716,343],[271,351]].flatMap(([x,y]) => [
+      `M${x-4} ${y}a4 4 0 1 0 8 0a4 4 0 1 0-8 0`,
+      `M${x-3} ${y-3}l6 6M${x+3} ${y-3}l-6 6`,
+      `M${x-7} ${y}h3M${x+4} ${y}h3`,
+    ]),
+    ...[[202,300],[468,190],[496,322],[640,393],[323,493],[757,346]].map(([x,y]) => `M${x} ${y}v8h5v-8Z`),
+    "M445 238Q440 300 468 319", "M515 285Q515 309 550 322", "M394 348Q325 345 323 405",
+    "M568 380Q615 375 640 393", "M716 343Q746 343 757 346",
+  ] },
+  { name: "terrace", start: 11.8, paths: [
+    "M189 540V581H783V540", "M198 541V572H774V541", "M198 566H774",
+    ...Array.from({ length: 32 }, (_, i) => `M${204+i*18} 544v22`),
+    ...Array.from({ length: 20 }, (_, i) => `M${200+i*30} 572v9`),
+    "M234 545h62v15h-62Z", "M669 545h62v15h-62Z",
+    ...[248,270,682,706].map(x => `M${x-5} 552a5 5 0 1 0 10 0a5 5 0 1 0-10 0`),
+  ] },
+];
+const allDrawingStages = [...drawingStages, ...detailStages];
+
 export function BlueprintField() {
-  return <div className={styles.blueprintField} aria-hidden="true">
+  return <div className={styles.blueprintField} aria-hidden="true" data-drawing>
     <div className={styles.rulerTop}>{Array.from({ length: 21 }, (_, i) => <span key={i}>{String(i * 5).padStart(3, "0")}</span>)}</div>
     <div className={styles.rulerSide}>{Array.from({ length: 12 }, (_, i) => <span key={i}>{String(i * 10).padStart(3, "0")}</span>)}</div>
     <svg className={styles.blueprint} viewBox="0 0 1000 700" fill="none" data-parallax="plan">
-      {drawingStages.map(stage => <g key={stage.name} className={`${styles.draftingLayer} ${stage.name === "material" ? styles.materialLayer : ""}`} data-drafting-layer={stage.name}>
-        {stage.paths.map((d, i) => <path key={d + i} d={d} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start + i * (stage.name === "material" ? .012 : .04)}s`, "--draw-duration": stage.name === "walls" && i < 2 ? "2s" : ".85s" } as React.CSSProperties} />)}
+      {allDrawingStages.map(stage => <g key={stage.name} className={`${styles.draftingLayer} ${stage.name === "material" ? styles.materialLayer : ""}`} data-drafting-layer={stage.name}>
+        {stage.paths.map((d, i) => <path key={d + i} d={d} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start + i * (["material", "floor-joints", "terrace"].includes(stage.name) ? .012 : .04)}s`, "--draw-duration": stage.name === "walls" && i < 2 ? "2s" : ".85s" } as React.CSSProperties} />)}
       </g>)}
       <g className={styles.planAnnotations}>
         <path d="M160 140H810M160 340H810M160 540H810M170 125V560M470 125V560M800 125V560" />
