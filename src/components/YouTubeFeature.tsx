@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/app/refresh.module.css";
 
 interface YouTubeFeatureProps {
@@ -12,7 +13,6 @@ interface YouTubeFeatureProps {
 
 export default function YouTubeFeature({ videoId, channelUrl, uploadsHandle, title = "旧街道を、自転車でたどる。" }: YouTubeFeatureProps) {
   const featuredSource = `https://www.youtube-nocookie.com/embed/${videoId}?start=2&rel=0`;
-  const uploadsSource = `https://www.youtube-nocookie.com/embed?listType=user_uploads&list=${encodeURIComponent(uploadsHandle)}&rel=0`;
 
   return (
     <section className={styles.videoFeature} aria-labelledby="video-feature-title" data-reveal="copy">
@@ -34,9 +34,9 @@ export default function YouTubeFeature({ videoId, channelUrl, uploadsHandle, tit
 
         <article className={styles.videoCard}>
           <div className={styles.videoFrame}>
-            <iframe src={uploadsSource} title={`@${uploadsHandle} のアップロード動画`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />
+            <Link className={styles.channelPreview} href={channelUrl} target="_blank" rel="noopener noreferrer"><Image src="/images/trip_tokaido_2.jpg" alt="" fill sizes="(max-width:760px) 90vw, 32rem" /><span>@{uploadsHandle} の映像を見る</span></Link>
           </div>
-          <div className={styles.videoCardCopy}><span>02 / Channel selection</span><h4>チャンネルの映像を選ぶ</h4><p>プレイヤーの再生リストから、ほかのフィールドノートへ。</p></div>
+          <div className={styles.videoCardCopy}><span>02 / Channel selection</span><h4>チャンネルの映像を選ぶ</h4><p>チャンネルから、ほかのフィールドノートへ。</p></div>
         </article>
       </div>
 

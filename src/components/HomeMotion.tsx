@@ -15,6 +15,8 @@ export default function HomeMotion() {
       if (reduced.matches) return;
       const sections = Array.from(page.querySelectorAll<HTMLElement>("[data-motion-section]"));
       const visible = new Set<HTMLElement>();
+      const transitions = Array.from(page.querySelectorAll<HTMLElement>("[data-chapter-transition]"));
+      const activeTransitions = new Set<HTMLElement>();
       const targets = page.querySelectorAll<HTMLElement>("[data-reveal]");
       page.dataset.motionReady = "true";
       const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -41,6 +43,15 @@ export default function HomeMotion() {
             section.style.setProperty("--hero-copy-shift", `${exit * -55}px`);
           }
         });
+        activeTransitions.forEach(scene => {
+          const rect = scene.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, (height * .9 - rect.top) / (height * .65 + rect.height * .35)));
+          scene.style.setProperty("--transition-cut", `${progress * 115}%`);
+          scene.style.setProperty("--transition-radius", `${progress * 140}%`);
+          scene.style.setProperty("--transition-drift", `${(1 - progress) * 28}px`);
+          scene.style.setProperty("--transition-scale", String(.86 + progress * .2));
+          scene.dataset.phase = progress > .62 ? "next" : "previous";
+        });
         const total = page.offsetHeight - height;
         page.style.setProperty("--reading-progress", String(Math.max(0, Math.min(1, -page.getBoundingClientRect().top / Math.max(1, total)))));
       };
@@ -54,6 +65,14 @@ export default function HomeMotion() {
         schedule();
       });
       sections.forEach(section => activity.observe(section));
+      const transitionActivity = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const scene = entry.target as HTMLElement;
+          if (entry.isIntersecting) activeTransitions.add(scene); else activeTransitions.delete(scene);
+        });
+        schedule();
+      }, { rootMargin: "10% 0px" });
+      transitions.forEach(scene => transitionActivity.observe(scene));
       let pointerFrame = 0;
       const followers = new Map<HTMLElement, { x: number; y: number; targetX: number; targetY: number }>();
       const follow = () => {
@@ -106,11 +125,15 @@ export default function HomeMotion() {
       page.addEventListener("focusin", focus);
       schedule();
       dispose = () => {
-        cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); followers.clear(); reveal.disconnect(); activity.disconnect();
+        cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); followers.clear(); reveal.disconnect(); activity.disconnect(); transitionActivity.disconnect();
         window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule);
         page.removeEventListener("pointermove", pointer); page.removeEventListener("pointerout", resetPointer); page.removeEventListener("focusin", focus);
         page.querySelectorAll<HTMLElement>("[data-project-image]").forEach(card => {
           ["--hover-x", "--hover-y", "--tilt-x", "--tilt-y"].forEach(property => card.style.removeProperty(property));
+        });
+        transitions.forEach(scene => {
+          ["--transition-cut", "--transition-radius", "--transition-drift", "--transition-scale"].forEach(property => scene.style.removeProperty(property));
+          delete scene.dataset.phase;
         });
         delete page.dataset.motionReady;
         page.style.removeProperty("--reading-progress");

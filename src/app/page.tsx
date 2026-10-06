@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Fragment } from "react";
+import ChapterTransition from "@/components/ChapterTransition";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import HomeMotion from "@/components/HomeMotion";
@@ -77,7 +79,9 @@ export default function Home() {
         </figure>
       </section>
 
-      {topics.map((topic) => (
+      {topics.map((topic, chapterIndex) => (
+        <Fragment key={topic.id}>
+        {chapterIndex > 0 && <ChapterTransition from={topics[chapterIndex - 1].number} to={topic.number} variant={chapterIndex === 1 ? "shutters" : "iris"} />}
         <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`} data-motion-section>
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
           {topic.id === "real-estate" && <BlueprintField />}
@@ -101,6 +105,7 @@ export default function Home() {
           {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
           <div className={styles.movingRule} aria-hidden="true" />
         </section>
+        </Fragment>
       ))}
     </main>
   );

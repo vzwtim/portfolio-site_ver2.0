@@ -131,11 +131,13 @@ body {
   }
 }
 
-/* Invert the monochrome landscape, preserving the colored petals and links. */
-.footerScene { background:#101714; }
-.footerScene > img { filter:invert(1) brightness(.34); }
-.footerScene footer { background:#101714; color:#b4c1b9; border-top:1px solid #ffffff12; }
-
-.footerScene::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(#0a0a0a 0%,transparent 22%,#101714 95%); }
-.footerScene > img { background:#000 !important; }
-.footerScene footer { position:relative; z-index:2; }
+/* Scenery and footer content each own their height; neither covers the other. */
+.footerScene { background:#101714; isolation:isolate; }
+.footerLandscape { aspect-ratio:4117.8 / 688.8; }
+.footerLandscape > img { filter:invert(1) brightness(.46); background:transparent; }
+.footerLandscape .footerPanorama { width:100%; height:100%; object-fit:contain; }
+.footerScene footer { position:relative; background:transparent; color:#b4c1b9; padding-block:1.25rem; padding-bottom:max(1.25rem,env(safe-area-inset-bottom)); }
+@media (max-width:640px) {
+  .footerScene footer { padding-inline:1rem; }
+  .footerScene footer > div > div { gap:.25rem; }
+}
