@@ -409,23 +409,25 @@ export function BlueprintField() {
   </div>;
 }
 
-const code = [
-  "const insight = observe(context);", "const map = data.map(connect);", "if (friction) prototype(idea);",
-  "await team.learnTogether();", "iterate({ people, process });", "return makeItUseful(insight);",
-  "// small tools, real change", "system.connect(people, ideas);",
+// An illustrative metro network: routes stay continuous and trains follow their geometry.
+const metroRoutes = [
+  { color: "#f5a64a", path: "M-100 140H280Q320 140 350 170L580 400Q610 430 650 430H1540", stops: [[120,140],[280,140],[460,280],[650,430],[920,430],[1250,430]] },
+  { color: "#55d1ba", path: "M-100 640H280Q320 640 350 610L800 160Q830 130 870 130H1540", stops: [[100,640],[280,640],[500,460],[650,310],[870,130],[1160,130]] },
+  { color: "#9ca7ff", path: "M180 -80V210Q180 250 220 250H1030Q1070 250 1070 290V900", stops: [[180,100],[180,210],[430,250],[760,250],[1030,250],[1070,580]] },
+  { color: "#ee7899", path: "M-100 790H720Q760 790 760 750V540Q760 500 800 500H1160Q1200 500 1200 460V-80", stops: [[180,790],[510,790],[760,660],[800,500],[1160,500],[1200,180]] },
 ];
 export function DigitalField() {
   return <div className={styles.digitalField} aria-hidden="true">
-    <div className={styles.codeWindow}><span className={styles.codeLabel}>LIVE / EXPERIMENTS.TS</span>
-      <div className={styles.codeViewport}><div className={styles.codeStream}>{[0, 1].map(copy => <div key={copy}>{code.map((line, i) => <div className={styles.codeLine} key={line}><span>{String(i + 1).padStart(2, "0")}</span>{line}</div>)}</div>)}</div></div>
-    </div>
-    {[
-      "M0 190H80V80H210V150H320V30H420M40 250V210H170V30H290",
-      "M0 30H100V150H220V80H360V210H420M60 250V190H160V20H310",
-      "M0 160H120V40H240V190H340V90H420M80 250V220H200V110H300",
-    ].map((path, i) => <svg key={path} className={`${styles.dataCircuit} ${styles[`circuit${i + 1}`]}`} viewBox="0 0 420 250" fill="none">
-      <path d={path} /><path className={styles.dataPacket} d={path} style={{ animationDelay: `${-i * 2.5}s` }} />
-      {[[80,80],[210,150],[320,30]].map(([x,y]) => <g key={x}><circle cx={x} cy={y} r="3.5" /><circle cx={x} cy={y} r="8" className={styles.circuitNode} /></g>)}
-    </svg>)}
+    <svg className={styles.metroNetwork} viewBox="0 0 1440 820" fill="none" preserveAspectRatio="xMidYMid slice">
+      {metroRoutes.map((route, i) => <g key={route.color} style={{ color: route.color }}>
+        <path className={styles.metroRoute} d={route.path} />
+        {route.stops.map(([x,y]) => <g key={`${x}-${y}`} className={styles.metroStation}><circle cx={x} cy={y} r="6" /><circle cx={x} cy={y} r="2" /></g>)}
+        {[0, 1].map(train => <g key={train} className={styles.metroTrain} style={{ offsetPath: `path("${route.path}")`, animationDuration: `${18 + i * 4}s`, animationDelay: `${-train * (18 + i * 4) / 2 - i * 3}s` }}>
+          <rect x="-20" y="-4" width="40" height="8" rx="4" />
+          <path d="M-10 -3V3M0 -3V3M10 -3V3" />
+        </g>)}
+      </g>)}
+    </svg>
+    <span className={styles.metroLegend}>METRO / CONNECTIONS IN MOTION</span>
   </div>;
 }

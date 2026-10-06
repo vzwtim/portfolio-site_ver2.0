@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { Fragment } from "react";
-import ChapterTransition from "@/components/ChapterTransition";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import HomeMotion from "@/components/HomeMotion";
@@ -79,10 +77,8 @@ export default function Home() {
         </figure>
       </section>
 
-      {topics.map((topic, chapterIndex) => (
-        <Fragment key={topic.id}>
-        {chapterIndex > 0 && <ChapterTransition from={topics[chapterIndex - 1].number} to={topic.number} variant={chapterIndex === 1 ? "shutters" : "iris"} />}
-        <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`} data-motion-section>
+      {topics.map((topic) => (
+        <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`} data-motion-section data-scene-surface>
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
           {topic.id === "real-estate" && <BlueprintField />}
           {topic.id === "digital" && <DigitalField />}
@@ -96,7 +92,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 65vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>
@@ -105,8 +101,16 @@ export default function Home() {
           {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
           <div className={styles.movingRule} aria-hidden="true" />
         </section>
-        </Fragment>
       ))}
+      <section className={styles.landscapeBridge} data-motion-section data-landscape-bridge aria-label="風景へ">
+        <svg className={styles.bridgeTracks} viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-80 20H480Q640 20 720 170T960 300H1520" />
+          <path d="M-80 80H400Q560 80 640 230T880 360H1520" />
+          <path d="M-80 140H320Q480 140 560 290T800 410H1520" />
+        </svg>
+        <p className={styles.bridgeCaption}>街も、仕組みも、その先の暮らしへ。</p>
+        <span className={styles.bridgeLabel}>BACK TO THE LANDSCAPE</span>
+      </section>
     </main>
   );
 }

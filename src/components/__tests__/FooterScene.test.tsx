@@ -19,6 +19,9 @@ describe("footer landscape", () => {
     const landscape = container.querySelector(".footerLandscape");
     expect(landscape).toHaveAttribute("aria-hidden", "true");
     expect(landscape).not.toContainElement(footer);
+    const world = container.querySelector(".footerWorld");
+    expect(world).toContainElement(container.querySelector(".footerPanorama"));
+    expect(world).toContainElement(container.querySelector('img[src="/images/deer_1.svg"]'));
     expect(footer.previousElementSibling).toBe(landscape);
     expect(screen.getByRole("link", { name: "GitHub" })).toBeVisible();
     expect(screen.queryByAltText("Sakura Petal")).not.toBeInTheDocument();

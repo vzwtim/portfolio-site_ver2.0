@@ -15,6 +15,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
   return (
     <div className="footerScene">
       <div className="footerLandscape relative w-full overflow-hidden" aria-hidden="true">
+      <div className="footerWorld">
       {/* 背景画像 */}
       <motion.img
         src="/images/back.svg"
@@ -180,6 +181,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
       <motion.img src="/images/bird_1.svg" alt="Bird 4" className="absolute" style={{ top: '26%', left: '82%', width: '1.8%', height: 'auto' }} whileHover={reducedMotion ? undefined : { scale: 1.2, y: -10 }} transition={{ type: 'spring', stiffness: 300 }} />
       <motion.img src="/images/bird_5.svg" alt="Bird 5" className="absolute" style={{ top: '30%', left: '85%', width: '1.5%', height: 'auto' }} whileHover={reducedMotion ? undefined : { scale: 1.2, y: -10 }} transition={{ type: 'spring', stiffness: 300 }} />
 
+      </div>
       </div>
       {children}
     </div>
