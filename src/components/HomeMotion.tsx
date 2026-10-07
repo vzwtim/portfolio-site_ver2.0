@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Lenis from "lenis";
 
 export default function HomeMotion() {
   useEffect(() => {
@@ -14,9 +15,6 @@ export default function HomeMotion() {
       dispose();
       if (reduced.matches) return;
       const sections = Array.from(page.querySelectorAll<HTMLElement>("[data-motion-section]"));
-      const visible = new Set<HTMLElement>();
-      const projectImages = Array.from(page.querySelectorAll<HTMLElement>("[data-project-image]"));
-      const visibleImages = new Set<HTMLElement>();
       const targets = page.querySelectorAll<HTMLElement>("[data-reveal]");
       page.dataset.motionReady = "true";
       const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -29,59 +27,42 @@ export default function HomeMotion() {
       const update = () => {
         frame = 0;
         const height = window.innerHeight;
-        visible.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const progress = Math.max(-1, Math.min(1, (height / 2 - rect.top - rect.height / 2) / height));
-          section.style.setProperty("--section-shift", `${progress * 64}px`);
-          section.style.setProperty("--image-shift", `${progress * 38}px`);
-          const chapter = Math.max(0, Math.min(1, (height * .7 - rect.top) / Math.max(height, rect.height)));
-          section.style.setProperty("--chapter-progress", String(chapter));
-          if (!section.id && !section.hasAttribute("data-landscape-bridge")) {
-            const exit = Math.max(0, Math.min(1, -rect.top / height));
-            section.style.setProperty("--hero-zoom", String(1.12 - exit * .1));
-            section.style.setProperty("--hero-inset", `${(1 - exit) * 4}%`);
-            section.style.setProperty("--hero-copy-shift", `${exit * -55}px`);
-          }
-        });
-        visibleImages.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const travel = Math.max(-1, Math.min(1, (height / 2 - rect.top - rect.height / 2) / ((height + rect.height) / 2)));
-          card.style.setProperty("--project-pan", `${travel * 8}%`);
-          card.style.setProperty("--project-zoom", String(1.22 + Math.abs(travel) * .06));
-        });
         const total = page.offsetHeight - height;
         page.style.setProperty("--reading-progress", String(Math.max(0, Math.min(1, -page.getBoundingClientRect().top / Math.max(1, total)))));
       };
       const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+      const smoothScroll = fine.matches ? new Lenis({
+        autoRaf: true,
+        lerp: .14,
+        smoothWheel: true,
+        syncTouch: false,
+        anchors: { offset: -32 },
+        prevent: node => node.tagName === "TEXTAREA" || node.tagName === "SELECT",
+      }) : null;
       const activity = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           const section = entry.target as HTMLElement;
           section.dataset.motionActive = String(entry.isIntersecting);
-          if (entry.isIntersecting) visible.add(section); else visible.delete(section);
         });
         schedule();
       });
       sections.forEach(section => activity.observe(section));
-      const imageActivity = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          const card = entry.target as HTMLElement;
-          if (entry.isIntersecting) visibleImages.add(card); else visibleImages.delete(card);
-        });
-        schedule();
-      }, { rootMargin: "15% 0px" });
-      projectImages.forEach(card => imageActivity.observe(card));
       let pointerFrame = 0;
       const followers = new Map<HTMLElement, { x: number; y: number; targetX: number; targetY: number }>();
-      const follow = () => {
+      let previousPointerTime = 0;
+      const follow = (time: number) => {
         pointerFrame = 0;
+        const delta = previousPointerTime ? Math.min(time - previousPointerTime, 50) : 1000 / 60;
+        const smoothing = 1 - Math.exp(-delta / 90);
         let moving = false;
         followers.forEach((position, card) => {
-          position.x += (position.targetX - position.x) * .13;
-          position.y += (position.targetY - position.y) * .13;
+          position.x += (position.targetX - position.x) * smoothing;
+          position.y += (position.targetY - position.y) * smoothing;
           card.style.setProperty("--hover-x", `${position.x}%`);
           card.style.setProperty("--hover-y", `${position.y}%`);
           if (Math.abs(position.targetX - position.x) + Math.abs(position.targetY - position.y) > .05) moving = true;
         });
+        previousPointerTime = moving ? time : 0;
         if (moving) pointerFrame = requestAnimationFrame(follow);
       };
       const pointer = (event: PointerEvent) => {
@@ -96,8 +77,6 @@ export default function HomeMotion() {
           position.targetX = x * 100; position.targetY = y * 100;
           followers.set(card, position);
           if (!pointerFrame) pointerFrame = requestAnimationFrame(follow);
-          card.style.setProperty("--tilt-x", `${(0.5 - y) * 3}deg`);
-          card.style.setProperty("--tilt-y", `${(x - 0.5) * 3}deg`);
         }
         if (!target) return;
         const rect = target.getBoundingClientRect();
@@ -122,7 +101,8 @@ export default function HomeMotion() {
       page.addEventListener("focusin", focus);
       schedule();
       dispose = () => {
-        cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); followers.clear(); reveal.disconnect(); activity.disconnect(); imageActivity.disconnect(); visibleImages.clear();
+        smoothScroll?.destroy();
+        cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); followers.clear(); reveal.disconnect(); activity.disconnect();
         window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule);
         page.removeEventListener("pointermove", pointer); page.removeEventListener("pointerout", resetPointer); page.removeEventListener("focusin", focus);
         page.querySelectorAll<HTMLElement>("[data-project-image]").forEach(card => {
@@ -134,8 +114,8 @@ export default function HomeMotion() {
         page.querySelectorAll<HTMLElement>("[data-magnetic]").forEach(target => { target.style.removeProperty("--magnet-x"); target.style.removeProperty("--magnet-y"); });
       };
     };
-    setup(); reduced.addEventListener("change", setup);
-    return () => { dispose(); reduced.removeEventListener("change", setup); };
+    setup(); reduced.addEventListener("change", setup); fine.addEventListener("change", setup);
+    return () => { dispose(); reduced.removeEventListener("change", setup); fine.removeEventListener("change", setup); };
   }, []);
   return null;
 }

@@ -152,3 +152,9 @@ body {
   .footerScene footer > div > div > div:last-child { gap:0; margin:0; }
   .footerScene footer p { font-size:.55rem; }
 }
+
+/* Wheel inertia owns interpolation only while the homepage is mounted. */
+html.lenis, html.lenis body { height:auto; }
+html.lenis.lenis-smooth { scroll-behavior:auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior:contain; }
+.lenis.lenis-scrolling iframe { pointer-events:none; }

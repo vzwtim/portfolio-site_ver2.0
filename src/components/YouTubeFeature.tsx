@@ -24,7 +24,7 @@ export default function YouTubeFeature({ videoId, channelUrl, uploadsHandle, tit
         <p>横にスクロールして、特集映像とチャンネルの動画を選べます。</p>
       </header>
 
-      <div className={styles.videoRail} aria-label="動画セレクション">
+      <div className={styles.videoRail} data-lenis-prevent aria-label="動画セレクション">
         <article className={styles.videoCard}>
           <div className={styles.videoFrame}>
             <iframe src={featuredSource} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />

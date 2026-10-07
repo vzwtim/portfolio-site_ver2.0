@@ -71,7 +71,7 @@ export default function Home() {
             {topics.map((topic) => <Link className={styles.textLink} data-magnetic href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
           </nav>
         </div>
-        <figure className={styles.heroPlate} data-reveal="image">
+        <figure className={styles.heroPlate}>
           <Image className={styles.heroImage} data-parallax="image" src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
           <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
         </figure>
