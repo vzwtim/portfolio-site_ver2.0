@@ -84,13 +84,13 @@ export default function Home() {
           {topic.id === "digital" && <DigitalField />}
           <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
 
-          <header className={styles.topicHeader} data-reveal="copy">
+          <header className={styles.topicHeader}>
             <span className={styles.chapterNumber} aria-hidden="true">{topic.number} / 03</span>
-            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}><MotionLetters text={topic.title} /></h2><p className={styles.topicLead}>{topic.lead}</p><div className={styles.chapterProgress} aria-hidden="true"><i /></div></div>
+            <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p><div className={styles.chapterProgress} aria-hidden="true"><i /></div></div>
           </header>
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (
-              <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href} data-reveal="project" style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}>
+              <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
                   {project.image ? <div className={styles.topicImage} data-project-image><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 65vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>

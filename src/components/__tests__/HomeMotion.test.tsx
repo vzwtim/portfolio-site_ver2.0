@@ -1,7 +1,7 @@
 import { act, render } from "@testing-library/react";
 import HomeMotion from "../HomeMotion";
 
-it("keeps chapter and individual image motion changing through the viewport, then clears it when reduced motion is enabled", () => {
+it("leaves chapter entrances static, keeps individual image motion, and clears it with reduced motion", () => {
   const observers: Array<{ callback: IntersectionObserverCallback; disconnect: jest.Mock }> = [];
   const frames: FrameRequestCallback[] = [];
   let reduced = false;
@@ -28,13 +28,13 @@ it("keeps chapter and individual image motion changing through the viewport, the
   jest.spyOn(image, "getBoundingClientRect").mockImplementation(() => ({ top: top + 100, height: 300 } as DOMRect));
   const enter = (observer: number, target: Element) => observers[observer].callback([{ target, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
   act(() => { enter(1, section); enter(2, image); frames.shift()!(0); });
-  const inset = parseFloat(section.style.getPropertyValue("--surface-inset"));
   const pan = parseFloat(image.style.getPropertyValue("--project-pan"));
-  // At reading height the scene must still have room to unfold.
-  expect(inset).toBeGreaterThan(5);
+  expect(section.style.getPropertyValue("--surface-inset")).toBe("");
+  expect(section.style.getPropertyValue("--scene-copy-shift")).toBe("");
+  expect(section.style.getPropertyValue("--scene-title-scale")).toBe("");
   top = window.innerHeight * .1;
   act(() => { window.dispatchEvent(new Event("scroll")); frames.shift()!(16); });
-  expect(parseFloat(section.style.getPropertyValue("--surface-inset"))).toBeLessThan(inset);
+  expect(section.style.getPropertyValue("--surface-inset")).toBe("");
   expect(parseFloat(image.style.getPropertyValue("--project-pan"))).toBeGreaterThan(pan + 2);
   act(() => { reduced = true; preferenceChange(); });
   expect(container.querySelector("main")).not.toHaveAttribute("data-motion-ready");

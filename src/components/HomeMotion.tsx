@@ -36,14 +36,6 @@ export default function HomeMotion() {
           section.style.setProperty("--image-shift", `${progress * 38}px`);
           const chapter = Math.max(0, Math.min(1, (height * .7 - rect.top) / Math.max(height, rect.height)));
           section.style.setProperty("--chapter-progress", String(chapter));
-          const entrance = Math.max(0, Math.min(1, (height * .95 - rect.top) / (height * 1.35)));
-          const eased = entrance * entrance * (3 - 2 * entrance);
-          section.style.setProperty("--surface-inset", `${(1 - eased) * 11}%`);
-          section.style.setProperty("--surface-radius", `${(1 - eased) * 22}vw`);
-          section.style.setProperty("--scene-copy-shift", `${(1 - eased) * 110}px`);
-          section.style.setProperty("--bridge-shift", `${(1 - eased) * 90}px`);
-          section.style.setProperty("--scene-title-scale", String(.9 + eased * .1));
-          section.style.setProperty("--index-shift", `${(height * .5 - rect.top) * .22}px`);
           if (!section.id && !section.hasAttribute("data-landscape-bridge")) {
             const exit = Math.max(0, Math.min(1, -rect.top / height));
             section.style.setProperty("--hero-zoom", String(1.12 - exit * .1));
