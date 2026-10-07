@@ -53,7 +53,7 @@ export default function Header({ textColor }: HeaderProps) {
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
             {navigationItems.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+              <Link href={item.href} className="inline-flex min-h-11 items-center" aria-current={pathname === item.href ? 'page' : undefined}>
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide ${pathname === item.href ? 'underline underline-offset-8' : ''}`}
                   style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
@@ -72,7 +72,7 @@ export default function Header({ textColor }: HeaderProps) {
       {/* Mobile menu button */}
       <button
         type="button"
-        className="md:hidden text-2xl p-2 absolute top-6 right-6 md:top-8 md:right-20 z-50"
+        className="md:hidden min-w-11 min-h-11 text-2xl p-2 absolute top-6 right-6 md:top-8 md:right-20 z-50"
         onClick={toggleMenu}
         aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         aria-expanded={isMenuOpen}
@@ -93,7 +93,7 @@ export default function Header({ textColor }: HeaderProps) {
           <ul className="flex flex-col items-center space-y-8">
             {navigationItems.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+              <Link href={item.href} className="inline-flex min-h-11 items-center" aria-current={pathname === item.href ? 'page' : undefined}>
                 <span
                   className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide ${pathname === item.href ? 'underline underline-offset-8' : ''}`}
                   style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
