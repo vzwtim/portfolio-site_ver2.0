@@ -338,7 +338,7 @@ const drawingStages = [
   }
 ];
 
-// Detail strokes are discrete so a joint, fitting or seam gets its own pen movement.
+// Preserve every detail while animating each drafting stage as a single path.
 const detailStages = [
   { name: "joinery", start: 6.8, paths: [
     ...Array.from({ length: 17 }, (_, i) => `M${220+i*12} 150v8M${220+i*12} 154h6`),
@@ -386,7 +386,7 @@ export function BlueprintField() {
     <div className={styles.rulerSide}>{Array.from({ length: 12 }, (_, i) => <span key={i}>{String(i * 10).padStart(3, "0")}</span>)}</div>
     <svg className={styles.blueprint} viewBox="0 0 1000 700" fill="none" data-parallax="plan">
       {allDrawingStages.map(stage => <g key={stage.name} className={`${styles.draftingLayer} ${stage.name === "material" ? styles.materialLayer : ""}`} data-drafting-layer={stage.name}>
-        {stage.paths.map((d, i) => <path key={d + i} d={d} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start + i * (["material", "floor-joints", "terrace"].includes(stage.name) ? .012 : .04)}s`, "--draw-duration": stage.name === "walls" && i < 2 ? "2s" : ".85s" } as React.CSSProperties} />)}
+        <path d={stage.paths.join(" ")} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start}s`, "--draw-duration": stage.name === "walls" ? "2.1s" : "1.8s" } as React.CSSProperties} />
       </g>)}
       <g className={styles.planAnnotations}>
         <path d="M160 140H810M160 340H810M160 540H810M170 125V560M470 125V560M800 125V560" />

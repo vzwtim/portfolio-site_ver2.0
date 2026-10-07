@@ -155,6 +155,6 @@ body {
 
 /* Wheel inertia owns interpolation only while the homepage is mounted. */
 html.lenis, html.lenis body { height:auto; }
-html.lenis.lenis-smooth { scroll-behavior:auto !important; }
+html.lenis { scroll-behavior:auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior:contain; }
 .lenis.lenis-scrolling iframe { pointer-events:none; }

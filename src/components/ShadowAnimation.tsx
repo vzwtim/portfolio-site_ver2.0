@@ -1,19 +1,21 @@
 'use client';
 
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useInView } from 'framer-motion';
 import SakuraPetal from './SakuraPetal';
 // import { useCursor } from '@/context/CursorContext'; // removed
 // import useRepelEffect from '@/hooks/useRepelEffect'; // removed
 
 const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const reducedMotion = useReducedMotion();
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const sceneVisible = useInView(sceneRef);
   const numberOfPetals = 12;
 
   // useRepelEffect related hooks removed
 
   return (
-    <div className="footerScene">
+    <div className="footerScene" ref={sceneRef}>
       <div className="footerLandscape relative w-full overflow-hidden" aria-hidden="true">
       <div className="footerWorld">
       {/* 背景画像 */}
@@ -26,7 +28,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
 
       {/* 花びら（モバイル非表示） */}
       <div className="footerPetals hidden md:block">
-        {!reducedMotion && Array.from({ length: numberOfPetals }).map((_, i) => (
+        {!reducedMotion && sceneVisible && Array.from({ length: numberOfPetals }).map((_, i) => (
           <SakuraPetal key={i} />
         ))}
       </div>

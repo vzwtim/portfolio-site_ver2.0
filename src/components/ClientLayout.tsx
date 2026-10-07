@@ -27,7 +27,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <div className={`transition-colors duration-500 ${bgColor}`}>
       <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
         <CursorProvider>
-          <CustomCursor />
+          {pathname !== '/' && <CustomCursor />}
           {!isAppsPage && <Header textColor={textColor} />}
           <div className={textColor}>
             {children}

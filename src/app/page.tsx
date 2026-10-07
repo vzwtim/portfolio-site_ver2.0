@@ -17,7 +17,7 @@ const topics = [
     className: styles.topicScan,
     projects: [
       { title: hotelProject.title, text: hotelProject.synopsis, href: hotelProject.href!, image: hotelProject.image, visual: "underwriting" },
-      { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp" },
+      { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp", fit: "contain" },
       { title: "小屋改修実践PJ", text: "老朽化した小屋を観察し、修復と再利用によって使える状態へつないだ。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
     ],
   },
@@ -45,8 +45,8 @@ const topics = [
     className: styles.topicDigital,
     projects: [
       { title: "社内DX勉強会", text: "デジタルを一部の専門知識にせず、社内で学び合い、業務に持ち帰るための勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", visual: "DX / LEARNING" },
-      { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png" },
-      { title: "一種単価マップ", text: "東京都の土地価格を、容積率を踏まえた一種単価で比較できるインタラクティブマップ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png", visual: "LAND / UNIT PRICE MAP" },
+      { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png", fit: "contain" },
+      { title: "一種単価マップ", text: "東京都の土地価格を、容積率を踏まえた一種単価で比較できるインタラクティブマップ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png", fit: "contain", visual: "LAND / UNIT PRICE MAP" },
     ],
   },
 ];
@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <main className={styles.page} data-home-motion>
       <HomeMotion />
-      <div className={styles.readingProgress} aria-hidden="true" />
+      <div className={styles.readingProgress} data-reading-progress aria-hidden="true" />
       <section className={styles.masthead} aria-labelledby="home-title" data-motion-section>
         <IngredientField />
         <div className={styles.scanBeam} aria-hidden="true" />
@@ -68,7 +68,7 @@ export default function Home() {
           <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
           <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
-            {topics.map((topic) => <Link className={styles.textLink} data-magnetic href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
+            {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
           </nav>
         </div>
         <figure className={styles.heroPlate}>
@@ -92,7 +92,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image><Image data-parallax="image" src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 65vw" /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 35vw, 520px"} /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>

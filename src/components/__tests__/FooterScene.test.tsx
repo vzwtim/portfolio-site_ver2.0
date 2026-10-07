@@ -4,6 +4,7 @@ import Footer from "../Footer";
 
 jest.mock("framer-motion", () => ({
   useReducedMotion: () => true,
+  useInView: () => false,
   motion: {
     img: ({ whileHover: _hover, transition: _transition, ...props }: React.ImgHTMLAttributes<HTMLImageElement> & { whileHover?: unknown; transition?: unknown }) => {
       // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text

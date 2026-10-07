@@ -103,7 +103,7 @@
 .topicImage { aspect-ratio: 16/10; overflow: hidden; position: relative; }
 .topicImage::after { background:linear-gradient(135deg,transparent 45%,rgba(0,0,0,.34)); content:""; inset:0; opacity:0; position:absolute; transition:opacity 600ms ease; }
 .topicImage img { backface-visibility:hidden; object-fit:cover; transform:scale(1.001); transition:transform 1400ms cubic-bezier(.25,.46,.45,.94); will-change:transform; }
-.projectLink { color:inherit; display:block; height:100%; text-decoration:none; }
+.projectLink { color:inherit; display:block; height:auto; text-decoration:none; }
 .projectLink:focus-visible { outline:3px solid var(--red); outline-offset:-3px; }
 .imageAction { align-items:center; bottom:1.25rem; color:#fff; display:flex; font:700 .64rem/1 Arial,sans-serif; gap:.75rem; letter-spacing:.16em; opacity:0; position:absolute; right:1.25rem; transform:translateY(.75rem); transition:opacity 450ms ease,transform 650ms cubic-bezier(.16,1,.3,1); z-index:2; }
 .imageAction b,.imageAction strong { align-items:center; backdrop-filter:blur(8px); background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.7); border-radius:50%; display:flex; font-size:1rem; height:2.75rem; justify-content:center; width:2.75rem; }
@@ -314,9 +314,6 @@
 @media (hover:hover) and (pointer:fine) {
   .topicImage { transform:perspective(1200px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transition:transform 650ms cubic-bezier(.16,1,.3,1); }
   .topicImage::after { background:radial-gradient(circle at var(--hover-x,70%) var(--hover-y,70%),rgba(255,255,255,.18),transparent 45%),linear-gradient(135deg,transparent 45%,rgba(0,0,0,.25)); }
-  .topicImage .imageAction { bottom:auto; left:clamp(5rem,var(--hover-x,80%),calc(100% - 5rem)); right:auto; top:clamp(3rem,var(--hover-y,70%),calc(100% - 3rem)); transform:translate(-50%,-30%); }
-  .projectLink:hover .topicImage .imageAction { transform:translate(-50%,-50%); }
-  .projectLink:focus-visible .topicImage .imageAction { left:80%; top:70%; transform:translate(-50%,-50%); }
   .projectLink:hover .topicProjectCopy h3 { color:var(--green); }
   .topicProjectCopy h3 { transition:color 400ms; }
 }
@@ -494,7 +491,7 @@
 .topicLead { font-size:clamp(1rem,1.35vw,1.25rem); padding-top:.5rem; }
 .topicProjects { width:calc(100% - var(--page-gutter) * 2); max-width:1280px; padding-inline:0; margin-inline:auto; gap:clamp(3rem,6vw,6rem) 3rem; }
 .topicProjectLead .projectLink, .topicAsanoha .topicProjectLead .projectLink { display:block; }
-.topicProjectLead .topicImage { aspect-ratio:16/8.5; }
+.topicProjectLead .topicImage { aspect-ratio:16/9; }
 .topicImage { border-radius:12px; transform:none; transition:none; }
 .topicImage img, .heroImage { transform:none; transition:none; will-change:auto; }
 .heroPlate, .page[data-motion-ready="true"] [data-reveal="image"][data-visible="true"] { clip-path:none; }
@@ -525,10 +522,31 @@
   .topicHeader h2 { font-size:clamp(2.5rem,9vw,4rem); }
   .topicLead { font-size:1rem; padding:0; }
   .topicProjects { gap:2.75rem 1.25rem; }
-  .topicProjectLead .topicImage { aspect-ratio:4/3; }
+  .topicProjectLead .topicImage { aspect-ratio:16/9; }
   .topicProjectLead .topicProjectCopy { display:block; width:100%; margin-top:1.25rem; }
   .topicProject:nth-child(2), .topicProject:nth-child(3) { margin:0; }
-  .topicProject:not(.topicProjectLead) .topicImage { aspect-ratio:1; }
+  .topicProject:not(.topicProjectLead) .topicImage { aspect-ratio:4/3; }
   .topicProjectCopy { padding-top:1rem; }
   .topic[data-scene-surface] { padding-top:4.5rem; }
+}
+
+/* Stable hit areas and content-aware project previews. */
+.topicImage[data-fit="contain"] { background:#e7e9e5; }
+.topicImage[data-fit="contain"] img { object-fit:contain; }
+.topicDigital .topicImage[data-fit="contain"] { background:#202827; }
+.imageAction { bottom:1rem; right:1rem; top:auto; left:auto; white-space:nowrap; pointer-events:none; padding:.5rem .5rem .5rem .85rem; border-radius:2rem; color:#fff; background:#182420; gap:.65rem; opacity:1; transform:none; transition:background 180ms ease; }
+.imageAction b { backdrop-filter:none; flex-shrink:0; width:2rem; height:2rem; border:0; background:transparent; }
+.projectLink:hover .imageAction, .projectLink:focus-visible .imageAction { transform:none; background:#008877; }
+.projectLink:focus-visible { outline:3px solid #008877; outline-offset:5px; border-radius:12px; }
+.topicProject { overflow:visible; }
+.textLink { min-height:44px; align-items:center; transform:none; }
+.topicAsanoha::before { animation:none; }
+.topicDigital::after { animation:none; display:none; }
+.blueprintField, .digitalField { contain:paint; }
+@media (max-width:760px) {
+  .topicProjects { grid-template-columns:minmax(0,1fr); }
+  .topicProjectLead { grid-row:auto; }
+  .topicProject:not(.topicProjectLead) .topicProjectCopy h3 { font-size:1.35rem; line-height:1.55; }
+  .topicProject:not(.topicProjectLead) .topicProjectCopy > p:not(.meta) { display:block; font-size:.9rem; }
+  .imageAction { bottom:.75rem; right:.75rem; font-size:.6rem; }
 }
