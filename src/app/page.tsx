@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import HomeMotion from "@/components/HomeMotion";
-import { IngredientField, BlueprintField, DigitalField } from "@/components/FieldBackdrop";
+import { IngredientField, BlueprintField, AsanohaField, DigitalField } from "@/components/FieldBackdrop";
 import { hotelProject } from "@/data/featuredProjects";
 import styles from "./refresh.module.css";
 
@@ -10,13 +10,13 @@ const topics = [
   {
     id: "real-estate",
     number: "01",
-    label: "Real estate / Architecture",
-    title: "不動産・建築",
-    lead: "土地と建物を観察し、事業として判断できる形へ。収支、地図、研究、設計と実践を横断します。",
+    label: "Space Creation",
+    title: "空間・創造",
+    lead: "街を読み、事業を組み立て、空間をつくる。不動産への投資から建築の研究・改修まで、場所の可能性を形にします。",
     ticker: "UNDERWRITING　FIELDWORK　ARCHITECTURE　MAP　ACQUISITION",
     className: styles.topicScan,
     projects: [
-      { title: hotelProject.title, text: hotelProject.synopsis, href: hotelProject.href!, image: hotelProject.image, visual: "underwriting" },
+      { title: "不動産開発", text: "不動産への出資、住宅・オフィスの売買、当社初のホテル開発。収支の検討と関係者との調整を通じ、事業を前へ進めます。", href: hotelProject.href!, image: hotelProject.image, visual: "underwriting" },
       { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp", fit: "contain" },
       { title: "小屋改修実践PJ", text: "老朽化した小屋を観察し、修復と再利用によって使える状態へつないだ。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
     ],
@@ -26,7 +26,7 @@ const topics = [
     number: "02",
     label: "Culture / Planning",
     title: "文化・企画",
-    lead: "人が何を大切にし、どう関係をつくるか。フィールドワークと事業企画、組織への働きかけを往復します。",
+    lead: "人が集まり、話し、何かが始まる。そのきっかけを、地域の企画や社内の文化活動、組織づくりのなかで育てています。",
     ticker: "CULTURE　PLANNING　ETHNOGRAPHY　DIALOGUE　FIELDWORK",
     className: styles.topicAsanoha,
     projects: [
@@ -38,9 +38,9 @@ const topics = [
   {
     id: "digital",
     number: "03",
-    label: "DX / Digital",
-    title: "DX・デジタル",
-    lead: "日々の小さな不便や業務の引っかかりを、地図、データ、Webアプリという使える道具に変えます。",
+    label: "Digital & Tech",
+    title: "Digital & Tech",
+    lead: "気になることは、自分でつくって試す。コードやデータを道具に、日々の学びと仕事の進め方を少しずつ変えていきます。",
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
     projects: [
@@ -66,7 +66,7 @@ export default function Home() {
         <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
           <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
-          <p className={styles.thesis}>場所をよく見て、まだ言葉になっていない価値を読み解く。<br />人と仕組みをつなぎながら、使える形まで持っていく。</p>
+          <p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />違う興味を混ぜながら、場所と人の新しい可能性をつくっています。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
           </nav>
@@ -82,6 +82,7 @@ export default function Home() {
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
           {topic.id === "real-estate" && <BlueprintField />}
           {topic.id === "digital" && <DigitalField />}
+          {topic.id === "culture" && <AsanohaField />}
           <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
 
           <header className={styles.topicHeader}>
@@ -92,7 +93,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 35vw, 520px"} /><span className={styles.imageAction} aria-hidden="true">VIEW PROJECT <b>↗</b></span></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>

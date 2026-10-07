@@ -19,9 +19,9 @@ export default function YouTubeFeature({ videoId, channelUrl, uploadsHandle, tit
       <header className={styles.videoFeatureHeader}>
         <div>
           <p className={styles.meta}>YouTube / Video journal</p>
-          <h3 id="video-feature-title">移動の記録を、映像で。</h3>
+          <h3 id="video-feature-title">道をたどり、風景を残す。</h3>
         </div>
-        <p>横にスクロールして、特集映像とチャンネルの動画を選べます。</p>
+        <p>旧街道を自転車で走り、街の変化や寄り道を映像に。横に送ると、ほかの記録へ。</p>
       </header>
 
       <div className={styles.videoRail} data-lenis-prevent aria-label="動画セレクション">

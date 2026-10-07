@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'; // useEffect をインポート
 
 interface CursorContextType {
@@ -13,6 +14,7 @@ interface CursorContextType {
 const CursorContext = createContext<CursorContextType | undefined>(undefined);
 
 export const CursorProvider = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
   const [cursorVariant, setCursorVariant] = useState("default");
   const [cursorX, setCursorX] = useState(0); // カーソルX座標の状態
   const [cursorY, setCursorY] = useState(0); // カーソルY座標の状態
@@ -22,6 +24,7 @@ export const CursorProvider = ({ children }: { children: ReactNode }) => {
 
   // カーソルの動きを追跡
   useEffect(() => {
+    if (pathname === "/") return;
     const mouseMove = (e: MouseEvent) => {
       setCursorX(e.clientX);
       setCursorY(e.clientY);
@@ -32,7 +35,7 @@ export const CursorProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       window.removeEventListener('mousemove', mouseMove);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <CursorContext.Provider value={{ cursorVariant, textEnter, textLeave, cursorX, cursorY }}>

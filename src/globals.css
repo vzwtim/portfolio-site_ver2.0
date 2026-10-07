@@ -158,3 +158,12 @@ html.lenis, html.lenis body { height:auto; }
 html.lenis { scroll-behavior:auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior:contain; }
 .lenis.lenis-scrolling iframe { pointer-events:none; }
+
+.portfolioCursor { position:fixed; top:0; left:0; width:0; height:0; z-index:100; pointer-events:none; opacity:0; will-change:transform; }
+.portfolioCursor[data-visible="true"] { opacity:1; }
+.portfolioCursor i { position:absolute; width:72px; height:72px; left:-36px; top:-36px; border-radius:50%; background:#bb5555; opacity:.75; transform:scale(.22); transition:transform 240ms cubic-bezier(.2,.8,.2,1),background 200ms,opacity 200ms; }
+.portfolioCursor span { position:absolute; width:72px; height:72px; left:-36px; top:-36px; display:grid; place-items:center; color:white; font:32px/1 Arial,sans-serif; opacity:0; transition:opacity 160ms; }
+.portfolioCursor[data-project="true"] i { transform:scale(1); background:#008877; opacity:.94; }
+.portfolioCursor[data-project="true"] span { opacity:1; }
+@media (hover:hover) and (pointer:fine) { [data-project-image] { cursor:none; } }
+@media (prefers-reduced-motion:reduce) { .portfolioCursor i,.portfolioCursor span { transition:none; } }

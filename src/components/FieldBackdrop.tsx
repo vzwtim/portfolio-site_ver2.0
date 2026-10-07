@@ -386,7 +386,7 @@ export function BlueprintField() {
     <div className={styles.rulerSide}>{Array.from({ length: 12 }, (_, i) => <span key={i}>{String(i * 10).padStart(3, "0")}</span>)}</div>
     <svg className={styles.blueprint} viewBox="0 0 1000 700" fill="none" data-parallax="plan">
       {allDrawingStages.map(stage => <g key={stage.name} className={`${styles.draftingLayer} ${stage.name === "material" ? styles.materialLayer : ""}`} data-drafting-layer={stage.name}>
-        <path d={stage.paths.join(" ")} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start}s`, "--draw-duration": stage.name === "walls" ? "2.1s" : "1.8s" } as React.CSSProperties} />
+        {Array.from({ length: Math.ceil(stage.paths.length / 8) }, (_, batch) => <path key={batch} d={stage.paths.slice(batch * 8, batch * 8 + 8).join(" ")} pathLength="1" className={styles.draftStroke} style={{ "--draw-delay": `${stage.start + batch * .14}s`, "--draw-duration": stage.name === "walls" ? "2.1s" : "1.3s" } as React.CSSProperties} />)}
       </g>)}
       <g className={styles.planAnnotations}>
         <path d="M160 140H810M160 340H810M160 540H810M170 125V560M470 125V560M800 125V560" />
@@ -418,6 +418,9 @@ const metroRoutes = [
 ];
 export function DigitalField() {
   return <div className={styles.digitalField} aria-hidden="true">
+    <div className={styles.codePanels}>{[0, 1, 2].map(panel => <div className={styles.codePanel} key={panel} style={{ "--panel": panel } as React.CSSProperties}><span>YUDAI / LAB_{String(panel + 1).padStart(2, "0")}</span>{[
+      "$ connect --city tokyo", "const ideas = await observe();", "for (const place of city) {", "  const value = discover(place);", "  connect(people, value);", "  await prototype(ideas);", "}", "> build complete · ready_",
+    ].map((line, i) => <code key={i} style={{ "--line": i, "--chars": line.length } as React.CSSProperties}>{line}</code>)}</div>)}</div>
     <svg className={styles.metroNetwork} viewBox="0 0 1440 820" fill="none" preserveAspectRatio="xMidYMid slice">
       {metroRoutes.map((route, i) => <g key={route.color} style={{ color: route.color }}>
         <path className={styles.metroRoute} d={route.path} />
@@ -430,4 +433,9 @@ export function DigitalField() {
     </svg>
     <span className={styles.metroLegend}>METRO / CONNECTIONS IN MOTION</span>
   </div>;
+}
+
+/** Triangular leaves hinge on their vertical edge, then move to the next tile. */
+export function AsanohaField() {
+  return <div className={styles.asanohaField} aria-hidden="true">{Array.from({length:12}, (_, i) => <div className={styles.tileTraveler} key={i} style={{ "--tile":i, left:`${8 + (i * 23) % 88}%`, top:`${4 + (i * 17) % 90}%` } as React.CSSProperties}><i /></div>)}</div>;
 }
