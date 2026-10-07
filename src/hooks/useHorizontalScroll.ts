@@ -29,7 +29,7 @@ export default function useHorizontalScroll<T extends HTMLElement>(enabled = tru
     };
 
     const onWheel = (e: WheelEvent) => {
-      if (e.deltaY === 0 || Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.ctrlKey) return;
+      if ((e.target instanceof Element && e.target.closest('[role="dialog"]')) || e.deltaY === 0 || Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.ctrlKey) return;
       e.preventDefault();
       target = Math.max(0, Math.min(el.scrollWidth - el.clientWidth, target + e.deltaY * SCROLL_MULTIPLIER));
       if (rafId === null) rafId = requestAnimationFrame(smoothScroll);
