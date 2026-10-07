@@ -17,8 +17,8 @@ const topics = [
     className: styles.topicScan,
     projects: [
       { title: "不動産開発", text: "不動産への出資、住宅・オフィスの売買、当社初のホテル開発。収支の検討と関係者との調整を通じ、事業を前へ進めます。", href: hotelProject.href!, image: hotelProject.image, visual: "underwriting" },
-      { title: "都市動態論", text: "地図の分析から、都市に残る生活の痕跡とリズムを読む研究。", href: "/works/master-thesis", image: "/images/figure_master.webp", fit: "contain" },
-      { title: "小屋改修実践PJ", text: "老朽化した小屋を観察し、修復と再利用によって使える状態へつないだ。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
+      { title: "都市動態論", text: "地図とフィールドワークから、都市に刻まれた暮らしの痕跡や変化を読み解く。", href: "/works/master-thesis", image: "/images/figure_master.webp", fit: "contain" },
+      { title: "小屋改修実践PJ", text: "古い小屋を、自分たちの手で使える場所へ。調査から修繕まで、現場で考え、つくる実践。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg" },
     ],
   },
   {
@@ -30,9 +30,9 @@ const topics = [
     ticker: "CULTURE　PLANNING　ETHNOGRAPHY　DIALOGUE　FIELDWORK",
     className: styles.topicAsanoha,
     projects: [
-      { title: "日光市今市U35実践アイデアコンペ", text: "若手の建築・まちづくり提案を地域での実践につなげるコンペで、企画・運営をサポート。", href: "/works/competition-mentor-support", image: "/images/portfolio/maki-competition-cover.webp", visual: "COMPETITION / COMMUNITY" },
-      { title: "社内文化部企画", text: "地図会、ワイン会、ビール会を通じ、立場を越えた交流と新しい関心が生まれる場を企画。", href: "/works/company-culture-club", image: "/images/portfolio/culture-beer-05.jpg", visual: "CULTURE / COMMUNITY" },
-      { title: "組織風土改革プロジェクト", text: "経営企画の一員として、対話と仕組みの両面から組織風土の改善に取り組む。", href: "/works/organizational-culture-reform", image: "/images/portfolio/org-culture-reform.jpg", visual: "ORGANIZATION / DIALOGUE" },
+      { title: "日光市今市U35実践アイデアコンペ", text: "宿場町・今市を舞台に、若手のアイデアと地域の実践をつなぐ。コンペの企画・運営をサポート。", href: "/works/competition-mentor-support", image: "/images/portfolio/maki-competition-cover.webp", visual: "COMPETITION / COMMUNITY" },
+      { title: "社内文化部企画", text: "地図、ワイン、ビール。好きなものを持ち寄り、部署や立場を越えて話せる場をつくる。", href: "/works/company-culture-club", image: "/images/portfolio/culture-beer-05.jpg", visual: "CULTURE / COMMUNITY" },
+      { title: "組織風土改革プロジェクト", text: "部署の境界を越え、声が届き、行動につながる組織へ。対話の場と仕組みの両方から取り組む。", href: "/works/organizational-culture-reform", image: "/images/portfolio/org-culture-reform.jpg", visual: "ORGANIZATION / DIALOGUE" },
     ],
   },
   {
@@ -44,8 +44,8 @@ const topics = [
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
     projects: [
-      { title: "社内DX勉強会", text: "デジタルを一部の専門知識にせず、社内で学び合い、業務に持ち帰るための勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", visual: "DX / LEARNING" },
-      { title: "Swift Revise", text: "不動産知識を気軽に反復できる、一問一答の学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png", fit: "contain" },
+      { title: "社内DX勉強会", text: "AIやデジタルを、誰もが試せる道具に。学び合い、小さくつくり、仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", visual: "DX / LEARNING" },
+      { title: "Swift Revise", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png", fit: "contain" },
       { title: "一種単価マップ", text: "東京都の土地価格を、容積率を踏まえた一種単価で比較できるインタラクティブマップ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png", fit: "contain", visual: "LAND / UNIT PRICE MAP" },
     ],
   },
@@ -93,7 +93,7 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b><em className={styles.imageAction}>VIEW PROJECT <strong>↗</strong></em></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 760px) calc(100vw - 48px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>
               </article>
