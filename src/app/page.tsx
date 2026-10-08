@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
+import ProjectMotionPreview from "@/components/ProjectMotionPreview";
 import HomeMotion from "@/components/HomeMotion";
 import { IngredientField, BlueprintField, AsanohaField, DigitalField } from "@/components/FieldBackdrop";
 import { hotelProject } from "@/data/featuredProjects";
@@ -39,7 +40,7 @@ const topics = [
     id: "digital",
     number: "03",
     label: "Digital & Tech",
-    title: "デジタル・技術",
+    title: "デジタル",
     lead: "気になることは、自分でつくって試す。コードやデータを道具に、日々の学びと仕事の進め方を少しずつ変えていきます。",
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
@@ -92,10 +93,12 @@ export default function Home() {
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
-                <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
+                {project.href === "/works/odo-renovation" && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio}>
+                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
+                </ProjectMotionPreview> : <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
                   {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
-                </Link>
+                </Link>}
               </article>
             ))}
           </div>

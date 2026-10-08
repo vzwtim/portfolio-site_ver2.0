@@ -7,6 +7,19 @@ export default function HomeMotion() {
   useEffect(() => {
     const page = document.querySelector<HTMLElement>("[data-home-motion]");
     if (!page) return;
+    // Snap the responsive distribution to the exact background lattice, once per resize.
+    const field = page.querySelector<HTMLElement>("[data-asanoha-field]");
+    const placeTiles = () => {
+      if (!field) return;
+      const unit = 80 * Math.sqrt(3);
+      field.querySelectorAll<HTMLElement>("[data-tile-x]").forEach(tile => {
+        tile.style.left = `${Math.max(0, Math.floor((field.clientWidth - 220) * Number(tile.dataset.tileX) / unit)) * unit}px`;
+        tile.style.top = `${Math.max(0, Math.floor((field.clientHeight - 250) * Number(tile.dataset.tileY) / 80)) * 80}px`;
+      });
+    };
+    const layoutObserver = field ? new ResizeObserver(placeTiles) : null;
+    if (field) layoutObserver?.observe(field);
+    placeTiles();
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
     let dispose = () => {};
@@ -34,7 +47,8 @@ export default function HomeMotion() {
       const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
       const smoothScroll = fine.matches ? new Lenis({
         autoRaf: true,
-        lerp: .14,
+        lerp: .075,
+        wheelMultiplier: .95,
         smoothWheel: true,
         syncTouch: false,
         anchors: { offset: -32 },
@@ -44,6 +58,7 @@ export default function HomeMotion() {
         entries.forEach(entry => {
           const section = entry.target as HTMLElement;
           section.dataset.motionActive = String(entry.isIntersecting);
+          if (entry.isIntersecting) section.dataset.drawingStarted = "true";
         });
         schedule();
       });
@@ -63,12 +78,12 @@ export default function HomeMotion() {
         });
         delete page.dataset.motionReady;
         progress?.style.removeProperty("transform");
-        sections.forEach(section => { delete section.dataset.motionActive; section.style.removeProperty("--section-shift"); section.style.removeProperty("--image-shift"); ["--chapter-progress", "--hero-zoom", "--hero-inset", "--hero-copy-shift", "--surface-inset", "--surface-radius", "--scene-copy-shift", "--bridge-shift", "--scene-title-scale", "--index-shift"].forEach(property => section.style.removeProperty(property)); });
+        sections.forEach(section => { delete section.dataset.motionActive; delete section.dataset.drawingStarted; section.style.removeProperty("--section-shift"); section.style.removeProperty("--image-shift"); ["--chapter-progress", "--hero-zoom", "--hero-inset", "--hero-copy-shift", "--surface-inset", "--surface-radius", "--scene-copy-shift", "--bridge-shift", "--scene-title-scale", "--index-shift"].forEach(property => section.style.removeProperty(property)); });
         page.querySelectorAll<HTMLElement>("[data-magnetic]").forEach(target => { target.style.removeProperty("--magnet-x"); target.style.removeProperty("--magnet-y"); });
       };
     };
     setup(); reduced.addEventListener("change", setup); fine.addEventListener("change", setup);
-    return () => { dispose(); reduced.removeEventListener("change", setup); fine.removeEventListener("change", setup); };
+    return () => { dispose(); layoutObserver?.disconnect(); reduced.removeEventListener("change", setup); fine.removeEventListener("change", setup); };
   }, []);
   return null;
 }

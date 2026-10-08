@@ -435,8 +435,8 @@ export function DigitalField() {
   </div>;
 }
 
-/** Each resting face shares its exact vertices with the background lattice. */
+/** Responsive rows span the full width; each tile stays on the lattice. */
 export function AsanohaField() {
-  const cells = [[0,0],[3,2],[6,0],[1,5],[5,7],[0,10],[7,11],[3,14],[1,18],[5,21],[0,24],[7,26]];
-  return <div className={styles.asanohaField} aria-hidden="true">{cells.map(([column,row], i) => <span className={styles.tileTraveler} key={i} style={{ "--tile":i, "--column":column, "--mobile-column":column % 2, "--row":row } as React.CSSProperties} />)}</div>;
+  const cells = [[0,0],[.5,.02],[1,.04],[.22,.17],[.78,.19],[0,.34],[1,.36],[.5,.49],[.15,.63],[.85,.65],[0,.8],[1,.82],[.5,.94]];
+  return <div className={styles.asanohaField} aria-hidden="true" data-asanoha-field>{cells.map(([x,y], i) => <span className={styles.tileTraveler} key={i} data-tile-x={x} data-tile-y={y} style={{ "--tile":i, left:`${x * 80}%`, top:`${y * 90}%` } as React.CSSProperties} />)}</div>;
 }

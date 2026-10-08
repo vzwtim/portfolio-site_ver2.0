@@ -101,7 +101,7 @@
 .topicProject:not(.topicProjectLead) { align-self:stretch; display:block; }
 .topicProject:not(.topicProjectLead) .topicImage { aspect-ratio:16/7; }
 .topicImage { aspect-ratio: 16/10; overflow: hidden; position: relative; }
-.topicImage::after { background:linear-gradient(135deg,transparent 45%,rgba(0,0,0,.34)); content:""; inset:0; opacity:0; position:absolute; transition:opacity 600ms ease; }
+.topicImage::after { pointer-events:none; background:linear-gradient(135deg,transparent 45%,rgba(0,0,0,.34)); content:""; inset:0; opacity:0; position:absolute; transition:opacity 600ms ease; }
 .topicImage img { backface-visibility:hidden; object-fit:cover; transform:scale(1.001); transition:transform 1400ms cubic-bezier(.25,.46,.45,.94); will-change:transform; }
 .projectLink { color:inherit; display:block; height:auto; text-decoration:none; }
 .projectLink:focus-visible { outline:3px solid var(--red); outline-offset:-3px; }
@@ -313,7 +313,7 @@
 .page[data-motion-ready="true"] [data-reveal="project"][data-visible="true"] { clip-path:inset(0); }
 @media (hover:hover) and (pointer:fine) {
   .topicImage { transform:perspective(1200px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transition:transform 650ms cubic-bezier(.16,1,.3,1); }
-  .topicImage::after { background:radial-gradient(circle at var(--hover-x,70%) var(--hover-y,70%),rgba(255,255,255,.18),transparent 45%),linear-gradient(135deg,transparent 45%,rgba(0,0,0,.25)); }
+  .topicImage::after { pointer-events:none; background:radial-gradient(circle at var(--hover-x,70%) var(--hover-y,70%),rgba(255,255,255,.18),transparent 45%),linear-gradient(135deg,transparent 45%,rgba(0,0,0,.25)); }
   .projectLink:hover .topicProjectCopy h3 { color:var(--green); }
   .topicProjectCopy h3 { transition:color 400ms; }
 }
@@ -331,8 +331,8 @@
 
 /* A pen sequence: structure → joinery → furniture → services → material → dimensions. */
 .blueprint { opacity:.4; }
-.draftingLayer { stroke:currentColor; stroke-width:.48; }
-.draftingLayer[data-drafting-layer="walls"] { stroke-width:.72; }
+.draftingLayer { stroke:currentColor; stroke-width:.65; }
+.draftingLayer[data-drafting-layer="walls"] { stroke-width:.95; }
 .materialLayer { stroke-width:.28; opacity:.45; }
 .draftStroke { vector-effect:non-scaling-stroke; stroke-dasharray:1; stroke-dashoffset:0; }
 .page[data-motion-ready="true"] .draftStroke { animation:writeDrawing var(--draw-duration,.85s) cubic-bezier(.45,0,.2,1) var(--draw-delay,0s) both; }
@@ -506,7 +506,7 @@
 .topicProjectCopy { padding-top:1.4rem; }
 .topicProjectCopy > p:not(.meta) { color:#4c5550; }
 .topicDigital .topicProjectCopy > p:not(.meta) { color:#c1c7c3; }
-.blueprint { opacity:.2; }
+.blueprint { opacity:.46; }
 .topicScan::before { opacity:.45; }
 .backgroundIndex { opacity:.16; transform:none; }
 .metroNetwork { opacity:.24; transform:none; }
@@ -571,7 +571,7 @@
   .masthead { min-height:110svh; padding-top:8rem; padding-bottom:6rem; }
   .videoFeatureHeader { margin-inline:0; }
   .videoRail { grid-auto-columns:calc(100% - 2rem); padding-inline:1rem; scroll-padding-inline:1rem; mask-image:linear-gradient(90deg,transparent,#000 1rem,#000 calc(100% - 1rem),transparent); }
-  .tileTraveler:nth-child(n+7), .codePanel:nth-child(3) { display:none; }
+  .codePanel:nth-child(3) { display:none; }
   .topicDigital .topicHeader h2 { font-size:clamp(2.5rem,9vw,4rem); }
 }
 @media (prefers-reduced-motion:reduce) {
@@ -639,7 +639,7 @@
 /* Geometry locked to the same 80 × 80√3 lattice as the painted triangles. */
 .topicAsanoha::before { background:none; }
 .asanohaField { background:url("/images/asanoha-motion.svg") repeat 0 0 / 138.564064606px 80px; perspective:none; }
-.tileTraveler { position:absolute; left:calc(var(--column) * 138.564064606px); top:calc(var(--row) * 80px); width:220px; height:250px; background:#bb5555; opacity:.22; animation:asanohaRoll 28s cubic-bezier(.45,0,.55,1) infinite; animation-delay:calc(var(--tile) * -2.17s); }
+.tileTraveler { position:absolute;  width:220px; height:250px; background:#bb5555; opacity:.22; animation:asanohaRoll 28s cubic-bezier(.45,0,.55,1) infinite; animation-delay:calc(var(--tile) * -2.17s); }
 .tileTraveler { clip-path:polygon(92.376043px 80.000000px, 138.564065px 80.000000px, 69.282032px 40.000000px); }
 @keyframes asanohaRoll {
   0.00% { clip-path:polygon(92.376043px 80.000000px, 138.564065px 80.000000px, 69.282032px 40.000000px); }
@@ -684,7 +684,20 @@
   96.00% { clip-path:polygon(92.376043px 80.000000px, 138.564065px 80.000000px, 69.282032px 120.000000px); }
   100.00% { clip-path:polygon(92.376043px 80.000000px, 138.564065px 80.000000px, 69.282032px 40.000000px); }
 }
-@media(max-width:600px) {
-  .tileTraveler { left:calc(var(--mobile-column) * 138.564064606px); }
-}
 @media(prefers-reduced-motion:reduce) { .tileTraveler { animation:none; } }
+
+/* Drafting starts with the chapter, not at page load. Pause offscreen. */
+.page[data-motion-ready="true"] [data-motion-section]:not([data-drawing-started="true"]) .draftStroke,
+.page[data-motion-ready="true"] [data-motion-section]:not([data-drawing-started="true"]) .planAnnotations,
+.page[data-motion-ready="true"] [data-motion-section]:not([data-drawing-started="true"]) .dimensionLines,
+.page[data-motion-ready="true"] [data-motion-section]:not([data-motion-active="true"]) .draftStroke,
+.page[data-motion-ready="true"] [data-motion-section]:not([data-motion-active="true"]) .planAnnotations,
+.page[data-motion-ready="true"] [data-motion-section]:not([data-motion-active="true"]) .dimensionLines { animation-play-state:paused; }
+.projectMotionVideo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; pointer-events:none; transition:opacity 350ms ease; }
+.projectMotionVideo[data-playing="true"] { opacity:1; }
+.motionToggle { position:absolute; z-index:4; right:.75rem; bottom:.75rem; display:none; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid #ffffff80; border-radius:50%; background:#142b26d9; color:white; font:18px/1 sans-serif; cursor:pointer; }
+.motionToggle:focus-visible { outline:3px solid #008877; outline-offset:3px; }
+@media (hover:none), (pointer:coarse) { .motionToggle { display:flex; } }
+@media (prefers-reduced-motion:reduce) { .projectMotionVideo { transition:none; } .motionToggle { display:flex; } }
+.projectMotionLink { display:block; position:absolute; inset:0; }
+.projectMotionLink:focus-visible { outline:3px solid #008877; outline-offset:-3px; }
