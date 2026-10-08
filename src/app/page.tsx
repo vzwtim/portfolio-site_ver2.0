@@ -39,7 +39,7 @@ const topics = [
     id: "digital",
     number: "03",
     label: "Digital & Tech",
-    title: "Digital & Tech",
+    title: "デジタル・技術",
     lead: "気になることは、自分でつくって試す。コードやデータを道具に、日々の学びと仕事の進め方を少しずつ変えていきます。",
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,

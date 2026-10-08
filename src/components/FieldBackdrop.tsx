@@ -435,7 +435,8 @@ export function DigitalField() {
   </div>;
 }
 
-/** Triangular leaves hinge on their vertical edge, then move to the next tile. */
+/** Each resting face shares its exact vertices with the background lattice. */
 export function AsanohaField() {
-  return <div className={styles.asanohaField} aria-hidden="true">{Array.from({length:12}, (_, i) => <div className={styles.tileTraveler} key={i} style={{ "--tile":i, left:`${8 + (i * 23) % 88}%`, top:`${4 + (i * 17) % 90}%` } as React.CSSProperties}><i /></div>)}</div>;
+  const cells = [[0,0],[3,2],[6,0],[1,5],[5,7],[0,10],[7,11],[3,14],[1,18],[5,21],[0,24],[7,26]];
+  return <div className={styles.asanohaField} aria-hidden="true">{cells.map(([column,row], i) => <span className={styles.tileTraveler} key={i} style={{ "--tile":i, "--column":column, "--mobile-column":column % 2, "--row":row } as React.CSSProperties} />)}</div>;
 }
