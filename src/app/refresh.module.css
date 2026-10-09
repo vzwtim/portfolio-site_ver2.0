@@ -701,3 +701,18 @@
 @media (prefers-reduced-motion:reduce) { .projectMotionVideo { transition:none; } .motionToggle { display:flex; } }
 .projectMotionLink { display:block; position:absolute; inset:0; }
 .projectMotionLink:focus-visible { outline:3px solid #008877; outline-offset:-3px; }
+
+/* A small, image-only pullback on pointer hover; the hit area stays fixed. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .page .topicProject .topicImage img,
+  .page .topicProject .topicImage video {
+    transform:scale(1.025);
+    transition:transform 850ms cubic-bezier(.22,1,.36,1), opacity 350ms ease;
+  }
+  .page .topicProject .topicImage:hover img,
+  .page .topicProject .topicImage:hover video,
+  .page .topicProject .topicImage:focus-within img,
+  .page .topicProject .topicImage:focus-within video {
+    transform:scale(1);
+  }
+}
