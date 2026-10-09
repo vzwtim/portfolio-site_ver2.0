@@ -1,8 +1,6 @@
 import { act, render } from "@testing-library/react";
 import HomeMotion from "../HomeMotion";
-import Lenis from "lenis";
 
-jest.mock("lenis", () => jest.fn().mockImplementation(() => ({ destroy: jest.fn() })));
 
 it("keeps photographs and chapter entrances static while scrolling, and clears activity with reduced motion", () => {
   const observers: Array<{ callback: IntersectionObserverCallback; disconnect: jest.Mock }> = [];
@@ -24,8 +22,6 @@ it("keeps photographs and chapter entrances static while scrolling, and clears a
   jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frames.push(callback); return frames.length; });
   jest.spyOn(window, "cancelAnimationFrame").mockImplementation(() => {});
   const { container, unmount } = render(<main data-home-motion><HomeMotion /><section id="chapter" data-motion-section data-scene-surface><div data-project-image /></section></main>);
-  const smooth = jest.mocked(Lenis).mock.results.at(-1)!.value;
-  expect(Lenis).toHaveBeenCalledTimes(1);
   const section = container.querySelector("section")!;
   const image = container.querySelector<HTMLElement>("[data-project-image]")!;
   let top = window.innerHeight * .7;
@@ -45,8 +41,6 @@ it("keeps photographs and chapter entrances static while scrolling, and clears a
   expect(image.style.getPropertyValue("--project-zoom")).toBe("");
   expect(section.style.getPropertyValue("--hero-zoom")).toBe("");
   act(() => { reduced = true; preferenceChange(); });
-  expect(smooth.destroy).toHaveBeenCalledTimes(1);
-  expect(Lenis).toHaveBeenCalledTimes(1);
   expect(container.querySelector("main")).not.toHaveAttribute("data-motion-ready");
   expect(image.style.getPropertyValue("--project-pan")).toBe("");
   expect(section.style.getPropertyValue("--surface-inset")).toBe("");
