@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 
 export default function HomeMotion() {
   useEffect(() => {
@@ -45,15 +44,6 @@ export default function HomeMotion() {
         if (progress) progress.style.transform = `scaleX(${Math.max(0, Math.min(1, -page.getBoundingClientRect().top / Math.max(1, total)))})`;
       };
       const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-      const smoothScroll = fine.matches ? new Lenis({
-        autoRaf: true,
-        lerp: .075,
-        wheelMultiplier: .95,
-        smoothWheel: true,
-        syncTouch: false,
-        anchors: { offset: -32 },
-        prevent: node => node.tagName === "TEXTAREA" || node.tagName === "SELECT",
-      }) : null;
       const activity = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           const section = entry.target as HTMLElement;
@@ -69,7 +59,6 @@ export default function HomeMotion() {
       page.addEventListener("focusin", focus);
       schedule();
       dispose = () => {
-        smoothScroll?.destroy();
         cancelAnimationFrame(frame); reveal.disconnect(); activity.disconnect();
         window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule);
         page.removeEventListener("focusin", focus);

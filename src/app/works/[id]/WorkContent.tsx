@@ -98,6 +98,7 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
 
   return (
     <main
+      data-horizontal-scroll={!isMobile ? "" : undefined}
       ref={scrollRef}
       className={`${styles.detail} text-gray-900`}
       style={{ backgroundColor: work.bgColor }}
@@ -266,7 +267,7 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
 
 function ResponsiveImage({ src, alt, dimensions, onOpen }: { src:string; alt:string; dimensions:{width:number; height:number} | null; onOpen:()=>void }) {
   return <div className={styles.imageSlot}>
-    <button type="button" className={styles.imageButton} style={dimensions ? { aspectRatio: `${dimensions.width} / ${dimensions.height}` } : undefined} onClick={onOpen} aria-label={`${alt}を拡大する`}>
+    <button type="button" data-hover-image className={styles.imageButton} style={dimensions ? { aspectRatio: `${dimensions.width} / ${dimensions.height}` } : undefined} onClick={onOpen} aria-label={`${alt}を拡大する`}>
       {dimensions ? <FadeInImage src={src} alt={alt} width={dimensions.width} height={dimensions.height} sizes="(max-width:1023px) calc(100vw - 40px), 80vw" unoptimized={src.toLowerCase().endsWith('.gif')} className={styles.image} /> :
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt={alt} loading="lazy" className={styles.image} />}

@@ -153,7 +153,7 @@ body {
   .footerScene footer p { font-size:.55rem; }
 }
 
-/* Wheel inertia owns interpolation only while the homepage is mounted. */
+/* Wheel inertia owns interpolation across all pages. */
 html.lenis, html.lenis body { height:auto; }
 html.lenis { scroll-behavior:auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior:contain; }
@@ -167,3 +167,15 @@ html.lenis { scroll-behavior:auto !important; }
 .portfolioCursor[data-project="true"] span { opacity:1; }
 @media (hover:hover) and (pointer:fine) { [data-project-image] { cursor:none; } }
 @media (prefers-reduced-motion:reduce) { .portfolioCursor i,.portfolioCursor span { transition:none; } }
+
+/* Shared image pullback. Only the media moves; frames and hit areas stay fixed. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  [data-project-image] img, [data-hover-image] img {
+    transform:scale(1.025);
+    transition:transform 850ms cubic-bezier(.22,1,.36,1),filter 300ms ease;
+  }
+  [data-project-image]:hover img, [data-hover-image]:hover img,
+  [data-hover-image]:focus-visible img, [data-project-image]:focus-within img {
+    transform:scale(1);
+  }
+}
