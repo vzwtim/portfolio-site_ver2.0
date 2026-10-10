@@ -1,4 +1,5 @@
 const privacyEdits: Record<string, string> = {
+  '/images/portfolio/culture-wine-05.jpg': '/images/portfolio/culture-wine-05-private.webp',
   '/images/portfolio/culture-beer-01.jpg': '/images/portfolio/culture-beer-01-private.webp',
 };
 const editedImages = new Set(Object.values(privacyEdits));
