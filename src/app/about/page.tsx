@@ -50,7 +50,8 @@ const TimelineItem = ({ item, isLast }: { item: typeof journeyData[0], isLast: b
         </div>
         {item.image && (
             <motion.div
-              className="w-full h-40 md:h-full relative flex-shrink-0"
+              data-hover-image
+              className="w-full h-40 md:h-full relative flex-shrink-0 overflow-hidden rounded-lg"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.5 }}

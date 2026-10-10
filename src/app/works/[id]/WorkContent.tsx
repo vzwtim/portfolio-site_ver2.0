@@ -1,6 +1,7 @@
 // src/app/works/[id]/WorkContent.tsx
 'use client';
 
+import styles from './workDetail.module.css';
 import FadeInImage from '@/components/FadeInImage';
 import BackButton from '@/components/BackButton';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll';
@@ -20,9 +21,10 @@ export type Work = {
 interface WorkContentProps {
   work: Work;
   images: string[];
+  dimensions: Array<{ width:number; height:number } | null>;
 }
 
-export default function WorkContent({ work, images }: WorkContentProps) {
+export default function WorkContent({ work, images, dimensions }: WorkContentProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -44,9 +46,25 @@ export default function WorkContent({ work, images }: WorkContentProps) {
     setPinch(null);
   };
 
+  const lightboxOpen = lightboxIndex !== null;
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = 'hidden';
+    document.querySelector<HTMLButtonElement>('[aria-label="画像を閉じる"]')?.focus();
+    return () => { document.body.style.overflow = previousOverflow; previousFocus?.focus(); };
+  }, [lightboxOpen]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (lightboxIndex === null) return;
+      if (e.key === 'Tab') {
+        const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="dialog"] button'));
+        const first = buttons[0], last = buttons[buttons.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') {
         setLightboxIndex((idx) => (idx === null ? idx : (idx + 1) % images.length));
@@ -64,7 +82,7 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   }, [images.length, lightboxIndex]);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
@@ -80,19 +98,20 @@ export default function WorkContent({ work, images }: WorkContentProps) {
 
   return (
     <main
+      data-horizontal-scroll={!isMobile ? "" : undefined}
       ref={scrollRef}
-      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 pt-28 pb-16 md:pt-16 md:pb-0 md:h-[calc(100vh-9rem)] md:overflow-x-auto md:overflow-y-hidden"
+      className={`${styles.detail} text-gray-900`}
       style={{ backgroundColor: work.bgColor }}
     >
       <div
         className={`flex w-full transition-opacity duration-700 ease-out ${
           visible ? 'opacity-100' : 'opacity-0'
-        } flex-col gap-8 md:flex-row md:gap-0 md:h-full`}
+        } flex-col gap-8 lg:flex-row lg:gap-0 lg:h-full`}
       >
-        <div className="flex-shrink-0 w-full md:w-[800px] md:h-full flex items-center p-8 ">
+        <div className="flex-shrink-0 w-full lg:w-[min(46vw,680px)] lg:h-full flex items-center px-5 py-6 sm:px-8 ">
           <div className="text-left md:pl-12">
             <h1
-              className="text-4xl font-bold mb-12"
+              className="text-3xl sm:text-4xl font-bold mb-6 leading-snug break-words"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
             >
               {work.title}
@@ -103,14 +122,14 @@ export default function WorkContent({ work, images }: WorkContentProps) {
             >
               {work.description}
             </p>
-            <div className="mt-12 flex items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <BackButton />
               {work.link && (
                 <Link
                   href={work.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white/70 px-4 py-2 text-sm hover:bg-white transition-colors"
+                  className="inline-flex items-center min-h-11 rounded-full bg-white/70 px-4 py-2 text-sm hover:bg-white transition-colors"
                 >
                   Visit Site →
                 </Link>
@@ -122,7 +141,8 @@ export default function WorkContent({ work, images }: WorkContentProps) {
           <ResponsiveImage
             key={idx}
             src={src}
-            alt={idx === 0 ? work.title : ''}
+            dimensions={dimensions[idx]}
+            alt={`${work.title} — ${idx + 1}`}
             onOpen={() => {
               setLightboxIndex(idx);
               setZoom(1);
@@ -134,9 +154,11 @@ export default function WorkContent({ work, images }: WorkContentProps) {
 
       {lightboxIndex !== null && (
         <div
+          role="dialog" aria-modal="true" aria-label={`${work.title}の画像`}
           className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-4 md:p-8"
           onClick={closeLightbox}
         >
+          <button type="button" onClick={closeLightbox} className="absolute top-4 right-4 z-[1002] min-w-11 min-h-11 rounded-full bg-white text-black text-2xl" aria-label="画像を閉じる">×</button>
           <div
             className="relative w-full h-full flex items-center justify-center pointer-events-none"
           >
@@ -201,7 +223,7 @@ export default function WorkContent({ work, images }: WorkContentProps) {
               <img
                 src={images[lightboxIndex]}
                 alt="work detail"
-                className={`object-contain max-w-full max-h-full ${zoom > 1 ? 'cursor-grab' : ''}`}
+                className={`object-contain max-w-[90vw] max-h-[80dvh] ${zoom > 1 ? 'cursor-grab' : ''}`}
                 style={{
                   transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
                   transition: dragging || pinch ? 'none' : 'transform 0.15s ease-out',
@@ -243,54 +265,13 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   );
 }
 
-function ResponsiveImage({ src, alt, onOpen }: { src: string; alt: string; onOpen: () => void }) {
-  const [ratio, setRatio] = useState(1);
-  const isGif = src.toLowerCase().endsWith('.gif');
-
-  if (isGif) {
-    return (
-      <div className="flex-shrink-0 flex items-center justify-center px-4 w-full md:w-auto md:h-full">
-        <div
-          className="relative w-full md:h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden cursor-zoom-in"
-          style={{ aspectRatio: ratio }}
-          onClick={onOpen}
-          role="button"
-          aria-label="Open image in detail view"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            alt={alt}
-            className="object-contain w-full h-full transition-transform duration-300 ease-out"
-            onLoad={(e) => {
-              const img = e.currentTarget;
-              setRatio(img.naturalWidth / img.naturalHeight);
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex-shrink-0 flex items-center justify-center px-4 w-full md:w-auto md:h-full">
-      <div
-        className="relative w-full md:h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden cursor-zoom-in"
-        style={{ aspectRatio: ratio }}
-        onClick={onOpen}
-        role="button"
-        aria-label="Open image in detail view"
-      >
-        <FadeInImage
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain transition-transform duration-300 ease-out"
-          onLoadingComplete={(img) => {
-            setRatio(img.naturalWidth / img.naturalHeight);
-          }}
-        />
-      </div>
-    </div>
-  );
+function ResponsiveImage({ src, alt, dimensions, onOpen }: { src:string; alt:string; dimensions:{width:number; height:number} | null; onOpen:()=>void }) {
+  return <div className={styles.imageSlot}>
+    <button type="button" data-hover-image className={styles.imageButton} style={dimensions ? { aspectRatio: `${dimensions.width} / ${dimensions.height}` } : undefined} onClick={onOpen} aria-label={`${alt}を拡大する`}>
+      {dimensions ? <FadeInImage src={src} alt={alt} width={dimensions.width} height={dimensions.height} sizes="(max-width:1023px) calc(100vw - 40px), 80vw" unoptimized={src.toLowerCase().endsWith('.gif')} className={styles.image} /> :
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt={alt} loading="lazy" className={styles.image} />}
+      <span className={styles.zoomHint} aria-hidden="true">＋</span>
+    </button>
+  </div>;
 }

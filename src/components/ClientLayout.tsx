@@ -1,5 +1,6 @@
 'use client';
 
+import SiteMotion from './SiteMotion';
 import { usePathname } from 'next/navigation';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -27,6 +28,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <div className={`transition-colors duration-500 ${bgColor}`}>
       <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
         <CursorProvider>
+          <SiteMotion />
           <CustomCursor />
           {!isAppsPage && <Header textColor={textColor} />}
           <div className={textColor}>

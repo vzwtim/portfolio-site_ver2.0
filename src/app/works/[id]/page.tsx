@@ -1,4 +1,6 @@
 // src/app/works/[id]/page.tsx
+import sharp from 'sharp';
+import path from 'node:path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import works from '../../../data/works.json';
@@ -39,5 +41,12 @@ export default async function WorkPage({ params }: PageProps) {
 
   const images = work.images || [];
 
-  return <WorkContent work={work} images={images} />;
+  const dimensions = await Promise.all(images.map(async src => {
+    try {
+      if (!src.startsWith('/images/')) return null;
+      const metadata = await sharp(path.join(process.cwd(), 'public', src)).metadata();
+      return metadata.width && metadata.height ? { width:metadata.width, height:metadata.height } : null;
+    } catch { return null; }
+  }));
+  return <WorkContent work={work} images={images} dimensions={dimensions} />;
 }
