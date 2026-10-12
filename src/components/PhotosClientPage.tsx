@@ -204,6 +204,7 @@ export default function PhotosClientPage() {
           {initialPhotos.map((photo, index) => (
             <div
               key={index}
+              data-hover-image
               className="relative aspect-square overflow-hidden cursor-pointer"
               onClick={() => openModal(index)}
             >

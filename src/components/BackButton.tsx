@@ -9,7 +9,7 @@ export default function BackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="rounded-full bg-white/70 px-3 py-2 text-sm hover:bg-white transition-colors"
+      className="min-h-11 min-w-11 rounded-full bg-white/70 px-3 py-2 text-sm hover:bg-white transition-colors"
     >
       ← Back
     </button>

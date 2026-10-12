@@ -35,15 +35,15 @@
     "description": "社内の文化部で、地図会、ワイン会、ビール会を企画。立場や部署を越えて、新しい関心と会話が自然に生まれる場と体験を設計している。",
     "images": [
       "/images/portfolio/culture-beer-05.jpg",
-      "/images/portfolio/culture-beer-01.jpg",
+      "/images/portfolio/culture-beer-01-private.webp",
       "/images/portfolio/culture-map-03.webp",
       "/images/portfolio/culture-map-04.jpg",
-      "/images/portfolio/culture-map-05.jpg",
-      "/images/portfolio/culture-wine-05.jpg",
+      "/images/portfolio/culture-map-05-private.webp",
+      "/images/portfolio/culture-wine-05-private.webp",
       "/images/portfolio/culture-wine-01.jpg",
-      "/images/portfolio/culture-wine-02.jpg",
+      "/images/portfolio/culture-wine-02-private.webp",
       "/images/portfolio/culture-beer-02.jpg",
-      "/images/portfolio/culture-beer-04.jpg"
+      "/images/portfolio/culture-beer-04-private.webp"
     ],
     "bgColor": "#F4E7E2",
     "tags": [
@@ -56,7 +56,7 @@
     "title": "組織風土改革プロジェクト",
     "description": "社内の経営企画において、対話と仕組みの両面から組織風土の改善に取り組むプロジェクト。組織の状態を観察し、働く人の声を今後の変化へつなぐ活動に参画している。",
     "images": [
-      "/images/portfolio/org-culture-reform.jpg"
+      "/images/portfolio/org-culture-reform-private.webp"
     ],
     "bgColor": "#F4E7E2",
     "tags": [
@@ -156,7 +156,7 @@
     "link": "https://iedp.site/portfolio/%e6%ad%8c%e6%b4%a5%e3%82%92%e5%ae%88%e3%82%8b%e3%82%82%e3%81%ae%e3%81%9f%e3%81%a1/",
     "images": [
       "/images/image_sanriku_7.png",
-      "/images/mv_sanriku.jpg",
+      "/images/mv_sanriku-private.webp",
       "/images/image_sanriku_2.png",
       "/images/image_sanriku_3.png",
       "/images/image_sanriku_6.png",
@@ -182,13 +182,13 @@
       "/images/image_odo_4.jpg",
       "/images/image_odo_10.jpg",
       "/images/image_odo_11.jpg",
-      "/images/image_odo_15.jpg",
+      "/images/image_odo_15-private.webp",
       "/images/image_odo_3.jpg",
       "/images/image_odo_13.jpg",
       "/images/image_odo_1.jpg",
       "/images/image_odo_2.jpg",
       "/images/image_odo_7.jpg",
-      "/images/image_odo_9.jpg"
+      "/images/image_odo_9-private.webp"
     ],
     "bgColor": "#ffe0b2",
     "tags": [
@@ -208,7 +208,7 @@
       "/images/drawing_odo_3.jpg",
       "/images/drawing_odo_1.png",
       "/images/map_odo.png",
-      "/images/image_odo_20.jpg"
+      "/images/image_odo_20-private.webp"
     ],
     "bgColor": "#e0f7fa",
     "tags": [
@@ -238,9 +238,9 @@
     "link": "https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97%e3%81%ae%e4%b8%ad%e3%82%92%e6%b5%81%e3%82%8c%e3%82%8b%e6%b0%b4-water-flowing-through-the-life-in-ogawa-town/",
     "images": [
       "/images/mv_ogawamachi_1.png",
-      "/images/image_ogawamachi_1.png",
-      "/images/image_ogawamachi_2.jpg",
-      "/images/image_ogawamachi_3.jpg"
+      "/images/image_ogawamachi_1-private.webp",
+      "/images/image_ogawamachi_2-private.webp",
+      "/images/image_ogawamachi_3-private.webp"
     ],
     "bgColor": "#d1e7dd",
     "tags": [
@@ -358,7 +358,7 @@
       "/images/mv_pavilion_1.jpg",
       "/images/image_pavilion_2.jpg",
       "/images/web_pavillion.PNG",
-      "/images/image_pavilion_1.jpg"
+      "/images/image_pavilion_1-private.webp"
     ],
     "bgColor": "#d1c4e9",
     "tags": [

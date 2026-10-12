@@ -45,7 +45,7 @@ export default async function WorksPage({ searchParams }: WorksPageProps) {
     ])
   ).sort((a, b) => TAG_ORDER.indexOf(a) - TAG_ORDER.indexOf(b));
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-8">
+    <div className="min-h-screen bg-white text-gray-900 px-5 py-8 sm:px-8">
       <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
         works?
       </h1>

@@ -1,62 +1,35 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { useCursor } from '@/context/CursorContext';
+import { useEffect, useRef } from 'react';
 
-const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isTouchDevice, setIsTouchDevice] = useState(
-    typeof window !== 'undefined' &&
-      window.matchMedia('(hover: none), (pointer: coarse)').matches
-  );
-  const { cursorVariant } = useCursor();
-
+/** One DOM update per frame; pointer movement never renders the React tree. */
+export default function CustomCursor() {
+  const cursor = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
-    const handleChange = (e: MediaQueryListEvent) => setIsTouchDevice(e.matches);
-    mediaQuery.addEventListener('change', handleChange);
-
-    const mouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const element = cursor.current!;
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let frame = 0, x = -100, y = -100, visible = false;
+    const update = () => {
+      frame = 0;
+      element.style.transform = `translate3d(${x}px,${y}px,0)`;
+      element.dataset.visible = String(visible && fine.matches);
+      const target = document.elementFromPoint(x, y);
+      element.dataset.project = String(!!target?.closest('[data-project-image]'));
     };
-
-    window.addEventListener('mousemove', mouseMove);
-
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const move = (event: PointerEvent) => { x = event.clientX; y = event.clientY; visible = event.pointerType === 'mouse'; schedule(); };
+    const hide = () => { visible = false; schedule(); };
+    window.addEventListener('pointermove', move, { passive:true });
+    window.addEventListener('scroll', schedule, { passive:true });
+    window.addEventListener('blur', hide);
+    document.documentElement.addEventListener('pointerleave', hide);
+    fine.addEventListener('change', schedule);
     return () => {
-      mediaQuery.removeEventListener('change', handleChange);
-      window.removeEventListener('mousemove', mouseMove);
+      cancelAnimationFrame(frame);
+      window.removeEventListener('pointermove', move); window.removeEventListener('scroll', schedule);
+      window.removeEventListener('blur', hide); document.documentElement.removeEventListener('pointerleave', hide);
+      fine.removeEventListener('change', schedule);
     };
   }, []);
-
-  const variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      backgroundColor: "#b33953", // Accent color
-      mixBlendMode: "difference",
-    },
-    text: {
-      x: mousePosition.x - 75,
-      y: mousePosition.y - 75,
-      height: 150,
-      width: 150,
-      backgroundColor: "#b33953",
-      mixBlendMode: "difference",
-    },
-  };
-  if (isTouchDevice) {
-    return null;
-  }
-
-  return (
-    <motion.div
-      className="w-8 h-8 rounded-full fixed top-0 left-0 pointer-events-none z-50"
-      variants={variants}
-      animate={cursorVariant}
-      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-    />
-  );
-};
-
-export default CustomCursor;
+  return <div ref={cursor} className="portfolioCursor" aria-hidden="true"><i /><span>↗</span></div>;
+}

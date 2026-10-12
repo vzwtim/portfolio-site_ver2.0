@@ -1,0 +1,86 @@
+[
+  {
+    "original": "/images/portfolio/culture-beer-01.jpg",
+    "edited": "/images/portfolio/culture-beer-01-private.webp",
+    "preserveFace": 10,
+    "label": "Beer"
+  },
+  {
+    "original": "/images/portfolio/culture-wine-05.jpg",
+    "edited": "/images/portfolio/culture-wine-05-private.webp",
+    "preserveFace": 1,
+    "label": "Wine"
+  },
+  {
+    "original": "/images/portfolio/culture-wine-02.jpg",
+    "edited": "/images/portfolio/culture-wine-02-private.webp",
+    "preserveFace": null,
+    "label": "A"
+  },
+  {
+    "original": "/images/portfolio/culture-map-05.jpg",
+    "edited": "/images/portfolio/culture-map-05-private.webp",
+    "preserveFace": null,
+    "label": "B"
+  },
+  {
+    "original": "/images/portfolio/culture-beer-04.jpg",
+    "edited": "/images/portfolio/culture-beer-04-private.webp",
+    "preserveFace": 1,
+    "label": "C"
+  },
+  {
+    "original": "/images/portfolio/org-culture-reform.jpg",
+    "edited": "/images/portfolio/org-culture-reform-private.webp",
+    "preserveFace": 1,
+    "label": "D"
+  },
+  {
+    "original": "/images/mv_sanriku.jpg",
+    "edited": "/images/mv_sanriku-private.webp",
+    "preserveFace": null,
+    "label": "E"
+  },
+  {
+    "original": "/images/image_pavilion_1.jpg",
+    "edited": "/images/image_pavilion_1-private.webp",
+    "preserveFace": 3,
+    "label": "F"
+  },
+  {
+    "original": "/images/image_ogawamachi_1.png",
+    "edited": "/images/image_ogawamachi_1-private.webp",
+    "preserveFace": null,
+    "label": "G"
+  },
+  {
+    "original": "/images/image_ogawamachi_2.jpg",
+    "edited": "/images/image_ogawamachi_2-private.webp",
+    "preserveFace": 10,
+    "label": "H"
+  },
+  {
+    "original": "/images/image_ogawamachi_3.jpg",
+    "edited": "/images/image_ogawamachi_3-private.webp",
+    "preserveFace": null,
+    "label": "I"
+  },
+  {
+    "original": "/images/image_odo_15.jpg",
+    "edited": "/images/image_odo_15-private.webp",
+    "preserveFace": 10,
+    "label": "J"
+  },
+  {
+    "original": "/images/image_odo_20.jpg",
+    "edited": "/images/image_odo_20-private.webp",
+    "preserveFace": 2,
+    "label": "K"
+  },
+  {
+    "original": "/images/image_odo_9.jpg",
+    "edited": "/images/image_odo_9-private.webp",
+    "preserveFace": null,
+    "label": "L"
+  }
+]
