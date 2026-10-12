@@ -46,7 +46,7 @@ const topics = [
     className: styles.topicDigital,
     projects: [
       { title: "社内DX勉強会", text: "AIやデジタルを、誰もが試せる道具に。学び合い、小さくつくり、仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", ratio: "1376 / 768", visual: "DX / LEARNING" },
-      { title: "Swift Revise", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/swift-revise", image: "/images/appview_quiz.png", ratio: "4 / 3", fit: "contain" },
+      { title: "StudyFlow", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/studyflow", image: "/images/appview_quiz.png", ratio: "4 / 3", fit: "contain" },
       { title: "一種単価マップ", text: "東京都の土地価格を、容積率を踏まえた一種単価で比較できるインタラクティブマップ。", href: "/works/realestate-map1", image: "/images/map_realestate_1.png", ratio: "2048 / 1260", fit: "contain", visual: "LAND / UNIT PRICE MAP" },
     ],
   },
