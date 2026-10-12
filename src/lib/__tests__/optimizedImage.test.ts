@@ -1,9 +1,8 @@
 import { optimizedImage } from '../optimizedImage';
+import privacyImages from '@/data/privacy-images.json';
 
-it('routes privacy-edited photos to versioned assets for every size and format', () => {
-  for (const name of ['culture-beer-01', 'culture-wine-05']) {
-    const original = '/images/portfolio/' + name + '.jpg';
-    const edited = '/images/portfolio/' + name + '-private.webp';
+it('never selects unblurred derivatives for any reviewed privacy photo', () => {
+  for (const { original, edited } of privacyImages) {
     for (const type of ['display', 'thumbs'] as const) {
       for (const width of [320, 480, 1200, 1600, 2400]) {
         for (const format of ['avif', 'webp'] as const) {
@@ -15,4 +14,5 @@ it('routes privacy-edited photos to versioned assets for every size and format',
   }
   expect(optimizedImage('/images/test.jpg')).toBe('/optimized/display/test-1600.webp');
   expect(optimizedImage('/images/test.svg')).toBe('/images/test.svg');
+  expect(optimizedImage('/images/trip_usa_3.jpg')).toBe('/optimized/display/trip_usa_3-1600.webp');
 });

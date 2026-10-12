@@ -33,7 +33,7 @@ const topics = [
     projects: [
       { title: "日光市今市U35実践アイデアコンペ", text: "宿場町・今市を舞台に、若手のアイデアと地域の実践をつなぐ。コンペの企画・運営をサポート。", href: "/works/competition-mentor-support", image: "/images/portfolio/maki-competition-cover.webp", ratio: "1800 / 1013", visual: "COMPETITION / COMMUNITY" },
       { title: "社内文化部企画", text: "地図、ワイン、ビール。好きなものを持ち寄り、部署や立場を越えて話せる場をつくる。", href: "/works/company-culture-club", image: "/images/portfolio/culture-beer-05.jpg", ratio: "1420 / 948", visual: "CULTURE / COMMUNITY" },
-      { title: "組織風土改革プロジェクト", text: "部署の境界を越え、声が届き、行動につながる組織へ。対話の場と仕組みの両方から取り組む。", href: "/works/organizational-culture-reform", image: "/images/portfolio/org-culture-reform.jpg", ratio: "987 / 642", visual: "ORGANIZATION / DIALOGUE" },
+      { title: "組織風土改革プロジェクト", text: "部署の境界を越え、声が届き、行動につながる組織へ。対話の場と仕組みの両方から取り組む。", href: "/works/organizational-culture-reform", image: "/images/portfolio/org-culture-reform-private.webp", ratio: "987 / 642", visual: "ORGANIZATION / DIALOGUE" },
     ],
   },
   {
