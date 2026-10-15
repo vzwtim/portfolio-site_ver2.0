@@ -6,8 +6,8 @@ import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 
 import styles from "@/app/refresh.module.css";
 
 /** Load on demand; hover/focus plays, touch has its own control. */
-export default function ProjectMotionPreview({ image, href, title, ratio, children }: {
-  image: string; href: string; title: string; ratio: string; children: ReactNode;
+export default function ProjectMotionPreview({ image, href, title, ratio, children, videoSrc = "/videos/odo-drawing-loop.mp4", fit = "cover" }: {
+  image: string; href: string; title: string; ratio: string; children: ReactNode; videoSrc?: string; fit?: "cover" | "contain";
 }) {
   const root = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
@@ -23,6 +23,7 @@ export default function ProjectMotionPreview({ image, href, title, ratio, childr
     const media = video.current;
     if (!media) return;
     wantsPlayback.current = true;
+    if (!media.getAttribute("src")) media.src = videoSrc;
     try {
       if (media.readyState > 0) media.currentTime = 0;
       await media.play();
@@ -43,17 +44,18 @@ export default function ProjectMotionPreview({ image, href, title, ratio, childr
     return () => { observer.disconnect(); document.removeEventListener("visibilitychange", visibility); };
   }, []);
   return <div ref={root}>
-    <div className={styles.topicImage} style={{ "--source-ratio": ratio } as CSSProperties}>
+    <div className={styles.topicImage} style={{ "--source-ratio": ratio } as CSSProperties} data-fit={fit}>
       <Link href={href} className={styles.projectMotionLink} aria-label={`${title}の詳細を見る`} data-project-image
         onPointerEnter={event => { if (event.pointerType === "mouse") void start(); }}
         onPointerLeave={stop} onFocus={() => void start()} onBlur={stop}>
         <Image src={image} alt="" fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), 520px" />
-        <video ref={video} className={styles.projectMotionVideo} data-playing={playing} src="/videos/odo-drawing-loop.mp4"
+        <video ref={video} className={styles.projectMotionVideo} data-playing={playing} style={{ objectFit: fit, background: fit === "contain" ? "#f1efe7" : undefined }}
           muted loop playsInline preload="none" aria-hidden="true" onError={stop} />
       </Link>
       <button type="button" className={styles.motionToggle} onClick={() => playing ? stop() : void start(true)}
-        aria-label={playing ? "小屋のアニメーションを停止" : "小屋のアニメーションを再生"} aria-pressed={playing}>{playing ? "Ⅱ" : "▷"}</button>
+        aria-label={playing ? `${title}の動画を停止` : `${title}の動画を再生`} aria-pressed={playing}>{playing ? "Ⅱ" : "▷"}</button>
     </div>
     <Link href={href} className={styles.projectLink}>{children}</Link>
   </div>;
 }
+
