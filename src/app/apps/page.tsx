@@ -18,6 +18,14 @@ interface App {
 
 const apps: App[] = [
   {
+    name: '東京の距離',
+    description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
+    url: 'https://tokyo-timewarp.yudai-grex4.chatgpt.site/',
+    imageUrl: '/images/portfolio/tokyo-time-warp.webp',
+    bgColor: '#f1efe7',
+    workId: 'tokyo-time-warp',
+  },
+  {
     name: 'Swift Revise',
     description: '不動産知識を気軽に復習できる一問一答アプリです。',
     url: 'https://swift-revise.vercel.app/',
