@@ -89,12 +89,6 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
   }, []);
 
   const scrollRef = useHorizontalScroll<HTMLDivElement>(!isMobile);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 700);
-    return () => clearTimeout(t);
-  }, []);
 
   return (
     <main
@@ -104,9 +98,7 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
       style={{ backgroundColor: work.bgColor }}
     >
       <div
-        className={`flex w-full transition-opacity duration-700 ease-out ${
-          visible ? 'opacity-100' : 'opacity-0'
-        } flex-col gap-8 lg:flex-row lg:gap-0 lg:h-full`}
+        className="flex w-full flex-col gap-8 lg:flex-row lg:gap-0 lg:h-full"
       >
         <div className="flex-shrink-0 w-full lg:w-[min(46vw,680px)] lg:h-full flex items-center px-5 py-6 sm:px-8 ">
           <div className="text-left md:pl-12">

@@ -165,7 +165,12 @@ html.lenis { scroll-behavior:auto !important; }
 .portfolioCursor span { position:absolute; width:72px; height:72px; left:-36px; top:-36px; display:grid; place-items:center; color:white; font:32px/1 Arial,sans-serif; opacity:0; transition:opacity 160ms; }
 .portfolioCursor[data-project="true"] i { transform:scale(1); background:#008877; opacity:.94; }
 .portfolioCursor[data-project="true"] span { opacity:1; }
+.portfolioCursor[data-header="true"] { mix-blend-mode:difference; }
+.portfolioCursor[data-header="true"] i { transform:scale(2.083333); background:#b33953; opacity:1; }
+.portfolioCursor[data-header="true"] span { opacity:0; }
+.workNavigationWipe { position:fixed; inset:0; z-index:9998; pointer-events:none; }
 @media (hover:hover) and (pointer:fine) { [data-project-image] { cursor:none; } }
+@media (hover:hover) and (pointer:fine) { [data-site-header] a, [data-site-header] button { cursor:none; } }
 @media (prefers-reduced-motion:reduce) { .portfolioCursor i,.portfolioCursor span { transition:none; } }
 
 /* Shared image pullback. Only the media moves; frames and hit areas stay fixed. */

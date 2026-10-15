@@ -18,7 +18,7 @@ const topics = [
     className: styles.topicScan,
     projects: [
       { title: "不動産開発", text: "不動産への出資、住宅・オフィスの売買、当社初のホテル開発。収支の検討と関係者との調整を通じ、事業を前へ進めます。", href: hotelProject.href!, image: hotelProject.image, ratio: "3 / 2", visual: "underwriting" },
-      { title: "都市動態論", text: "地図とフィールドワークから、都市に刻まれた暮らしの痕跡や変化を読み解く。", href: "/works/master-thesis", image: "/images/figure_master.webp", ratio: "1 / 1", fit: "contain" },
+      { title: "都市動態論", text: "地図とフィールドワークから、都市に刻まれた暮らしの痕跡や変化を読み解く。", href: "/works/master-thesis", image: "/images/figure_master.webp", ratio: "16 / 9", fit: "contain" },
       { title: "小屋改修実践PJ", text: "古い小屋を、自分たちの手で使える場所へ。調査から修繕まで、現場で考え、つくる実践。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg", ratio: "4 / 3" },
     ],
   },
