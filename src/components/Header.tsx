@@ -28,7 +28,8 @@ export default function Header({ textColor }: HeaderProps) {
 
   return (
     <header
-      className={`${pathname === "/" ? "absolute" : "fixed"} top-0 left-0 z-50 w-full py-4 md:py-8 transition-colors duration-300 bg-transparent ${textColor}`}
+      className={`fixed top-0 left-0 z-50 w-full py-4 md:py-8 transition-colors duration-300 bg-transparent ${textColor}`}
+      data-site-header
     >
       <div className="w-full grid grid-cols-2 items-center relative z-50">
         {/* Left side - Logo */}

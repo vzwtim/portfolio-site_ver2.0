@@ -15,6 +15,7 @@ export default function CustomCursor() {
       element.dataset.visible = String(visible && fine.matches);
       const target = document.elementFromPoint(x, y);
       element.dataset.project = String(!!target?.closest('[data-project-image]'));
+      element.dataset.header = String(!!target?.closest('[data-site-header] a, [data-site-header] button'));
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const move = (event: PointerEvent) => { x = event.clientX; y = event.clientY; visible = event.pointerType === 'mouse'; schedule(); };
