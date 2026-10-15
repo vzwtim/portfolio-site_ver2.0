@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { act, fireEvent, render } from '@testing-library/react';
 import WorkNavigation from '../WorkNavigation';
 
@@ -19,21 +20,21 @@ describe('work navigation wipe', () => {
   afterEach(() => { jest.useRealTimers(); });
 
   it('expands before routing, then clears the overlay once the new route renders', async () => {
-    const view = render(<><WorkNavigation /><a href="/works/odo-renovation">Project</a></>);
+    const view = render(<><WorkNavigation /><Link href="/works/odo-renovation">Project</Link></>);
     fireEvent.click(view.getByText('Project'), { clientX: 240, clientY: 320 });
     expect(document.querySelector('.workNavigationWipe')).toBeInTheDocument();
     expect(push).not.toHaveBeenCalled();
     await act(async () => finish());
     expect(push).toHaveBeenCalledWith('/works/odo-renovation');
     pathname = '/works/odo-renovation';
-    view.rerender(<><WorkNavigation /><a href="/works/odo-renovation">Project</a></>);
+    view.rerender(<><WorkNavigation /><Link href="/works/odo-renovation">Project</Link></>);
     act(() => jest.advanceTimersByTime(40));
     await act(async () => finish());
     expect(document.querySelector('.workNavigationWipe')).not.toBeInTheDocument();
   });
 
   it('leaves modified clicks, external links, filters and reduced motion to the browser', () => {
-    const view = render(<><WorkNavigation /><a href="/works/odo-renovation">Project</a><a href="/works?tag=architecture">Filter</a><a href="https://example.com/works/demo">External</a></>);
+    const view = render(<><WorkNavigation /><Link href="/works/odo-renovation">Project</Link><Link href="/works?tag=architecture">Filter</Link><Link href="https://example.com/works/demo">External</Link></>);
     const click = (element: HTMLElement, options = {}) => {
       const event = new MouseEvent('click', { bubbles: true, cancelable: true, ...options });
       // Prevent jsdom navigation after observing whether our capture listener intercepted it.
@@ -53,7 +54,7 @@ describe('work navigation wipe', () => {
   });
 
   it('removes an interrupted wipe on unmount', () => {
-    const view = render(<><WorkNavigation /><a href="/works/odo-renovation">Project</a></>);
+    const view = render(<><WorkNavigation /><Link href="/works/odo-renovation">Project</Link></>);
     fireEvent.click(view.getByText('Project'));
     view.unmount();
     expect(document.querySelector('.workNavigationWipe')).not.toBeInTheDocument();
