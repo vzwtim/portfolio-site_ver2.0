@@ -1,5 +1,20 @@
 [
   {
+    "id": "tokyo-time-warp",
+    "title": "東京の距離",
+    "description": "駅を中心に、地理と時間の距離を行き来するインタラクティブマップ。出発駅を変えると街の近さが組み替わり、家賃のレイヤーや3D表現から東京の別の輪郭を探れる。構想・UI設計とAIを活用した実装に取り組んだ、概略モデルによる都市の可視化実験。",
+    "images": [
+      "/images/portfolio/tokyo-time-warp.webp"
+    ],
+    "link": "https://tokyo-timewarp.yudai-grex4.chatgpt.site/",
+    "bgColor": "#f1efe7",
+    "tags": [
+      "data-analysis",
+      "design-programming",
+      "urbanism"
+    ]
+  },
+  {
     "id": "internal-dx-workshop",
     "title": "社内DX勉強会",
     "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。",
