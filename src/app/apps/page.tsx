@@ -6,6 +6,7 @@ import { useTheme } from '@/context/ThemeContext';
 import { useEffect } from 'react';
 
 import Image from 'next/image';
+import ProjectMotionPreview from '@/components/ProjectMotionPreview';
 
 interface App {
   name: string;
@@ -100,7 +101,7 @@ const AppsPage: NextPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {apps.map((app) => (
           <div key={app.name} className="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group">
-            <div
+            {app.workId === 'tokyo-time-warp' ? <ProjectMotionPreview image={app.imageUrl} href="/works/tokyo-time-warp" title={app.name} ratio="8 / 5" fit="contain" videoSrc="/videos/tokyo-time-warp-hover.mp4"><span className="sr-only">東京の距離の詳細を見る</span></ProjectMotionPreview> : <div
               className="relative h-56 w-full"
               style={{ backgroundColor: app.bgColor }}
             >
@@ -110,7 +111,7 @@ const AppsPage: NextPage = () => {
                 fill
                 className="object-contain"
               />
-            </div>
+            </div>}
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex-grow">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900">{app.name}</h2>
@@ -149,3 +150,4 @@ const AppsPage: NextPage = () => {
 };
 
 export default AppsPage;
+
