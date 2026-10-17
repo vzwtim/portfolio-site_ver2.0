@@ -1,12 +1,12 @@
 [
   {
     "id": "tokyo-time-warp",
-    "title": "東京の距離",
+    "title": "東京時間マップ",
     "description": "駅を中心に、地理と時間の距離を行き来するインタラクティブマップ。出発駅を変えると街の近さが組み替わり、家賃のレイヤーや3D表現から東京の別の輪郭を探れる。構想・UI設計とAIを活用した実装に取り組んだ、概略モデルによる都市の可視化実験。",
     "images": [
       "/images/portfolio/tokyo-time-warp.webp"
     ],
-    "link": "https://tokyo-timewarp.yudai-grex4.chatgpt.site/",
+    "link": "https://tokyo-time-map.yudai-grex4.workers.dev/",
     "bgColor": "#f1efe7",
     "tags": [
       "data-analysis",

@@ -19,9 +19,9 @@ interface App {
 
 const apps: App[] = [
   {
-    name: '東京の距離',
+    name: '東京時間マップ',
     description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
-    url: 'https://tokyo-timewarp.yudai-grex4.chatgpt.site/',
+    url: 'https://tokyo-time-map.yudai-grex4.workers.dev/',
     imageUrl: '/images/portfolio/tokyo-time-warp.webp',
     bgColor: '#f1efe7',
     workId: 'tokyo-time-warp',
@@ -101,7 +101,7 @@ const AppsPage: NextPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {apps.map((app) => (
           <div key={app.name} className="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group">
-            {app.workId === 'tokyo-time-warp' ? <ProjectMotionPreview image={app.imageUrl} href="/works/tokyo-time-warp" title={app.name} ratio="8 / 5" fit="contain" videoSrc="/videos/tokyo-time-warp-hover.mp4"><span className="sr-only">東京の距離の詳細を見る</span></ProjectMotionPreview> : <div
+            {app.workId === 'tokyo-time-warp' ? <ProjectMotionPreview image={app.imageUrl} href="/works/tokyo-time-warp" title={app.name} ratio="8 / 5" fit="contain" videoSrc="/videos/tokyo-time-warp-hover.mp4"><span className="sr-only">東京時間マップの詳細を見る</span></ProjectMotionPreview> : <div
               className="relative h-56 w-full"
               style={{ backgroundColor: app.bgColor }}
             >
