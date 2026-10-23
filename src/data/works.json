@@ -6,7 +6,7 @@
     "images": [
       "/images/portfolio/tokyo-time-warp.webp"
     ],
-    "link": "https://tokyo-time-map.yudai-grex4.workers.dev/",
+    "link": "https://tokyo-time-map.babachan.workers.dev/",
     "bgColor": "#f1efe7",
     "tags": [
       "data-analysis",
@@ -136,7 +136,7 @@
       "real-estate",
       "design-programming"
     ],
-    "link": "https://isshu-land-atlas.yudai-grex4.chatgpt.site"
+    "link": "https://isshu-map.babachan.workers.dev/"
   },
   {
     "id": "gomoku-rice",

@@ -21,7 +21,7 @@ const apps: App[] = [
   {
     name: '東京時間マップ',
     description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
-    url: 'https://tokyo-time-map.yudai-grex4.workers.dev/',
+    url: 'https://tokyo-time-map.babachan.workers.dev/',
     imageUrl: '/images/portfolio/tokyo-time-warp.webp',
     bgColor: '#f1efe7',
     workId: 'tokyo-time-warp',
