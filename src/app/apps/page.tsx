@@ -22,7 +22,7 @@ const apps: App[] = [
     name: '東京時間マップ',
     description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
     url: 'https://tokyo-time-map.babachan.workers.dev/',
-    imageUrl: '/images/portfolio/tokyo-time-warp.webp',
+    imageUrl: '/images/portfolio/tokyo-time-warp-product.webp',
     bgColor: '#f1efe7',
     workId: 'tokyo-time-warp',
   },
@@ -91,8 +91,13 @@ const AppsPage: NextPage = () => {
   }, [setBgColor, setTextColor]);
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-5xl font-bold mb-12 text-center text-gray-900">My Apps & Sites</h1>
+    <main className="container mx-auto px-4 pb-16 pt-6 sm:pt-10">
+      <nav aria-label="サイト内ナビゲーション" className="mb-8 sm:mb-10">
+        <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-[#008877] transition-colors hover:border-[#008877] hover:bg-teal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008877]">
+          <span aria-hidden="true">←</span> ホームに戻る
+        </Link>
+      </nav>
+      <h1 className="text-3xl sm:text-5xl font-bold mb-10 sm:mb-12 text-center text-gray-900">My Apps & Sites</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {apps.map((app) => (
           <div key={app.name} className="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group">
@@ -140,7 +145,7 @@ const AppsPage: NextPage = () => {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 
