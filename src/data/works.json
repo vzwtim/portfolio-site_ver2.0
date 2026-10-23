@@ -126,15 +126,17 @@
   {
     "id": "realestate-map1",
     "title": "一種単価マップ",
-    "description": "不動産開発初心者向けに、東京都の一種単価を地図上で視覚化したインタラクティブマップ。",
+    "description": "全国47都道府県の公示地価を、指定容積率でそろえた一種単価として可視化。2020〜2026年の時系列比較、表示範囲内のランキング、色スケール調整、3D柱図を通じて、土地価格の分布と変化を読み解く。東京都の地図作品を、全国を探索できるWebアプリへ発展させた。",
     "images": [
       "/images/map_realestate_1.png"
     ],
     "bgColor": "#dcedc8",
     "tags": [
       "data-analysis",
-      "real-estate"
-    ]
+      "real-estate",
+      "design-programming"
+    ],
+    "link": "https://isshu-land-atlas.yudai-grex4.chatgpt.site"
   },
   {
     "id": "gomoku-rice",
