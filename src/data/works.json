@@ -20,13 +20,31 @@
     "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。",
     "images": [
       "/images/portfolio/dx-workshop-01.webp",
-      "/images/portfolio/dx-workshop-02.webp"
+      "/images/portfolio/dx-workshop-02.webp",
+      "/images/portfolio/slides/dx-vibe-coding-1.webp",
+      "/images/portfolio/slides/dx-vibe-coding-9.webp",
+      "/images/portfolio/slides/dx-ai-slides-1.webp",
+      "/images/portfolio/slides/dx-ai-slides-3.webp",
+      "/images/portfolio/slides/dx-ui-ux-1.webp",
+      "/images/portfolio/slides/dx-ui-ux-9.webp",
+      "/images/portfolio/slides/dx-obsidian-1.webp",
+      "/images/portfolio/slides/dx-obsidian-8.webp"
     ],
     "bgColor": "#DDEFEA",
     "tags": [
       "design-programming",
       "workshop"
-    ]
+    ],
+    "imageCaptions": {
+      "/images/portfolio/slides/dx-vibe-coding-1.webp": "デジラボ第2回：Vibe-Coding環境構築",
+      "/images/portfolio/slides/dx-vibe-coding-9.webp": "Gemini CLIでアプリを作るハンズオン",
+      "/images/portfolio/slides/dx-ai-slides-1.webp": "AIスライド作成：実践ワークフロー",
+      "/images/portfolio/slides/dx-ai-slides-3.webp": "CopilotとGeminiの役割分担",
+      "/images/portfolio/slides/dx-ui-ux-1.webp": "デジラボ第10回：DXを加速させるUI/UXの科学",
+      "/images/portfolio/slides/dx-ui-ux-9.webp": "操作と視線誘導の設計",
+      "/images/portfolio/slides/dx-obsidian-1.webp": "Obsidian導入勉強会：ハンズオン編",
+      "/images/portfolio/slides/dx-obsidian-8.webp": "ノート同士をリンクでつなぐ"
+    }
   },
   {
     "id": "competition-mentor-support",
@@ -37,7 +55,6 @@
       "/images/portfolio/maki-site-01.webp",
       "/images/portfolio/maki-section.webp"
     ],
-    "link": "https://makicompe.com/nikko/entry",
     "bgColor": "#F4E7E2",
     "tags": [
       "architecture",
@@ -58,13 +75,27 @@
       "/images/portfolio/culture-wine-01.jpg",
       "/images/portfolio/culture-wine-02-private.webp",
       "/images/portfolio/culture-beer-02.jpg",
-      "/images/portfolio/culture-beer-04-private.webp"
+      "/images/portfolio/culture-beer-04-private.webp",
+      "/images/portfolio/slides/culture-wine-slides-1.webp",
+      "/images/portfolio/slides/culture-wine-slides-8.webp",
+      "/images/portfolio/slides/culture-map-slides-1.webp",
+      "/images/portfolio/slides/culture-map-slides-18.webp",
+      "/images/portfolio/slides/culture-beer-slides-1.webp",
+      "/images/portfolio/slides/culture-beer-slides-8.webp"
     ],
     "bgColor": "#F4E7E2",
     "tags": [
       "living",
       "workshop"
-    ]
+    ],
+    "imageCaptions": {
+      "/images/portfolio/slides/culture-wine-slides-1.webp": "ワインde鑑賞会：企画スライド",
+      "/images/portfolio/slides/culture-wine-slides-8.webp": "ワインのラベルを描くワークショップ",
+      "/images/portfolio/slides/culture-map-slides-1.webp": "西新宿ライブ・マッピング・ナイト",
+      "/images/portfolio/slides/culture-map-slides-18.webp": "マッピングで世界を再解釈する",
+      "/images/portfolio/slides/culture-beer-slides-1.webp": "ビールde鑑賞会：企画スライド",
+      "/images/portfolio/slides/culture-beer-slides-8.webp": "ビールのコースターを描くワークショップ"
+    }
   },
   {
     "id": "organizational-culture-reform",
@@ -168,7 +199,6 @@
     "id": "sanriku-coast",
     "title": "南三陸エスノグラフィ",
     "description": "南三陸においてフォト・エスノグラフィーを行い、歌津地方における守る・守られる関係を表現した。",
-    "link": "https://iedp.site/portfolio/%e6%ad%8c%e6%b4%a5%e3%82%92%e5%ae%88%e3%82%8b%e3%82%82%e3%81%ae%e3%81%9f%e3%81%a1/",
     "images": [
       "/images/image_sanriku_7.png",
       "/images/mv_sanriku-private.webp",
@@ -216,7 +246,6 @@
     "id": "odo-campsite",
     "title": "ため池のあるキャンプ場",
     "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。谷戸地形ならではの源流、田んぼ、ため池などの水を中心とした自然資源を生かした分散型のキャンプ場",
-    "link": "https://iedp.site/portfolio/%e8%87%aa%e7%84%b6%e8%b3%87%e6%ba%90%e3%82%92%e4%bb%8b%e3%81%97%e3%81%a6%e7%b4%a1%e3%81%8c%e3%82%8c%e3%82%8b%e8%b0%b7%e6%88%b8%e3%81%ae%e9%a2%a8%e6%99%af-%e6%b0%b4/",
     "images": [
       "/images/mv_odo.png",
       "/images/drawing_odo_2.png",
@@ -236,7 +265,6 @@
     "id": "ogawamachi-water-2",
     "title": "小川町の人と水のかかわり",
     "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
-    "link": "https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e5%b7%9d%e3%81%ab%e8%a6%8b%e3%82%8b%e3%80%81%e4%ba%ba%e3%81%a8%e6%b0%b4%e3%81%ae%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%8a/",
     "images": [
       "/images/mv_ogawamachi_2.png"
     ],
@@ -250,7 +278,6 @@
     "id": "ogawamachi-water",
     "title": "水でつながる小川町",
     "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
-    "link": "https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97%e3%81%ae%e4%b8%ad%e3%82%92%e6%b5%81%e3%82%8c%e3%82%8b%e6%b0%b4-water-flowing-through-the-life-in-ogawa-town/",
     "images": [
       "/images/mv_ogawamachi_1.png",
       "/images/image_ogawamachi_1-private.webp",
@@ -317,7 +344,6 @@
     "id": "ginza-kk-park",
     "title": "都産都消",
     "description": "銀座のKK高架道路を土木、都市農業、アクアポニックス、防災施設を融合させた市民公園へと転換する提案。",
-    "link": "https://www.example.com/ginza-kk-park",
     "images": [
       "/images/mv_ginza.png",
       "/images/map_ginza.png",
@@ -368,7 +394,6 @@
     "id": "pavilion-mayfes",
     "title": "UT architecture pavilion",
     "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
-    "link": "https://utarchipavilion202.wixsite.com/website",
     "images": [
       "/images/mv_pavilion_1.jpg",
       "/images/image_pavilion_2.jpg",
@@ -421,8 +446,8 @@
     ]
   },
   {
-    "id": "swift-revise",
-    "title": "Swift Revise",
+    "id": "studyflow",
+    "title": "StudyFlow",
     "description": "不動産関連の基礎知識をテンポよく復習できるシンプルな一問一答アプリです。",
     "images": [
       "/images/appview_quiz.png"
@@ -445,8 +470,7 @@
     "tags": [
       "design-programming",
       "living"
-    ],
-    "link": "https://drunk-scheduler.onrender.com/"
+    ]
   },
   {
     "id": "multi-ai-chat",
@@ -459,8 +483,7 @@
     "tags": [
       "design-programming",
       "artificial-intelligence"
-    ],
-    "link": "https://ai-simulation-one.vercel.app/"
+    ]
   },
   {
     "id": "prop-proposals",
@@ -473,8 +496,7 @@
     "tags": [
       "real-estate",
       "design-programming"
-    ],
-    "link": "https://prop-proposals.vercel.app/"
+    ]
   },
   {
     "id": "shuffle-lunch",

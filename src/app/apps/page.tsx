@@ -27,17 +27,16 @@ const apps: App[] = [
     workId: 'tokyo-time-warp',
   },
   {
-    name: 'Swift Revise',
+    name: 'StudyFlow',
     description: '不動産知識を気軽に復習できる一問一答アプリです。',
     url: 'https://swift-revise.vercel.app/',
     imageUrl: '/images/appview_quiz.png',
     bgColor: '#FAFAFA',
-    workId: 'swift-revise',
+    workId: 'studyflow',
   },
   {
     name: 'Drunk Scheduler',
     description: '飲み会のスケジュール調整を手早く行うためのWebアプリです。',
-    url: 'https://drunk-scheduler.onrender.com/',
     imageUrl: '/images/appview_drunk.png',
     bgColor: '#FFECCE',
     workId: 'drunk-scheduler',
@@ -45,7 +44,6 @@ const apps: App[] = [
   {
     name: 'Multi AI Chat',
     description: '複数のAIキャラクターと同時に会話できるマルチチャットです。',
-    url: 'https://ai-simulation-one.vercel.app/',
     imageUrl: '/images/appview_chat.png',
     bgColor: '#212121',
     workId: 'multi-ai-chat',
@@ -53,7 +51,6 @@ const apps: App[] = [
   {
     name: 'Portfolio Site',
     description: 'このポートフォリオサイトの初期バージョンです。',
-    url: 'https://portfolio-site-ver1.vercel.app/',
     imageUrl: '/images/webview_portfolio.png',
     bgColor: '#008877',
     workId: 'portfolio-site-v1',
@@ -61,7 +58,6 @@ const apps: App[] = [
   {
     name: 'UT architecture pavilion',
     description: '学生時代に製作したパビリオンを紹介するサイトです。',
-    url: 'https://utarchipavilion202.wixsite.com/website',
     imageUrl: '/images/webview_pavilion.png',
     bgColor: '#DBC9BF',
     workId: 'pavilion-mayfes',
@@ -69,7 +65,6 @@ const apps: App[] = [
   {
     name: 'Prop Proposals',
     description: '不動産プロジェクトの企画アイデアを素早く検証できるコンセプトサイトです。',
-    url: 'https://prop-proposals.vercel.app/',
     imageUrl: '/images/webview_prop.png',
     bgColor: '#008877',
     workId: 'prop-proposals',
@@ -138,7 +133,7 @@ const AppsPage: NextPage = () => {
                     Visit Site &rarr;
                   </Link>
                 ) : (
-                  <span className="text-gray-400">Internal Only</span>
+                  null
                 )}
               </div>
             </div>
