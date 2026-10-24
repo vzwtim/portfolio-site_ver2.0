@@ -19,6 +19,14 @@ interface App {
 
 const apps: App[] = [
   {
+    name: '一種単価マップ',
+    description: '全国の土地価格と伸び率を比較。地図中央に場所を合わせて、一種単価を調べるWebアプリ。',
+    url: 'https://isshu-map.babachan.workers.dev/',
+    imageUrl: '/images/portfolio/isshu-map.webp',
+    bgColor: '#f5f5f7',
+    workId: 'isshu-map',
+  },
+  {
     name: '東京時間マップ',
     description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
     url: 'https://tokyo-time-map.babachan.workers.dev/',
