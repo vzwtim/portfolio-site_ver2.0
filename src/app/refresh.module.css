@@ -716,3 +716,26 @@
     transform:scale(1);
   }
 }
+
+
+/* Keep the original photographic introduction on phones, followed by clear routes into the work. */
+.mobileExplore { display:none; }
+.heroIntro { scroll-margin-top:7rem; }
+@media (max-width:600px) {
+  .masthead { display:block; min-height:0; padding:0; background:#eeeee7; }
+  .masthead::before, .masthead > .ingredientField, .masthead > .scanBeam { display:none; }
+  .heroPlate { position:absolute; inset:0 0 auto; height:100svh; min-height:32rem; margin:0; aspect-ratio:auto; background:#471a16; }
+  .heroPlate::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.18) 50%,rgba(0,0,0,.38)); pointer-events:none; }
+  .heroImage { object-position:center; }
+  .plateLabel { display:none; }
+  .mastCopy { display:grid; grid-template-rows:max(100svh,32rem) auto; max-width:none; opacity:1 !important; transform:none !important; clip-path:none !important; }
+  .eyebrow { position:absolute; top:7.5rem; left:0; width:100%; margin:0; text-align:center; color:#fff; font-size:.6rem; letter-spacing:.2em; }
+  .title { grid-row:1; align-self:center; justify-self:center; color:white; font-size:clamp(1.65rem,7.7vw,2.9rem); letter-spacing:.045em; line-height:1.5; white-space:nowrap; text-shadow:0 2px 18px rgba(0,0,0,.25); }
+  .title .titleLine, .title .titleLine > .motionLetters { display:inline !important; overflow:visible; padding:0; }
+  .title .motionLetters > span { opacity:1 !important; transform:none !important; }
+  .heroIntro { grid-row:2; padding:2rem var(--page-gutter) 2.5rem; }
+  .thesis { margin:0 0 1.5rem; padding:0; border:0; font-size:.95rem; line-height:2; }
+  .actions { gap:.25rem 1.25rem; }
+  .mobileExplore { position:absolute; top:calc(max(100svh,32rem) - 5rem - env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); display:inline-flex; align-items:center; justify-content:center; gap:.75rem; min-height:44px; padding:.5rem 1rem; color:white; font:500 .75rem/1.5 Arial,sans-serif; letter-spacing:.12em; text-decoration:none; }
+  .mobileExplore:focus-visible { outline:2px solid white; outline-offset:4px; }
+}
