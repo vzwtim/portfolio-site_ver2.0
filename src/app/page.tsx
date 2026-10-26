@@ -67,13 +67,14 @@ export default function Home() {
         <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
           <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
-          <p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />違う興味を混ぜながら、場所と人の新しい可能性をつくっています。</p>
+          <div id="home-intro" className={styles.heroIntro}><p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />違う興味を混ぜながら、場所と人の新しい可能性をつくっています。</p>
           <nav className={styles.actions} aria-label="興味のある分野">
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
-          </nav>
+          </nav></div>
+          <Link className={styles.mobileExplore} href="#home-intro">活動を見る <span aria-hidden="true">↓</span></Link>
         </div>
         <figure className={styles.heroPlate}>
-          <Image className={styles.heroImage} data-parallax="image" src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" />
+          <picture><source media="(max-width: 600px)" srcSet="/_next/image?url=%2Fimages%2Fmv_gomoku_1_mobile.jpg&w=1080&q=75" /><Image className={styles.heroImage} data-parallax="image" src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" /></picture>
           <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
         </figure>
       </section>
