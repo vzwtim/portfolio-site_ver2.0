@@ -24,6 +24,7 @@ const apps: App[] = [
     imageUrl: '/images/portfolio/openboard-table.webp',
     bgColor: '#e8eeeb',
     workId: 'openboard-table',
+    url: 'https://board-hub.babachan.workers.dev/',
   },
   {
     name: '一種単価マップ',
