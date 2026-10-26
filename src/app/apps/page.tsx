@@ -19,8 +19,8 @@ interface App {
 
 const apps: App[] = [
   {
-    name: 'Table — ボードゲームを育てる場所',
-    description: 'ボードゲームを遊び、AIとルールを育てる。CPU・友人対戦、チュートリアル、ブランチでの試遊を備えた開発中のプラットフォーム。',
+    name: 'BoardHub',
+    description: 'ボードゲームを見つけて、友人と遊ぶ。お気に入り、AIとのルール改善、ブランチでの試遊をつなぐ、遊びと開発のプラットフォーム。',
     imageUrl: '/images/portfolio/openboard-table.webp',
     bgColor: '#e8eeeb',
     workId: 'openboard-table',
