@@ -19,6 +19,14 @@ interface App {
 
 const apps: App[] = [
   {
+    name: 'Table — ボードゲームを育てる場所',
+    description: 'ボードゲームを遊び、AIとルールを育てる。CPU・友人対戦、チュートリアル、ブランチでの試遊を備えた開発中のプラットフォーム。',
+    imageUrl: '/images/portfolio/openboard-table.webp',
+    bgColor: '#e8eeeb',
+    workId: 'openboard-table',
+    url: 'https://board-hub.babachan.workers.dev/',
+  },
+  {
     name: '一種単価マップ',
     description: '全国の土地価格と伸び率を比較。地図中央に場所を合わせて、一種単価を調べるWebアプリ。',
     url: 'https://isshu-map.babachan.workers.dev/',

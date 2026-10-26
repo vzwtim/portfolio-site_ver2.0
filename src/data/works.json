@@ -1,5 +1,22 @@
 [
   {
+    "id": "openboard-table",
+    "title": "Table — ボードゲームを育てる場所",
+    "description": "遊ぶことを入口に、ルールを作り、試し、育てるボードゲーム・プラットフォーム。資源交渉、デッキ構築、タイル配置などをCPUや友人と遊べる。開発者はAIと変更案をつくり、GitHubのようにブランチで差分と試遊を確認して反映する。構想・UI/UX設計とAIを活用した実装を担当。オンラインの反応から製品化へつなぐ仕組みを目指し、開発を進めている。",
+    "images": [
+      "/images/portfolio/openboard-table.webp"
+    ],
+    "imageCaptions": {
+      "/images/portfolio/openboard-table.webp": "資源交渉・デッキ構築・タイル配置を備えた、遊びと開発のプラットフォーム"
+    },
+    "bgColor": "#e8eeeb",
+    "tags": [
+      "design-programming",
+      "artificial-intelligence"
+    ],
+    "link": "https://board-hub.babachan.workers.dev/"
+  },
+  {
     "id": "tokyo-time-warp",
     "title": "東京時間マップ",
     "description": "駅を中心に、地理と時間の距離を行き来するインタラクティブマップ。出発駅を変えると街の近さが組み替わり、家賃のレイヤーや3D表現から東京の別の輪郭を探れる。構想・UI設計とAIを活用した実装に取り組んだ、概略モデルによる都市の可視化実験。",
