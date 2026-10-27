@@ -17,7 +17,9 @@ export function optimizedImage(
   // Never select retired, unblurred derivatives for any requested size/format.
   const edited = privacyEdits.get(src);
   if (edited) return edited;
-  if (editedImages.has(src) || src.toLowerCase().endsWith('.svg')) return src;
+  // Modern source images are already compressed; Next/Image sizes them on demand.
+  // Do not invent pre-generated paths for newly added WebP/AVIF assets.
+  if (editedImages.has(src) || /\.(svg|webp|avif)$/i.test(src)) return src;
   const base = src.replace(/^\/images\//, '').replace(/\.[^.]+$/, '');
   return `/optimized/${type}/${base}-${width}.${format}`;
 }
