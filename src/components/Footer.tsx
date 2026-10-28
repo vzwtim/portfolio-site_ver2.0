@@ -1,7 +1,6 @@
 
 import Link from 'next/link';
-import { FaInstagram, FaGithub, FaPencilAlt } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaInstagram, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -21,28 +20,6 @@ const Footer = () => {
             >
               <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
                 <FaInstagram />
-              </span>
-            </Link>
-            <Link
-              href="https://x.com/yudaizit" aria-label="X"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#008877]"
-              passHref
-            >
-              <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
-                <FaXTwitter />
-              </span>
-            </Link>
-            <Link
-              href="https://note.com/yubayuba" aria-label="note"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#008877]"
-              passHref
-            >
-              <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
-                <FaPencilAlt />
               </span>
             </Link>
             <Link
