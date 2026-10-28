@@ -18,7 +18,7 @@ const topics = [
     className: styles.topicScan,
     projects: [
       { title: "不動産開発", text: "不動産への出資、住宅・オフィスの売買、当社初のホテル開発。収支の検討と関係者との調整を通じ、事業を前へ進めます。", href: hotelProject.href!, image: hotelProject.image, ratio: "3 / 2", visual: "underwriting" },
-      { title: "都市動態論", text: "地図とフィールドワークから、都市に刻まれた暮らしの痕跡や変化を読み解く。", href: "/works/master-thesis", image: "/images/figure_master.webp", ratio: "16 / 9", fit: "contain" },
+      { title: "都市動態論", text: "地図とフィールドワークから、都市に刻まれた暮らしの痕跡や変化を読み解く。", href: "/works/master-thesis", image: "/images/figure_master.webp", ratio: "16 / 9", fit: "cover" },
       { title: "小屋改修実践PJ", text: "古い小屋を、自分たちの手で使える場所へ。調査から修繕まで、現場で考え、つくる実践。", href: "/works/odo-renovation", image: "/images/image_odo_4.jpg", ratio: "4 / 3" },
     ],
   },
@@ -97,7 +97,7 @@ export default function Home() {
                 {["/works/odo-renovation", "/works/tokyo-time-warp"].includes(project.href) && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio} videoSrc={project.href === "/works/tokyo-time-warp" ? "/videos/tokyo-time-warp-hover.mp4" : undefined} fit={project.href === "/works/tokyo-time-warp" ? "contain" : "cover"}>
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </ProjectMotionPreview> : <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill sizes={index === 0 ? "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes={index === 0 ? "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1506px) 85vw, 1280px" : "(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 35vw, 520px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>}
               </article>
