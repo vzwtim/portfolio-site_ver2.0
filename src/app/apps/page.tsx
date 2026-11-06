@@ -43,6 +43,14 @@ const apps: App[] = [
     workId: 'tokyo-time-warp',
   },
   {
+    name: 'タイルアトリエ',
+    description: 'タイルの柄を描き、色や貼り方を変えながら、壁面に並べた仕上がりを試せるデザインツール。',
+    url: 'https://tile-atelier.babachan.workers.dev/',
+    imageUrl: '/images/portfolio/tile-atelier.webp',
+    bgColor: '#ede9dc',
+    workId: 'tile-atelier',
+  },
+  {
     name: 'StudyFlow',
     description: '不動産知識を気軽に復習できる一問一答アプリです。',
     url: 'https://swift-revise.vercel.app/',
@@ -107,7 +115,7 @@ const AppsPage: NextPage = () => {
   }, [setBgColor, setTextColor]);
 
   return (
-    <main className="container mx-auto px-4 pb-16 pt-6 sm:pt-10">
+    <main className="container mx-auto px-4 pb-16 pt-28 md:pt-40">
       <nav aria-label="サイト内ナビゲーション" className="mb-8 sm:mb-10">
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-[#008877] transition-colors hover:border-[#008877] hover:bg-teal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008877]">
           <span aria-hidden="true">←</span> ホームに戻る

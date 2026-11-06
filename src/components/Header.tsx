@@ -10,6 +10,7 @@ const navigationItems = [
   { href: '/about', label: 'about' },
   { href: '/photos', label: 'gallery' },
   { href: '/works', label: 'works?' },
+  { href: '/apps', label: 'apps' },
   { href: '/contact', label: 'contact' },
 ];
 
@@ -94,13 +95,12 @@ export default function Header({ textColor }: HeaderProps) {
           <ul className="flex flex-col items-center space-y-8">
             {navigationItems.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} className="inline-flex min-h-11 items-center" aria-current={pathname === item.href ? 'page' : undefined}>
+              <Link href={item.href} onClick={() => setIsMenuOpen(false)} className="inline-flex min-h-11 items-center" aria-current={pathname === item.href ? 'page' : undefined}>
                 <span
                   className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide ${pathname === item.href ? 'underline underline-offset-8' : ''}`}
                   style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
-                  onClick={toggleMenu}
                 >
                   {item.label}
                 </span>

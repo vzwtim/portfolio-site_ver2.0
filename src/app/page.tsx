@@ -68,8 +68,9 @@ export default function Home() {
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
           <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
           <div id="home-intro" className={styles.heroIntro}><p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />違う興味を混ぜながら、場所と人の新しい可能性をつくっています。</p>
-          <nav className={styles.actions} aria-label="興味のある分野">
+          <nav className={styles.actions} aria-label="ポートフォリオの見どころ">
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
+            <Link className={styles.textLink} href="/apps">My Apps &amp; Sites</Link>
           </nav></div>
           <Link className={styles.mobileExplore} href="#home-intro">活動を見る <span aria-hidden="true">↓</span></Link>
         </div>
