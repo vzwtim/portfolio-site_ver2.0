@@ -21,7 +21,6 @@ interface ClientLayoutProps {
 export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
-  const isAppsPage = pathname === '/apps';
 
   const { bgColor, textColor } = useTheme();
 
@@ -32,12 +31,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <SiteMotion />
           <WorkNavigation />
           <CustomCursor />
-          {!isAppsPage && <Header textColor={textColor} />}
+          <Header textColor={textColor} />
           <div className={textColor}>
             {children}
           </div>
           
-          {!isWorkDetailPage && !isAppsPage && (
+          {!isWorkDetailPage && (
             <ShadowAnimation>
               <Footer />
             </ShadowAnimation>
