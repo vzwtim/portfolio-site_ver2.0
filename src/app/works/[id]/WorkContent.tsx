@@ -17,6 +17,7 @@ export type Work = {
   imageCaptions?: Record<string, string>;
   bgColor?: string;
   link?: string;
+  relatedLinks?: Array<{ title: string; url: string }>;
 };
 
 interface WorkContentProps {
@@ -117,6 +118,9 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <BackButton />
+              {work.relatedLinks?.map(link => (
+                <Link key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 rounded-full bg-white/70 px-4 py-2 text-sm hover:bg-white transition-colors">{link.title} ↗</Link>
+              ))}
               {work.link && (
                 <Link
                   href={work.link}

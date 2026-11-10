@@ -739,3 +739,20 @@
   .mobileExplore { position:absolute; top:calc(max(100svh,32rem) - 5rem - env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); display:inline-flex; align-items:center; justify-content:center; gap:.75rem; min-height:44px; padding:.5rem 1rem; color:white; font:500 .75rem/1.5 Arial,sans-serif; letter-spacing:.12em; text-decoration:none; }
   .mobileExplore:focus-visible { outline:2px solid white; outline-offset:4px; }
 }
+
+/* A shared editorial grid gives all three projects a comparable visual weight. */
+@media (min-width:1024px) {
+  .topicProjects { grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(1.5rem,3vw,3rem); align-items:start; }
+  .topicProjectLead { grid-column:auto; grid-row:auto; }
+  .topicProject:nth-child(2), .topicProject:nth-child(3) { margin:0; }
+  .topicProjectLead .topicProjectCopy { display:block; width:100%; margin:0; padding-top:1.4rem; }
+  .topicProjectLead .topicProjectCopy h3, .topicProject:not(.topicProjectLead) .topicProjectCopy h3 { font-size:clamp(1.3rem,1.8vw,1.85rem); line-height:1.5; margin:.65rem 0; }
+  .topicProjectLead .topicProjectCopy > p:not(.meta) { margin:0; }
+  .topicProjectLead .topicImage, .topicProject:not(.topicProjectLead) .topicImage { aspect-ratio:4 / 3; }
+  .topicProjectCopy > p:not(.meta) { font-size:.92rem; line-height:1.95; }
+  .topicDigital .topicProjectLead .topicImage { aspect-ratio:4 / 3; background:#e8eee7; }
+}
+@media (min-width:601px) and (max-width:1023px) {
+  .topicProjectLead { grid-column:1 / -1; width:82%; margin-inline:auto; }
+  .topicProjectLead .topicProjectCopy { margin-top:1.4rem; }
+}
