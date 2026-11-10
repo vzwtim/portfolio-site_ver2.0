@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footerCopyright mb-4 md:mb-0 text-center md:text-left">
             <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
           </div>
-          <div className="footerSocials flex space-x-4">
+          <div className="footerSocials flex items-center space-x-4"><Link href="https://portfolio-site-ver1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs text-[#008877] hover:underline">旧版を見る ↗</Link>
             <Link
               href="https://www.instagram.com/babachan_1222/" aria-label="Instagram"
               target="_blank"

@@ -4,6 +4,7 @@
 import styles from './workDetail.module.css';
 import FadeInImage from '@/components/FadeInImage';
 import BackButton from '@/components/BackButton';
+import { projectMedia } from '@/data/projectMedia';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -134,6 +135,10 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
             </div>
           </div>
         </div>
+        {projectMedia[work.id] && <figure className={styles.videoSlot}>
+          <video controls playsInline preload="none" poster={projectMedia[work.id].image} aria-label={`${work.title}の操作プレビュー`}><source src={projectMedia[work.id].video} type="video/mp4" />お使いのブラウザでは動画を再生できません。</video>
+          <figcaption>操作プレビュー — 公開アプリの画面から</figcaption>
+        </figure>}
         {images.map((src, idx) => (
           <ResponsiveImage
             key={idx}

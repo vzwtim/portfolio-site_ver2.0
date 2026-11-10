@@ -48,7 +48,7 @@ export default function ProjectMotionPreview({ image, href, title, ratio, childr
       <Link href={href} className={styles.projectMotionLink} aria-label={`${title}の詳細を見る`} data-project-image
         onPointerEnter={event => { if (event.pointerType === "mouse") void start(); }}
         onPointerLeave={stop} onFocus={() => void start()} onBlur={stop}>
-        <Image src={image} alt="" fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), 520px" />
+        <Image src={image} alt="" fill quality={90} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), 520px" />
         <video ref={video} className={styles.projectMotionVideo} data-playing={playing} style={{ objectFit: fit, background: fit === "contain" ? "#f1efe7" : undefined }}
           muted loop playsInline preload="none" aria-hidden="true" onError={stop} />
       </Link>

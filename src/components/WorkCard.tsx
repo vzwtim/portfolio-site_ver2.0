@@ -1,6 +1,7 @@
 import FadeInImage from './FadeInImage';
 import Link from 'next/link';
 import ProjectMotionPreview from './ProjectMotionPreview';
+import { projectMedia } from '@/data/projectMedia';
 
 interface WorkCardProps {
   id:string;
@@ -12,7 +13,7 @@ interface WorkCardProps {
 
 export default function WorkCard({ id, title, image, tags = [], bgColor }: WorkCardProps) {
   return <article className="min-w-0">
-    {id === 'tokyo-time-warp' ? <ProjectMotionPreview image={image} href={`/works/${id}`} title={title} ratio="8 / 5" fit="contain" videoSrc="/videos/tokyo-time-warp-hover.mp4">
+    {projectMedia[id] ? <ProjectMotionPreview image={projectMedia[id].image} href={`/works/${id}`} title={title} ratio={projectMedia[id].ratio} fit="contain" videoSrc={projectMedia[id].video}>
       <h2 className="text-xl md:text-2xl leading-relaxed font-bold mt-4 mb-2 text-gray-900 break-words" style={{ fontFamily:'"Shippori Mincho", serif' }}>{title}<span className="text-[#008877] ml-2" aria-hidden="true">↗</span></h2>
     </ProjectMotionPreview> : <Link href={`/works/${id}`} className="block rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008877]">
       <div className="relative w-full aspect-video rounded-lg overflow-hidden" data-project-image style={{ backgroundColor:bgColor || '#eef0ec' }}>

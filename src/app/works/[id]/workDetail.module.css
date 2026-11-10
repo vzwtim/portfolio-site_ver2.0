@@ -16,3 +16,8 @@
 @media(min-width:1024px) {
   .captionedImage .imageButton { height:calc(100% - 32px); }
 }
+
+.videoSlot { flex-shrink:0; width:100%; padding-inline:20px; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+.videoSlot video { display:block; width:100%; height:auto; max-height:70svh; background:#eff1ee; border-radius:8px; }
+.videoSlot figcaption { font-size:12px; color:#374151; }
+@media(min-width:1024px) { .videoSlot { width:76vw; max-width:1200px; padding-inline:24px; } .videoSlot video { max-height:calc(100svh - 13rem); } }
