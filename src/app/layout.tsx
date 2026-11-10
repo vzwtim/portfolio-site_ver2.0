@@ -1,7 +1,15 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
+import { Montserrat } from "next/font/google";
 import "../globals.css";
 import ClientLayout from "@/components/ClientLayout";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: "800",
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: "ぼくは五目飯",
@@ -22,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): React.JSX.Element {
   return (
-    <html lang="ja">
+    <html lang="ja" className={montserrat.variable}>
       <body suppressHydrationWarning>
         <ThemeProvider>
           <ClientLayout>

@@ -812,9 +812,10 @@
 .topicProjects .topicProject:nth-child(2) { transition-delay:80ms; }
 .topicProjects .topicProject:nth-child(3) { transition-delay:160ms; }
 .chapterVertical {
-  top:10rem; right:-.09em; z-index:1; max-height:none;
-  font-family:'Montserrat',Arial,sans-serif; font-weight:800;
-  font-size:clamp(8rem,14vw,16rem); line-height:.78; letter-spacing:-.065em;
+  top:10rem; right:.04em; z-index:1; max-height:none;
+  font-family:var(--font-montserrat),'Montserrat',sans-serif; font-weight:800; font-synthesis:none;
+  font-size:clamp(7rem,12vw,13rem); line-height:1.1; letter-spacing:.22em;
+  font-kerning:normal; font-feature-settings:'kern' 1; word-spacing:.25em;
   writing-mode:vertical-rl; text-orientation:mixed;
   color:#008877; opacity:.13; mix-blend-mode:multiply;
 }
@@ -836,7 +837,7 @@
   .topicProjects .topicProject:first-child,.topicProjects .topicProject:nth-child(2),.topicAsanoha .topicProjects .topicProject:nth-child(2),.topicDigital .topicProjects .topicProject:nth-child(2) { grid-column:span 1; }
   .topicProjects .topicProject:nth-child(3),.topicAsanoha .topicProjects .topicProject:nth-child(3),.topicDigital .topicProjects .topicProject:nth-child(3) { grid-column:1 / -1; width:72%; margin-top:0; }
   .topicProjects .topicProject:nth-child(3) .topicImage { aspect-ratio:4 / 3; }
-  .chapterVertical { font-size:clamp(7rem,17vw,10rem); right:-.06em; }
+  .chapterVertical { font-size:clamp(6.5rem,15vw,9rem); right:.04em; letter-spacing:.26em; }
 }
 @media(max-width:600px) {
   .topicHeader,.topicProjects { width:calc(100% - 40px); margin-inline:20px; }
@@ -849,7 +850,7 @@
   .topicProjects .topicProject:nth-child(2) { width:90%; }
   .topicProjects .topicProject:first-child .topicImage,.topicProjects .topicProject:nth-child(2) .topicImage,.topicProjects .topicProject:nth-child(3) .topicImage { aspect-ratio:var(--source-ratio); }
   .topicProjects .topicProjectCopy h3,.topicProjects .topicProjectLead .topicProjectCopy h3 { font-size:1.35rem; }
-  .chapterVertical { top:6.5rem; right:-.15em; font-size:clamp(5.5rem,25vw,9rem); line-height:.8; letter-spacing:-.055em; opacity:.16; }
+  .chapterVertical { top:6.5rem; right:.04em; font-size:clamp(5rem,23vw,8rem); line-height:1.1; letter-spacing:.35em; opacity:.16; }
   .topicAsanoha .chapterVertical { opacity:.19; }
   .topicDigital .chapterVertical { opacity:.17; }
 }
