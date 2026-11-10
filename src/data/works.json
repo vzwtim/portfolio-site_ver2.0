@@ -52,9 +52,8 @@
   {
     "id": "internal-dx-workshop",
     "title": "デジカフェ・デジラボ",
-    "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。デジカフェ参加者は、タスク管理ツール「Dandoly」、不動産売却LP「DX不動産」、投票・コメントツール「LiveFlow & Poll」などを制作。掲載画像は参加者の制作例。",
+    "description": "デジタルを一部の専門知識にせず、社内で学び合い、それぞれの業務に持ち帰るために立ち上げた勉強会。テーマ設定と進行を通じて、小さな実践が継続する場づくりに取り組んでいる。",
     "images": [
-      "/images/portfolio/digicafe-participant-works.webp",
       "/images/portfolio/dx-workshop-01.webp",
       "/images/portfolio/dx-workshop-02.webp",
       "/images/portfolio/slides/dx-vibe-coding-1.webp",
@@ -64,7 +63,8 @@
       "/images/portfolio/slides/dx-ui-ux-1.webp",
       "/images/portfolio/slides/dx-ui-ux-9.webp",
       "/images/portfolio/slides/dx-obsidian-1.webp",
-      "/images/portfolio/slides/dx-obsidian-8.webp"
+      "/images/portfolio/slides/dx-obsidian-8.webp",
+      "/images/portfolio/digicafe-participant-works.webp"
     ],
     "bgColor": "#DDEFEA",
     "tags": [
@@ -81,21 +81,7 @@
       "/images/portfolio/slides/dx-obsidian-1.webp": "Obsidian導入勉強会：ハンズオン編",
       "/images/portfolio/slides/dx-obsidian-8.webp": "ノート同士をリンクでつなぐ",
       "/images/portfolio/digicafe-participant-works.webp": "デジカフェ参加者の制作例：Dandoly（タスク管理）、DX不動産（売却LP）、LiveFlow & Poll（投票・コメント）"
-    },
-    "relatedLinks": [
-      {
-        "title": "Dandoly",
-        "url": "https://v0-dandoly-web-app.vercel.app/"
-      },
-      {
-        "title": "DX不動産",
-        "url": "https://v0-real-estate-lp-rose.vercel.app/"
-      },
-      {
-        "title": "LiveFlow & Poll",
-        "url": "https://v0-ore-live.vercel.app/"
-      }
-    ]
+    }
   },
   {
     "id": "competition-mentor-support",

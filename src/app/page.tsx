@@ -3,6 +3,7 @@ import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import ProjectMotionPreview from "@/components/ProjectMotionPreview";
 import HomeMotion from "@/components/HomeMotion";
+import ProjectGallery from "@/components/ProjectGallery";
 import { IngredientField, BlueprintField, AsanohaField, DigitalField } from "@/components/FieldBackdrop";
 import { hotelProject } from "@/data/featuredProjects";
 import styles from "./refresh.module.css";
@@ -45,7 +46,7 @@ const topics = [
     ticker: "DX　DIGITAL　DATA　MAP　PROTOTYPE　WEB APPLICATION",
     className: styles.topicDigital,
     projects: [
-      { title: "デジカフェ・デジラボ", text: "AIやデジタルを、誰もが試せる道具に。参加者がアプリやWebサイトをつくり、学びを仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/digicafe-participant-works.webp", ratio: "2 / 1", fit: "contain", visual: "DX / LEARNING" },
+      { title: "デジカフェ・デジラボ", text: "AIやデジタルを、誰もが試せる道具に。学び合い、小さくつくり、仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", ratio: "1376 / 768", fit: "contain", visual: "DX / LEARNING" },
       { title: "StudyFlow", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/studyflow", image: "/images/appview_quiz.png", ratio: "4 / 3", fit: "contain" },
       { title: "東京時間マップ", text: "東京の近さを、距離ではなく時間から考える。駅を中心に地図が伸縮する、都市の可視化実験。", href: "/works/tokyo-time-warp", image: "/images/portfolio/time-map-product-hd.webp", ratio: "8 / 5", fit: "contain", visual: "TOKYO TIME MAP" },
     ],
@@ -93,18 +94,18 @@ export default function Home() {
             <span className={styles.chapterNumber} aria-hidden="true">{topic.number} / 03</span>
             <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`} className={styles.titleLine}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p><div className={styles.chapterProgress} aria-hidden="true"><i /></div></div>
           </header>
-          <div className={styles.topicProjects}>
+          <ProjectGallery>
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 {["/works/odo-renovation", "/works/tokyo-time-warp"].includes(project.href) && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio} videoSrc={project.href === "/works/tokyo-time-warp" ? "/videos/timemap-product-preview.mp4" : undefined} fit={project.href === "/works/tokyo-time-warp" ? "contain" : "cover"}>
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </ProjectMotionPreview> : <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill quality={90} style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes={index === 0 ? "(max-width: 600px) calc(100vw - 88px), (max-width: 1023px) calc(82vw - 52px), (max-width: 1506px) 30vw, 480px" : "(max-width: 600px) calc(100vw - 88px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 30vw, 480px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill quality={90} style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes={index === 0 ? "(max-width: 600px) calc(100vw - 40px), (max-width: 899px) 46vw, (max-width: 1506px) 38vw, 540px" : "(max-width: 600px) calc(100vw - 40px), (max-width: 899px) 70vw, (max-width: 1506px) 34vw, 480px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>}
               </article>
             ))}
-          </div>
+          </ProjectGallery>
           {topic.id === "culture" && <YouTubeFeature videoId="AV41DNDRaMk" channelUrl="https://www.youtube.com/@vzwtim" uploadsHandle="vzwtim" />}
           <div className={styles.movingRule} aria-hidden="true" />
         </section>
