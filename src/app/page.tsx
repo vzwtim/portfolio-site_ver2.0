@@ -47,7 +47,7 @@ const topics = [
     projects: [
       { title: "デジカフェ・デジラボ", text: "AIやデジタルを、誰もが試せる道具に。参加者がアプリやWebサイトをつくり、学びを仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/digicafe-participant-works.webp", ratio: "2 / 1", fit: "contain", visual: "DX / LEARNING" },
       { title: "StudyFlow", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/studyflow", image: "/images/appview_quiz.png", ratio: "4 / 3", fit: "contain" },
-      { title: "東京時間マップ", text: "東京の近さを、距離ではなく時間から考える。駅を中心に地図が伸縮する、都市の可視化実験。", href: "/works/tokyo-time-warp", image: "/images/portfolio/tokyo-time-warp-product.webp", ratio: "8 / 5", fit: "contain", visual: "TOKYO TIME MAP" },
+      { title: "東京時間マップ", text: "東京の近さを、距離ではなく時間から考える。駅を中心に地図が伸縮する、都市の可視化実験。", href: "/works/tokyo-time-warp", image: "/images/portfolio/time-map-product-hd.webp", ratio: "8 / 5", fit: "contain", visual: "TOKYO TIME MAP" },
     ],
   },
 ];
@@ -82,6 +82,7 @@ export default function Home() {
 
       {topics.map((topic) => (
         <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`} data-motion-section data-scene-surface>
+          <span className={styles.chapterVertical} aria-hidden="true">{topic.label}</span>
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
           {topic.id === "real-estate" && <BlueprintField />}
           {topic.id === "digital" && <DigitalField />}
@@ -95,10 +96,10 @@ export default function Home() {
           <div className={styles.topicProjects}>
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
-                {["/works/odo-renovation", "/works/tokyo-time-warp"].includes(project.href) && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio} videoSrc={project.href === "/works/tokyo-time-warp" ? "/videos/tokyo-time-warp-hover.mp4" : undefined} fit={project.href === "/works/tokyo-time-warp" ? "contain" : "cover"}>
+                {["/works/odo-renovation", "/works/tokyo-time-warp"].includes(project.href) && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio} videoSrc={project.href === "/works/tokyo-time-warp" ? "/videos/timemap-product-preview.mp4" : undefined} fit={project.href === "/works/tokyo-time-warp" ? "contain" : "cover"}>
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </ProjectMotionPreview> : <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
-                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 30vw, 480px" /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
+                  {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill quality={90} style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 44px), (max-width: 1506px) 30vw, 480px" /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
                   <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>}
               </article>

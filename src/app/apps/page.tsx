@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 import Image from 'next/image';
 import ProjectMotionPreview from '@/components/ProjectMotionPreview';
+import { projectMedia } from '@/data/projectMedia';
 
 interface App {
   name: string;
@@ -21,7 +22,7 @@ const apps: App[] = [
   {
     name: 'BoardHub',
     description: 'ボードゲームを見つけて、友人と遊ぶ。お気に入り、AIとのルール改善、ブランチでの試遊をつなぐ、遊びと開発のプラットフォーム。',
-    imageUrl: '/images/portfolio/openboard-table.webp',
+    imageUrl: '/images/portfolio/boardhub-product.webp',
     bgColor: '#e8eeeb',
     workId: 'openboard-table',
     url: 'https://board-hub.babachan.workers.dev/',
@@ -30,7 +31,7 @@ const apps: App[] = [
     name: '一種単価マップ',
     description: '全国の土地価格と伸び率を比較。地図中央に場所を合わせて、一種単価を調べるWebアプリ。',
     url: 'https://isshu-map.babachan.workers.dev/',
-    imageUrl: '/images/portfolio/isshu-map.webp',
+    imageUrl: '/images/portfolio/isshu-map-product.webp',
     bgColor: '#f5f5f7',
     workId: 'isshu-map',
   },
@@ -38,7 +39,7 @@ const apps: App[] = [
     name: '東京時間マップ',
     description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
     url: 'https://tokyo-time-map.babachan.workers.dev/',
-    imageUrl: '/images/portfolio/tokyo-time-warp-product.webp',
+    imageUrl: '/images/portfolio/time-map-product-hd.webp',
     bgColor: '#f1efe7',
     workId: 'tokyo-time-warp',
   },
@@ -46,7 +47,7 @@ const apps: App[] = [
     name: 'タイルアトリエ',
     description: 'タイルの柄を描き、色や貼り方を変えながら、壁面に並べた仕上がりを試せるデザインツール。',
     url: 'https://tile-atelier.babachan.workers.dev/',
-    imageUrl: '/images/portfolio/tile-atelier.webp',
+    imageUrl: '/images/portfolio/tile-atelier-product.webp',
     bgColor: '#ede9dc',
     workId: 'tile-atelier',
   },
@@ -77,7 +78,7 @@ const apps: App[] = [
     description: 'このポートフォリオサイトの初期バージョンです。',
     imageUrl: '/images/webview_portfolio.png',
     bgColor: '#008877',
-    workId: 'portfolio-site-v1',
+    url: 'https://portfolio-site-ver1.vercel.app/',
   },
   {
     name: 'UT architecture pavilion',
@@ -125,7 +126,7 @@ const AppsPage: NextPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {apps.map((app) => (
           <div key={app.name} className="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group">
-            {app.workId === 'tokyo-time-warp' ? <ProjectMotionPreview image={app.imageUrl} href="/works/tokyo-time-warp" title={app.name} ratio="8 / 5" fit="contain" videoSrc="/videos/tokyo-time-warp-hover.mp4"><span className="sr-only">東京時間マップの詳細を見る</span></ProjectMotionPreview> : <div
+            {app.workId && projectMedia[app.workId] ? <ProjectMotionPreview image={projectMedia[app.workId].image} href={`/works/${app.workId}`} title={app.name} ratio={projectMedia[app.workId].ratio} fit="contain" videoSrc={projectMedia[app.workId].video}><span className="sr-only">{app.name}の詳細を見る</span></ProjectMotionPreview> : <div
               className="relative h-56 w-full"
               style={{ backgroundColor: app.bgColor }}
             >
@@ -134,6 +135,8 @@ const AppsPage: NextPage = () => {
                 alt={app.name}
                 fill
                 className="object-contain"
+                quality={90}
+                sizes="(max-width:767px) calc(100vw - 32px), (max-width:1023px) 46vw, 30vw"
               />
             </div>}
             <div className="p-6 flex flex-col flex-grow">
@@ -150,7 +153,7 @@ const AppsPage: NextPage = () => {
                     My Works
                   </Link>
                 ) : (
-                  <span className="text-gray-400">My Works</span>
+                  <span className="text-gray-400">Archive / 旧版</span>
                 )}
                 {app.url ? (
                   <Link

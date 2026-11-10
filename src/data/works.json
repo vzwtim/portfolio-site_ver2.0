@@ -4,10 +4,10 @@
     "title": "BoardHub",
     "description": "遊ぶことを入口に、ルールを作り、試し、育てるボードゲーム・プラットフォーム。ホームの運営セレクトと全公開ゲームの探索を分け、お気に入り、友人との対戦、プロジェクトでの開発をつなぐ。個人作家がゲームルールとUIに集中できる、オープンな対戦エンジンを構想・実装。AIとの変更案作成、ブランチでの差分確認・試遊を通じ、オンラインの反応から製品化へつなぐ仕組みを目指している。",
     "images": [
-      "/images/portfolio/openboard-table.webp"
+      "/images/portfolio/boardhub-product.webp"
     ],
     "imageCaptions": {
-      "/images/portfolio/openboard-table.webp": "資源交渉・デッキ構築・タイル配置を備えた、遊びと開発のプラットフォーム"
+      "/images/portfolio/boardhub-product.webp": "資源交渉・デッキ構築・タイル配置を備えた、遊びと開発のプラットフォーム"
     },
     "bgColor": "#e8eeeb",
     "tags": [
@@ -21,7 +21,7 @@
     "title": "東京時間マップ",
     "description": "駅を中心に、地理と時間の距離を行き来するインタラクティブマップ。出発駅を変えると街の近さが組み替わり、家賃のレイヤーや3D表現から東京の別の輪郭を探れる。構想・UI設計とAIを活用した実装に取り組んだ、概略モデルによる都市の可視化実験。",
     "images": [
-      "/images/portfolio/tokyo-time-warp-product.webp",
+      "/images/portfolio/time-map-product-hd.webp",
       "/images/portfolio/tokyo-time-warp.webp"
     ],
     "link": "https://tokyo-time-map.babachan.workers.dev/",
@@ -37,10 +37,10 @@
     "title": "タイルアトリエ",
     "description": "オーダーメイドのタイルをデザインするWebアプリ。手描きや和柄のプリセットから一枚の柄をつくり、配色・向き・貼り方を変えながら、模様のつながりと壁面に並べた仕上がりをリアルタイムで確かめられる。",
     "images": [
-      "/images/portfolio/tile-atelier.webp"
+      "/images/portfolio/tile-atelier-product.webp"
     ],
     "imageCaptions": {
-      "/images/portfolio/tile-atelier.webp": "デザインしたタイルを壁面に並べた空間プレビュー"
+      "/images/portfolio/tile-atelier-product.webp": "デザインしたタイルを壁面に並べた空間プレビュー"
     },
     "bgColor": "#ede9dc",
     "tags": [
@@ -192,7 +192,7 @@
     "title": "一種単価マップ",
     "description": "全国47都道府県の公示地価を、指定容積率でそろえた一種単価として可視化するWebアプリ。2020〜2026年の時系列比較、表示範囲内のランキング、自動・固定を切り替えられる色スケール、3D柱図から、土地価格の分布と変化を読み解く。スマートフォンでは地図中央の十字に場所を合わせ、画面下部で単価や参考推計を確認できる。",
     "images": [
-      "/images/portfolio/isshu-map.webp"
+      "/images/portfolio/isshu-map-product.webp"
     ],
     "bgColor": "#f5f5f7",
     "tags": [

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import YouTubeFeature from "../YouTubeFeature";
 
 describe("YouTubeFeature", () => {
@@ -17,6 +17,10 @@ describe("YouTubeFeature", () => {
     expect(featured).toHaveAttribute("src", expect.stringContaining("/embed/AV41DNDRaMk?start=2"));
     expect(channel).toHaveAttribute("href", "https://www.youtube.com/@vzwtim");
     expect(document.querySelectorAll("iframe")).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: /を再生$/ })).toHaveLength(5);
+    fireEvent.click(screen.getByRole("button", { name: /奥州街道.*を再生$/ }));
+    expect(document.querySelectorAll("iframe")).toHaveLength(1);
+    expect(document.querySelector("iframe")).toHaveAttribute("src", expect.stringContaining("/embed/2v_vI3E9cts"));
     expect(screen.queryByRole("button", { name: /埋め込みで開く/ })).not.toBeInTheDocument();
   });
 });
