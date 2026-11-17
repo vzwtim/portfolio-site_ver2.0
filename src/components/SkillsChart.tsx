@@ -6,10 +6,12 @@ import styles from "./SkillsChart.module.css";
 
 const shortLabels: Record<string, string> = {
   communication: "伝える力",
-  programming: "コード",
-  marketing: "マーケ",
+  programming: "アプリ制作",
+  marketing: "発信・広報",
   pm: "進行管理",
   research: "調査・分析",
+  data: "データ分析",
+  office: "Office",
 };
 
 type BubbleBody = {
@@ -43,11 +45,23 @@ type Grab = {
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 const hues = [335, 254, 186, 43, 161, 222, 28, 308, 171, 221, 43, 337, 159, 255, 32, 188, 305, 217];
 const widePositions = [
-  [.15, .20], [.27, .32], [.42, .12], [.59, .24], [.83, .15],
-  [.08, .48], [.37, .45], [.48, .52], [.72, .40], [.88, .47],
-  [.24, .63], [.14, .79], [.59, .65], [.76, .72], [.91, .83],
-  [.38, .77], [.50, .87], [.70, .92],
+  [.15, .22], [.26, .41], [.39, .16], [.63, .13], [.76, .36],
+  [.13, .57], [.43, .44], [.62, .51], [.89, .56], [.84, .16],
+  [.25, .70], [.10, .80], [.53, .74], [.72, .74], [.94, .80],
+  [.34, .84], [.68, .90], [.84, .83],
 ];
+
+function bubbleRadius(level: number, width: number) {
+  const progress = (level / 10) ** 1.85;
+  const compact = width < 480;
+  return Math.round((compact ? 26 : 30) + progress * (compact ? 48 : 79));
+}
+
+function setBubbleSize(body: BubbleBody) {
+  const diameter = body.radius * 2;
+  body.element.style.setProperty("--diameter", `${diameter}px`);
+  body.element.style.setProperty("--label-size", `${clamp(diameter * .132, 11, 27)}px`);
+}
 
 function paperGrain() {
   const canvas = document.createElement("canvas");
@@ -117,7 +131,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
       buttons.forEach((button, index) => {
         const key = button.dataset.bubble!;
         const level = Number(button.dataset.level);
-        const radius = Math.round((24 + 4.55 * level) * (width < 480 ? 0.93 : 1.18));
+        const radius = bubbleRadius(level, width);
         const [ratioX, ratioY] = (columns === 5 && widePositions[index]) || [
           ((index % columns) + 0.52) / columns + Math.sin(index * 2.37) * 0.085,
           (Math.floor(index / columns) + 0.52) / rows + Math.cos(index * 2.21) * 0.055,
@@ -142,7 +156,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
         body.radius = radius;
         body.y = clamp(body.y, radius + 4, height - radius - 4);
         if (!body.homeY) body.homeY = body.y;
-        button.style.setProperty("--diameter", `${radius * 2}px`);
+        setBubbleSize(body);
         bodies.current.set(key, body);
         place(body);
       });
@@ -245,8 +259,8 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
     for (const category of stageData.categories) {
       const body = bodies.current.get(category.key);
       if (!body || !height) continue;
-      body.radius = Math.round((24 + 4.55 * category.current) * (size.current.width < 480 ? 0.93 : 1.18));
-      body.element.style.setProperty("--diameter", `${body.radius * 2}px`);
+      body.radius = bubbleRadius(category.current, size.current.width);
+      setBubbleSize(body);
       body.y = clamp(body.y, body.radius + 4, height - body.radius - 4);
       place(body);
     }
@@ -352,12 +366,14 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
         <div className={styles.pigment} aria-hidden="true" />
         {stageData.categories.map((category, index) => {
           const active = category.key === split?.key;
+          const label = shortLabels[category.key] ?? RADAR_LABEL_SHORT[category.label] ?? category.label;
           return (
             <div className={styles.node} key={category.key} data-active={active || undefined}>
               <button
                 type="button"
                 data-bubble={category.key}
                 data-level={category.current}
+                data-emphasis={category.current >= 8 ? "main" : category.current >= 5 ? "support" : "light"}
                 aria-label={`${category.label}、${category.current} / 10`}
                 aria-expanded={active && !split?.merging}
                 className={styles.bubble}
@@ -379,7 +395,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
               >
                 <span className={styles.orb} data-split={active && !split?.merging || undefined}>
                   <i className={styles.skin} aria-hidden="true" />
-                  <span>{shortLabels[category.key] ?? RADAR_LABEL_SHORT[category.label] ?? category.label}</span>
+                  <span data-latin={/^[A-Za-z]+$/.test(label) || undefined}>{label}</span>
                 </span>
                 {active && activeBody && (
                   <span className={styles.children} data-merging={split?.merging || undefined} aria-hidden="true">

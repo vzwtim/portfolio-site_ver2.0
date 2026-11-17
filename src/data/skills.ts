@@ -212,20 +212,20 @@ const levelsCurrent: ToolLevelTable = {
   "AutoCAD": 3, "SketchUp": 4, "Rhino + Grasshopper": 3, "Twinmotion": 3, "Lumion": 2,
   "Adobe Illustrator": 5, "Adobe Photoshop": 4, "Inkscape": 3, "Blender": 0, "DaVinci Resolve": 2,
   "ArcGIS": 3, "QGIS": 4, "Kepler.gl": 5,
-  "Python": 2, "JavaScript / TypeScript": 2, "Node.js": 1, "Pandas": 1, "NumPy": 1,
-  "業務自動化（Python+Excel）": 4, "ダッシュボード試作（Kepler/BI）": 0,
+  "Python": 2, "JavaScript / TypeScript": 3, "Node.js": 1, "Pandas": 1, "NumPy": 1,
+  "業務自動化（Python+Excel）": 4, "ダッシュボード試作（Kepler/BI）": 4,
   "Excel": 5, "PowerPoint": 4,
-  "土地仕入・ボリューム検討": 4, "事業収支/DCF（Excel）": 4, "不動産証券化の基礎": 2,
-  "DCF/NPV・IRR": 2, "LTV/DSCR": 2,
+  "土地仕入・ボリューム検討": 4, "事業収支/DCF（Excel）": 4, "不動産証券化の基礎": 4,
+  "DCF/NPV・IRR": 4, "LTV/DSCR": 2,
   "進行管理": 3, "チームマネジメント": 3, "アジャイル開発管理": 0,
   "プレゼンテーション": 4, "ファシリテーション": 3,
-  "社内研修講師": 0, "外部セミナー登壇": 0,
+  "社内研修講師": 4, "外部セミナー登壇": 0,
   "市場調査・競合分析": 3, "ユーザーインタビュー": 1,
-  "Webマーケティング": 1, "SEO・SNS運用": 0, "広告運用(Google/Facebook)": 0,
+  "Webマーケティング": 1, "SEO・SNS運用": 3, "広告運用(Google/Facebook)": 0,
   "契約・建築法務": 1, "都市計画法/建築基準法": 3,
   "ESGレポート作成": 0, "環境配慮設計": 0,
   "顧客満足度分析": 0, "カスタマーサクセス運用": 0,
-  "英語業務対応": 2, "ビジネス英語メール": 2,
+  "英語業務対応": 1, "ビジネス英語メール": 2,
 };
 
 // 未来（目標値）
@@ -314,25 +314,27 @@ const categoriesGraduate: SkillCategory[] = [
   { key: "education",     label: "教育・研修", current: 3 },
 ];
 
+// 現在の相対評価。実務を主担当として進めた領域を上位に置き、
+// 研究・公開制作、限定した範囲での実務、学習・経験の浅い領域を分けている。
 const categoriesCurrent: SkillCategory[] = [
   { key: "architecture",  label: "建築・設計", current: 7 },
   { key: "design",        label: "デザイン",   current: 7 },
-  { key: "gis",           label: "GIS・可視化",current: 6 },
+  { key: "gis",           label: "GIS・可視化",current: 8 },
   { key: "data",          label: "データ分析", current: 7 },
-  { key: "dx",            label: "DX/自動化",  current: 7 },
-  { key: "programming",   label: "プログラミング", current: 5 },
+  { key: "dx",            label: "DX/自動化",  current: 9 },
+  { key: "programming",   label: "プログラミング", current: 6 },
   { key: "office",        label: "office365",  current: 8 },
-  { key: "pm",            label: "プロジェクトマネジメント", current: 5 },
-  { key: "communication", label: "コミュニケーション・プレゼン", current: 6 },
-  { key: "research",      label: "リサーチ・分析", current: 5 },
+  { key: "pm",            label: "プロジェクトマネジメント", current: 6 },
+  { key: "communication", label: "コミュニケーション・プレゼン", current: 7 },
+  { key: "research",      label: "リサーチ・分析", current: 8 },
   { key: "marketing",     label: "マーケティング", current: 4 },
-  { key: "language",      label: "語学",       current: 3 },
-  { key: "realestate",    label: "不動産",     current: 7},
-  { key: "finance",       label: "金融",       current: 4 },
+  { key: "language",      label: "語学",       current: 2 },
+  { key: "realestate",    label: "不動産",     current: 9},
+  { key: "finance",       label: "金融",       current: 5 },
   { key: "legal",         label: "法務・コンプライアンス", current: 3 },
-  { key: "sustainability",label: "サステナビリティ/ESG", current: 3 },
-  { key: "customer",      label: "顧客対応・CX", current: 3 },
-  { key: "education",     label: "教育・研修", current: 3 },
+  { key: "sustainability",label: "サステナビリティ/ESG", current: 2 },
+  { key: "customer",      label: "顧客対応・CX", current: 1 },
+  { key: "education",     label: "教育・研修", current: 6 },
 ];
 
 // 未来（目標値）— レーダーの“伸びしろ”として参照される

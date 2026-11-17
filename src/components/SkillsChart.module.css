@@ -49,7 +49,7 @@
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  color: #252544;
+  color: hsl(var(--tone) 37% 21%);
   transition: width 560ms cubic-bezier(.22, 1, .36, 1), height 560ms cubic-bezier(.22, 1, .36, 1), scale 420ms cubic-bezier(.22, 1, .36, 1), opacity 330ms ease;
 }
 
@@ -113,9 +113,29 @@
 .bubble > .orb {
   pointer-events: auto;
   cursor: grab;
-  font-size: clamp(.66rem, 1.45vw, .92rem);
+  font-size: var(--label-size, 12px);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.14;
+  letter-spacing: .035em;
+  text-shadow: 0 1px 4px #fff9;
+}
+
+.bubble[data-emphasis="main"] > .orb {
+  color: hsl(var(--tone) 52% 18%);
+  font-family: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.bubble[data-emphasis="light"] > .orb {
+  color: hsl(var(--tone) 24% 29%);
+  font-weight: 500;
+}
+
+.bubble[data-emphasis="main"] [data-latin="true"] {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -.025em;
 }
 
 .bubble > .orb > span,
@@ -160,9 +180,10 @@
 .child {
   width: var(--child-size);
   height: var(--child-size);
-  font-size: clamp(.6rem, 1.15vw, .78rem);
+  font-size: clamp(.69rem, 1.25vw, .85rem);
   font-weight: 600;
-  line-height: 1.22;
+  line-height: 1.24;
+  letter-spacing: .01em;
   --drag-angle: 0rad;
   --stretch: 0;
   --squeeze: 1;
