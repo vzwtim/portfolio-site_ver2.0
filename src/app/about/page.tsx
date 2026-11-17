@@ -114,7 +114,7 @@ export default function About() {
               </div>
             </section>
 
-            <section className="mb-24 md:mb-32">
+            <section id="skills" className="mb-24 scroll-mt-24 md:mb-32">
               <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
                 Skills
               </motion.h2>
@@ -134,15 +134,7 @@ export default function About() {
                   </button>
                 ))}
               </div>
-              <motion.div
-                className="bg-gray-50/70 p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200/80"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6 }}
-              >
-                <SkillsChart stageData={skillsByStage[stage]} />
-              </motion.div>
+              <SkillsChart stageData={skillsByStage[stage]} />
             </section>
 
             <section className="text-center">

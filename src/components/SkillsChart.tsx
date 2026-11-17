@@ -1,238 +1,155 @@
-// /src/components/SkillsChart.tsx
 "use client";
 
-import React, { useMemo, useState } from "react";
-import {
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend,
-  ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Cell,
-} from "recharts";
-import type { StageSkillData } from "@/data/skills";
-import {
-  RADAR_ORDER, RADAR_LABEL_SHORT, COLORS, toolsMeta, skillsByStage
-} from "@/data/skills";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
+import { RADAR_LABEL_SHORT, skillsByStage, type SkillCategory, type StageSkillData } from "@/data/skills";
+import styles from "./SkillsChart.module.css";
 
-// ツールチップ（自由記述note）
-function SkillTooltip({ active, payload, label }: any) {
-  if (!active || !payload?.length) return null;
-  const item = payload[0]?.payload as {
-    label: string; level: number; future?: number; note?: string;
-  };
-  return (
-    <div className="rounded-md border bg-white/95 px-3 py-2 text-sm shadow">
-      <div className="font-medium">{label}</div>
-      <div className="text-neutral-600">
-        現在: {item.level} / 5{typeof item.future === "number" ? `　未来: ${item.future} / 5` : ""}
-      </div>
-      <div className={`mt-1 ${item.note ? "text-neutral-800" : "text-neutral-400"}`}>
-        {item.note || "（メモなし）"}
-      </div>
-    </div>
-  );
-}
+type Bubble = SkillCategory & { x: number; y: number; radius: number };
 
-// 固定凡例（常時表示）
-function StaticBarLegend() {
-  return (
-    <div className="flex flex-wrap items-center gap-4 text-sm mb-1">
-      <span className="inline-flex items-center gap-2">
-        <span className="inline-block w-3 h-3 rounded" style={{ background: COLORS.radarCurrent }} />
-        現在（0〜5）
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <span className="inline-block w-3 h-3 rounded" style={{ background: COLORS.radarGrowth, opacity: 0.35 }} />
-        未来（目標・薄）
-      </span>
-      <span className="text-neutral-500">0: 未習得 / 3: 実務基礎 / 5: 即戦力</span>
-    </div>
-  );
+const shortLabels: Record<string, string> = {
+  communication: "伝達",
+  programming: "コード",
+  marketing: "販促",
+  pm: "進行",
+  research: "調査",
+};
+
+function packBubbles(categories: SkillCategory[], width: number) {
+  const scale = Math.min(1.12, Math.max(0.68, width / 490));
+  // Keep room for the floating animation and keyboard focus ring between circles.
+  const gap = width < 400 ? 13 : 17;
+  const edge = 9;
+  const bubbles: Bubble[] = [];
+  let bottom = 0;
+
+  for (const category of [...categories].sort((a, b) => b.current - a.current)) {
+    const radius = Math.round((39 + category.current * 7.8) * scale / 2);
+    const min = radius + edge;
+    let point = { x: width / 2, y: bottom + radius + gap + edge };
+    let best = Infinity;
+
+    for (let y = min; y <= bottom + radius + gap + edge; y += 5) {
+      if (y > best) break;
+      for (let x = min; x <= width - min; x += 5) {
+        const score = y + Math.abs(x - width / 2) * 0.30;
+        if (score >= best) continue;
+        const clear = bubbles.every((bubble) =>
+          Math.hypot(x - bubble.x, y - bubble.y) >= radius + bubble.radius + gap
+        );
+        if (clear) {
+          point = { x, y };
+          best = score;
+        }
+      }
+    }
+
+    bubbles.push({ ...category, ...point, radius });
+    bottom = Math.max(bottom, point.y + radius);
+  }
+
+  return { bubbles, height: bottom + edge };
 }
 
 export default function SkillsChart({ stageData }: { stageData: StageSkillData }) {
-  // カテゴリフィルタ（初期は全選択）
-  const [selectedCats, setSelectedCats] = useState<string[]>([...RADAR_ORDER]);
+  const field = useRef<HTMLDivElement>(null);
+  const detail = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  const [selectedKey, setSelectedKey] = useState("architecture");
+  const [paused, setPaused] = useState(false);
+  const detailId = useId();
+  const selected = stageData.categories.find((category) => category.key === selectedKey);
+  const future = skillsByStage.future.categories.find((category) => category.key === selectedKey);
+  const isFuture = stageData === skillsByStage.future;
+  const tools = stageData.tools.filter((tool) => tool.cat === selected?.label);
+  const packed = useMemo(() => width ? packBubbles(stageData.categories, width) : null, [stageData, width]);
 
-  // レーダー用：未来（目標）カテゴリ値
-  const futureMap = useMemo(() => {
-    const m = new Map<string, number>();
-    for (const c of skillsByStage.future.categories) m.set(c.label, c.current);
-    return m;
-  }, []);
-
-  // 棒グラフ用：未来（目標）スキル別レベル
-  const futureLevelMap = useMemo(() => {
-    const m = new Map<string, number>();
-    for (const t of skillsByStage.future.tools) m.set(t.label, t.level ?? 0);
-    return m;
-  }, []);
-
-  // レーダー：選択ステージ（現在）＋ 未来（目標）
-  const radarData = useMemo(() => {
-    const nowMap = new Map(stageData.categories.map((c) => [c.label, c.current]));
-    return RADAR_ORDER
-      .filter((lbl) => selectedCats.includes(lbl))
-      .map((lbl) => ({
-        label: lbl,
-        current: nowMap.get(lbl) ?? 0,
-        growth: futureMap.get(lbl) ?? 0,
-      }));
-  }, [stageData, futureMap, selectedCats]);
-
-  // 棒グラフ：固定順（カテゴリ順→カテゴリ内は toolsMeta 定義順）・0も表示
-  const tools = useMemo(() => {
-    // 現在ステージの値
-    const levelMap = new Map(stageData.tools.map((t) => [t.label, t.level]));
-    // toolsMeta は一部に note が無い要素があるので note?: string に収束
-    type ToolMeta = { label: string; cat: string; note?: string };
-    const metaList = toolsMeta as unknown as ToolMeta[];
-
-    const byCat = new Map<string, { label: string; level: number; future: number; note?: string; cat: string }[]>();
-    for (const cat of RADAR_ORDER) byCat.set(cat, []);
-
-    for (const meta of metaList) {
-      const level  = levelMap.get(meta.label) ?? 0;                // 現在
-      const future = futureLevelMap.get(meta.label) ?? 0;          // 未来（目標）
-      const bucket = byCat.get(meta.cat)!;
-      bucket.push({ label: meta.label, level, future, note: meta.note, cat: meta.cat });
+  function selectBubble(key: string) {
+    setSelectedKey(key);
+    if (window.matchMedia("(max-width: 700px)").matches) {
+      detail.current?.focus({ preventScroll: true });
+      detail.current?.scrollIntoView({ block: "nearest" });
     }
+  }
 
-    const flat: { label: string; level: number; future: number; note?: string; cat: string }[] = [];
-    for (const cat of RADAR_ORDER) {
-      if (!selectedCats.includes(cat)) continue; // フィルタ適用
-      const list = byCat.get(cat);
-      if (list?.length) flat.push(...list);
-    }
-    return flat;
-  }, [stageData, selectedCats, futureLevelMap]);
-
-  // 全選択・全解除
-  const allSelected = selectedCats.length === RADAR_ORDER.length;
-  const noneSelected = selectedCats.length === 0;
-  const toggleCat = (label: string) =>
-    setSelectedCats((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
-    );
+  useEffect(() => {
+    const element = field.current;
+    if (!element) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setWidth(Math.floor(entry.contentRect.width));
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="w-full bg-white py-4 px-0">
-      <div className="max-w-7xl mx-auto">
-        {/* フィルタチップ（カテゴリ切替） */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          <button
-            onClick={() => setSelectedCats(allSelected ? [] : [...RADAR_ORDER])}
-            className={`px-3 py-1 rounded-md text-xs border transition ${
-              allSelected
-                ? "bg-neutral-800 text-white border-neutral-800"
-                : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-50"
-            }`}
-            aria-pressed={allSelected}
-            title={allSelected ? "全解除" : "全選択"}
-          >
-            {allSelected ? "全解除" : "全選択"}
-          </button>
-          {RADAR_ORDER.map((label) => (
+    <div className={styles.panel}>
+      <div className={styles.toolbar}>
+        <p>丸の大きさが習熟度。気になるスキルを選ぶと詳細が見られます。</p>
+        <button type="button" className={styles.motionToggle} aria-pressed={paused} onClick={() => setPaused(!paused)}>
+          アニメーションを停止
+        </button>
+      </div>
+      <div className={styles.layout}>
+        <div
+          ref={field}
+          className={styles.field}
+          data-paused={paused}
+          role="group"
+          aria-label="スキルを選ぶ"
+          style={packed ? { height: packed.height } : undefined}
+        >
+          {packed?.bubbles.map((bubble, index) => (
             <button
-              key={label}
-              onClick={() => toggleCat(label)}
-              className={`px-3 py-1 rounded-md text-xs border transition ${
-                selectedCats.includes(label)
-                  ? "bg-[#bb5555] text-white border-[#bb5555]"
-                  : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-50"
-              }`}
-              aria-pressed={selectedCats.includes(label)}
+              key={bubble.key}
+              type="button"
+              aria-label={`${bubble.label}、${bubble.current} / 10`}
+              aria-pressed={bubble.key === selectedKey}
+              aria-controls={detailId}
+              className={styles.bubble}
+              data-tone={bubble.current >= 7 ? "strong" : bubble.current >= 4 ? "mid" : "soft"}
+              style={{
+                width: bubble.radius * 2,
+                height: bubble.radius * 2,
+                left: bubble.x - bubble.radius,
+                top: bubble.y - bubble.radius,
+                "--delay": `${-(index % 7)}s`,
+                "--duration": `${6 + (index % 4)}s`,
+                "--drift": `${index % 2 ? 4 : -4}px`,
+              } as CSSProperties}
+              onClick={() => selectBubble(bubble.key)}
             >
-              {RADAR_LABEL_SHORT[label] ?? label}
+              <span>{shortLabels[bubble.key] ?? RADAR_LABEL_SHORT[bubble.label] ?? bubble.label}</span>
             </button>
           ))}
         </div>
-
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* レーダー（サイズ拡大・余白圧縮） */}
-          <section className="bg-white rounded-xl border border-neutral-200 p-3 w-full lg:w-1/2">
-            <div className="w-full h-[560px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={radarData} outerRadius="82%">
-                  <PolarGrid />
-                  <PolarAngleAxis
-                    dataKey="label"
-                    tick={{ fontSize: 12 }}
-                    tickFormatter={(v: string) => RADAR_LABEL_SHORT[v] ?? v}
-                  />
-                  <PolarRadiusAxis domain={[0, 10]} tickCount={6} tick={{ fontSize: 11 }} />
-                  {/* 背面：未来（目標） */}
-                  <Radar
-                    name="未来（目標）"
-                    dataKey="growth"
-                    stroke={COLORS.radarGrowth}
-                    fill={COLORS.radarGrowth}
-                    fillOpacity={0.25}
-                  />
-                  {/* 前面：現在 */}
-                  <Radar
-                    name="現在"
-                    dataKey="current"
-                    stroke={COLORS.radarCurrent}
-                    fill={COLORS.radarCurrent}
-                    fillOpacity={0.35}
-                  />
-                  <Legend wrapperStyle={{ paddingTop: 8 }} />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
-          </section>
-
-          {/* 棒グラフ（未来を薄く後ろ、現在を前面で重ね） */}
-          <section className="bg-white rounded-xl border border-neutral-200 p-3 w-full lg:w-1/2">
-            <StaticBarLegend />
-            <div className="w-full h-[1040px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={tools}
-                  layout="vertical"
-                  margin={{ top: 6, right: 20, bottom: 6, left: 0 }} // ← 左余白は戻す（負値だとY軸切れる）
-                  barCategoryGap="20%"
-                  barGap={-18} // 重なりを強める
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis
-                    type="number"
-                    domain={[0, 5]}
-                    ticks={[0, 1, 2, 3, 4, 5]}
-                    tick={{ fontSize: 12 }}
-                  />
-                  <YAxis
-                    type="category"
-                    dataKey="label"
-                    width={230}
-                    tick={{ fontSize: 13 }}
-                    interval={0}     // 全ラベル表示（間引きなし）
-                    tickLine={false}
-                  />
-                  <Tooltip content={<SkillTooltip />} />
-
-                  {/* 未来（薄い影・背面） */}
-                  <Bar dataKey="future" radius={[4, 4, 4, 4]} barSize={18}>
-                    {tools.map((_, i) => (
-                      <Cell key={`f-${i}`} fill={COLORS.radarGrowth} opacity={0.35} />
-                    ))}
-                  </Bar>
-
-                  {/* 現在（前面） */}
-                  <Bar dataKey="level" radius={[4, 4, 4, 4]} barSize={18} minPointSize={2}>
-                    {tools.map((_, i) => (
-                      <Cell key={`c-${i}`} fill={COLORS.radarCurrent} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-
-            {noneSelected && (
-              <p className="mt-2 text-xs text-neutral-500">
-                ※カテゴリが全て非表示です。上のボタンで選択してください。
+        {selected && (
+          <div ref={detail} id={detailId} tabIndex={-1} className={styles.detail} role="region" aria-label="スキルの詳細">
+            <div aria-live="polite" aria-atomic="true">
+              <h3>{selected.label}</h3>
+              <p className={styles.score}>
+                <strong>{selected.current}</strong><span> / 10</span>
+                {!isFuture && future && <span className={styles.goal}>目標 {future.current} / 10</span>}
               </p>
-            )}
-          </section>
-        </div>
+              {tools.length > 0 && (
+                <ul className={styles.tools} aria-label="関連するスキルと習熟度">
+                  {tools.map((tool) => (
+                    <li key={tool.label}>
+                      <div>{tool.label}{tool.note && <small>{tool.note}</small>}</div>
+                      <span>{tool.level} / 5</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button
+              type="button"
+              className={styles.back}
+              onClick={() => field.current?.querySelector<HTMLButtonElement>('[aria-pressed="true"]')?.focus()}
+            >
+              丸に戻る ↑
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
