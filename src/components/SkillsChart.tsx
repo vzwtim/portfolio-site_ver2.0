@@ -37,7 +37,12 @@ type Grab = {
 };
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
-const fractions = [0.22, 0.70, 0.47, 0.90, 0.04];
+const widePositions = [
+  [.15, .20], [.27, .32], [.42, .12], [.59, .24], [.83, .15],
+  [.08, .48], [.37, .45], [.48, .52], [.72, .40], [.88, .47],
+  [.24, .63], [.14, .79], [.59, .65], [.76, .72], [.91, .83],
+  [.38, .77], [.50, .87], [.70, .92],
+];
 
 function place(body: BubbleBody) {
   body.element.style.transform = `translate3d(${body.x.toFixed(2)}px,${body.y.toFixed(2)}px,0)`;
@@ -84,10 +89,14 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
         const key = button.dataset.bubble!;
         const level = Number(button.dataset.level);
         const radius = Math.round((24 + 4.55 * level) * (width < 480 ? 0.93 : 1.18));
+        const [ratioX, ratioY] = (columns === 5 && widePositions[index]) || [
+          ((index % columns) + 0.52) / columns + Math.sin(index * 2.37) * 0.085,
+          (Math.floor(index / columns) + 0.52) / rows + Math.cos(index * 2.21) * 0.055,
+        ];
         const body = bodies.current.get(key) ?? {
           element: button,
-          x: ((index % columns) + 0.48) * width / columns + (fractions[index % fractions.length] - 0.5) * 42,
-          y: ((Math.floor(index / columns) + 0.52) / rows) * height + (fractions[(index + 2) % fractions.length] - 0.5) * 48,
+          x: clamp(ratioX * width, radius, width - radius),
+          y: ratioY * height,
           homeY: 0,
           vx: 0,
           vy: 0,

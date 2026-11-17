@@ -69,7 +69,7 @@
   position: absolute;
   inset: 5%;
   border-radius: inherit;
-  background: conic-gradient(from 15deg, transparent 0 34%, #efffff 43%, transparent 54% 78%, #fff 88%, transparent 97%);
+  background: conic-gradient(from 15deg, transparent 0 30%, #e6dfffa3 36%, #efffff 44%, transparent 55% 76%, #fff 88%, transparent 97%);
   mask-image: radial-gradient(circle, transparent 58%, #0009 69%, transparent 75%);
   pointer-events: none;
   z-index: -1;
