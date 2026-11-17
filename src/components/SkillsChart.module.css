@@ -49,43 +49,79 @@
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  border-radius: 50%;
-  color: #18483e;
-  isolation: isolate;
-  background:
-    radial-gradient(ellipse at 35% 24%, #fff 0%, #ffffffed 16%, #ffffff22 37%, transparent 54%),
-    radial-gradient(ellipse at 65% 80%, #d8f7ee71, transparent 58%),
-    radial-gradient(circle at 49% 46%, #ffffff5c 18%, hsl(var(--tone) 64% 89% / .62) 63%, hsl(var(--tone) 50% 65% / .46) 91%, #ffffffc4 100%);
-  box-shadow:
-    inset 0 0 0 1px hsl(var(--tone) 35% 55% / .42),
-    inset 2px 4px 12px #fffe,
-    inset -5px -6px 12px hsl(var(--tone) 45% 61% / .25),
-    0 7px 17px hsl(var(--tone) 37% 42% / .09);
+  color: #252544;
   transition: width 560ms cubic-bezier(.22, 1, .36, 1), height 560ms cubic-bezier(.22, 1, .36, 1), scale 420ms cubic-bezier(.22, 1, .36, 1), opacity 330ms ease;
 }
 
-.orb::before {
+.skin {
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 48% 52% 52% 48% / 51% 46% 54% 49%;
+  overflow: hidden;
+  transform: rotate(var(--drag-angle, 0rad)) scale(calc(1 + var(--stretch, 0)), var(--squeeze, 1)) rotate(calc(-1 * var(--drag-angle, 0rad)));
+  background:
+    radial-gradient(ellipse at 53% 43%, #fff8 0 14%, transparent 48%),
+    radial-gradient(ellipse at 30% 30%, hsl(var(--tone) 83% 69% / .58), transparent 60%),
+    radial-gradient(ellipse at 75% 60%, hsl(calc(var(--tone) + 47) 76% 71% / .52), transparent 58%),
+    radial-gradient(ellipse at 55% 90%, hsl(calc(var(--tone) + 125) 73% 67% / .43), transparent 53%),
+    radial-gradient(circle at 48% 42%, #fffc 34%, hsl(var(--tone) 74% 79% / .39) 80%, hsl(var(--tone) 80% 67% / .26) 100%);
+  box-shadow: inset 0 0 2px 1px #fff8, 0 0 2px #4a5d9b1f;
+}
+
+.skin::before,
+.skin::after {
   content: "";
   position: absolute;
-  inset: 5%;
+  inset: 0;
   border-radius: inherit;
-  background: conic-gradient(from 15deg, transparent 0 30%, #e6dfffa3 36%, #efffff 44%, transparent 55% 76%, #fff 88%, transparent 97%);
-  mask-image: radial-gradient(circle, transparent 58%, #0009 69%, transparent 75%);
   pointer-events: none;
-  z-index: -1;
+}
+
+.skin::before {
+  background:
+    conic-gradient(from var(--rim), #8389eaa0, #66e1d6cb 16%, #fffab4ce 28%, #ee8ac1cd 41%, #bca4ffd9 56%, #67d7e9d1 73%, #fff9b9c7 85%, #8389eaa0);
+  mask-image: radial-gradient(ellipse, transparent 55%, #0003 67%, #000d 79%, #000 91%, #0006 99%);
+}
+
+.skin::after {
+  background-image:
+    radial-gradient(ellipse 19% 7% at 30% 23%, #fffffff0 25%, #fff0 100%),
+    radial-gradient(ellipse 23% 8% at 68% 81%, #fffc 12%, #fff0 100%),
+    var(--paper-grain);
+  background-size: 100% 100%, 100% 100%, 52px 52px;
+  opacity: .68;
+  mix-blend-mode: soft-light;
+}
+
+.pigment {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 13% 36%, #de88b438 0 11px, transparent 13px),
+    radial-gradient(circle at 33% 12%, #91b9e845 0 8px, transparent 10px),
+    radial-gradient(circle at 53% 26%, #f1b9523e 0 17px, transparent 19px),
+    radial-gradient(circle at 68% 18%, #d99ce633 0 10px, transparent 12px),
+    radial-gradient(circle at 91% 34%, #60c4bb31 0 12px, transparent 14px),
+    radial-gradient(circle at 37% 61%, #f1aa533e 0 13px, transparent 15px),
+    radial-gradient(circle at 82% 57%, #e28fad42 0 8px, transparent 10px),
+    radial-gradient(circle at 19% 83%, #add09643 0 12px, transparent 14px),
+    radial-gradient(circle at 62% 80%, #abb6f045 0 10px, transparent 12px);
 }
 
 .bubble > .orb {
   pointer-events: auto;
   cursor: grab;
   font-size: clamp(.66rem, 1.45vw, .92rem);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.25;
 }
 
 .bubble > .orb > span,
 .child > span {
-  width: 86%;
+  position: relative;
+  width: 84%;
   overflow-wrap: anywhere;
   text-wrap: balance;
   text-align: center;
@@ -99,7 +135,8 @@
 }
 
 .bubble:focus-visible > .orb {
-  outline: 2px solid #16806b;
+  border-radius: 50%;
+  outline: 2px solid #6465a5;
   outline-offset: 4px;
 }
 
@@ -124,9 +161,11 @@
   width: var(--child-size);
   height: var(--child-size);
   font-size: clamp(.6rem, 1.15vw, .78rem);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.22;
-  background-color: #ffffff92;
+  --drag-angle: 0rad;
+  --stretch: 0;
+  --squeeze: 1;
   animation: divide 680ms cubic-bezier(.18, .85, .26, 1.16) both;
 }
 

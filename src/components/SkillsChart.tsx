@@ -21,6 +21,8 @@ type BubbleBody = {
   vy: number;
   radius: number;
   phase: number;
+  stretch: number;
+  angle: number;
 };
 
 type Grab = {
@@ -32,17 +34,43 @@ type Grab = {
   originY: number;
   time: number;
   moved: boolean;
+  targetX: number;
+  targetY: number;
   vx: number;
   vy: number;
 };
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
+const hues = [335, 254, 186, 43, 161, 222, 28, 308, 171, 221, 43, 337, 159, 255, 32, 188, 305, 217];
 const widePositions = [
   [.15, .20], [.27, .32], [.42, .12], [.59, .24], [.83, .15],
   [.08, .48], [.37, .45], [.48, .52], [.72, .40], [.88, .47],
   [.24, .63], [.14, .79], [.59, .65], [.76, .72], [.91, .83],
   [.38, .77], [.50, .87], [.70, .92],
 ];
+
+function paperGrain() {
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 96;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return "";
+  const pixels = ctx.createImageData(96, 96);
+  let seed = 1337;
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    seed = (Math.imul(1664525, seed) + 1013904223) >>> 0;
+    const shade = seed & 256 ? 255 : 45;
+    pixels.data[i] = pixels.data[i + 1] = pixels.data[i + 2] = shade;
+    pixels.data[i + 3] = (seed >>> 24) >> 1;
+  }
+  ctx.putImageData(pixels, 0, 0);
+  return `url("${canvas.toDataURL()}")`;
+}
+
+function reshape(body: BubbleBody) {
+  body.element.style.setProperty("--stretch", body.stretch.toFixed(4));
+  body.element.style.setProperty("--squeeze", (1 / (1 + body.stretch * .72)).toFixed(4));
+  body.element.style.setProperty("--drag-angle", `${body.angle.toFixed(3)}rad`);
+}
 
 function place(body: BubbleBody) {
   body.element.style.transform = `translate3d(${body.x.toFixed(2)}px,${body.y.toFixed(2)}px,0)`;
@@ -53,7 +81,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
   const bodies = useRef(new Map<string, BubbleBody>());
   const size = useRef({ width: 0, height: 0 });
   const grab = useRef<Grab | null>(null);
-  const suppressClick = useRef<number | null>(null);
+  const dragged = useRef(false);
   const paused = useRef(false);
   const focused = useRef<string | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -71,6 +99,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
     const element = field.current;
     if (!element) return;
 
+    element.style.setProperty("--paper-grain", paperGrain());
     const buttons = Array.from(element.querySelectorAll<HTMLButtonElement>("[data-bubble]"));
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
@@ -102,6 +131,8 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
           vy: 0,
           radius,
           phase: index * 2.4,
+          stretch: 0,
+          angle: 0,
         };
         if (body.homeY && previous.width && previous.height) {
           body.x *= width / previous.width;
@@ -123,7 +154,29 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
       frame = requestAnimationFrame(tick);
       const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.033) : 0;
       lastTime = time;
-      if (paused.current || reducedMotion.matches || document.hidden) return;
+      if (document.hidden) return;
+      const drag = grab.current;
+      if (drag?.moved && !reducedMotion.matches) {
+        const body = drag.body;
+        const follow = 1 - Math.exp(-27 * dt);
+        const dx = drag.targetX - body.x;
+        const dy = drag.targetY - body.y;
+        const distance = Math.hypot(dx, dy);
+        body.x += dx * follow;
+        body.y += dy * follow;
+        if (distance > 1.5) body.angle = Math.atan2(dy, dx);
+        body.stretch += (Math.min(.25, distance * .006) - body.stretch) * (1 - Math.exp(-20 * dt));
+        reshape(body);
+        place(body);
+      }
+
+      for (const body of bodies.current.values()) {
+        if (body === drag?.body || body.stretch === 0) continue;
+        body.stretch *= Math.exp(-9 * dt);
+        if (body.stretch < .001) body.stretch = 0;
+        reshape(body);
+      }
+      if (paused.current || reducedMotion.matches) return;
       const { width, height } = size.current;
 
       const nodes = [...bodies.current];
@@ -155,11 +208,11 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
       for (const [key, body] of nodes) {
         if (anchored(key, body)) continue;
         // A steady current carries the bubbles while drag velocity decays into it.
-        const drift = 10 + 5 * Math.sin(body.phase + time / 3900);
-        body.vx *= Math.exp(-2.2 * dt);
+        const drift = 12 + 7 * Math.sin(body.phase + time / 4200);
+        body.vx *= Math.exp(-2.65 * dt);
         body.vy *= Math.exp(-3 * dt);
         body.x += (drift + body.vx) * dt;
-        const surface = body.homeY + 21 * Math.sin(time / 1800 + body.phase);
+        const surface = body.homeY + 26 * Math.sin(time / 1900 + body.phase);
         body.y += ((surface - body.y) * 1.8 + body.vy) * dt;
         body.y = clamp(body.y, body.radius + 4, height - body.radius - 4);
         const edge = body.radius + 12;
@@ -221,14 +274,15 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
 
   function startDrag(event: PointerEvent<HTMLButtonElement>, key: string) {
     if (event.button !== 0 || !event.isPrimary) return;
-    suppressClick.current = null;
     const body = bodies.current.get(key);
     if (!body) return;
+    dragged.current = false;
     grab.current = {
       body, pointer: event.pointerId,
       startX: event.clientX, startY: event.clientY,
       originX: body.x, originY: body.y,
       time: event.timeStamp, moved: false, vx: 0, vy: 0,
+      targetX: body.x, targetY: body.y,
     };
   }
 
@@ -248,12 +302,16 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
     const x = clamp(drag.originX + dx, body.radius / 2, width - body.radius / 2);
     const y = clamp(drag.originY + dy, body.radius + 4, height - body.radius - 4);
     const dt = Math.max(8, event.timeStamp - drag.time) / 1000;
-    drag.vx = 0.38 * drag.vx + 0.62 * clamp((x - body.x) / dt, -720, 720);
-    drag.vy = 0.38 * drag.vy + 0.62 * clamp((y - body.y) / dt, -460, 460);
+    drag.vx = 0.45 * drag.vx + 0.55 * clamp((x - drag.targetX) / dt, -820, 820);
+    drag.vy = 0.45 * drag.vy + 0.55 * clamp((y - drag.targetY) / dt, -570, 570);
     drag.time = event.timeStamp;
-    body.x = x;
-    body.y = y;
-    place(body);
+    drag.targetX = x;
+    drag.targetY = y;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      body.x = x;
+      body.y = y;
+      place(body);
+    }
   }
 
   function endDrag(event: PointerEvent<HTMLButtonElement>, cancelled = false) {
@@ -261,12 +319,12 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
     if (!drag || drag.pointer !== event.pointerId) return;
     grab.current = null;
     if (!drag.moved) return;
-    suppressClick.current = event.pointerId;
+    dragged.current = true;
     delete event.currentTarget.dataset.dragging;
-    drag.body.homeY = drag.body.y;
+    drag.body.homeY = drag.targetY;
     const recent = !cancelled && event.timeStamp - drag.time < 100;
-    drag.body.vx = recent ? drag.vx * 0.58 : 0;
-    drag.body.vy = recent ? drag.vy * 0.48 : 0;
+    drag.body.vx = recent ? (drag.vx * .36 + (drag.targetX - drag.body.x) * 6) : 0;
+    drag.body.vy = recent ? (drag.vy * .37 + (drag.targetY - drag.body.y) * 6) : 0;
   }
 
   function focusBubble(key: string) {
@@ -291,6 +349,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
     <div className={styles.scene}>
       <span id={instructionsId} className="sr-only">泡を選ぶと関連するスキルが表示されます。</span>
       <div ref={field} className={styles.field} role="group" aria-label="スキル" aria-describedby={instructionsId}>
+        <div className={styles.pigment} aria-hidden="true" />
         {stageData.categories.map((category, index) => {
           const active = category.key === split?.key;
           return (
@@ -302,7 +361,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
                 aria-label={`${category.label}、${category.current} / 10`}
                 aria-expanded={active && !split?.merging}
                 className={styles.bubble}
-                style={{ "--tone": [159, 177, 166, 193, 151, 181][index % 6] } as CSSProperties}
+                style={{ "--tone": hues[index % hues.length], "--rim": `${index * 67}deg` } as CSSProperties}
                 onPointerDown={(event) => startDrag(event, category.key)}
                 onPointerMove={moveDrag}
                 onPointerLeave={() => { if (grab.current && !grab.current.moved) grab.current = null; }}
@@ -315,14 +374,11 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
                   if (event.key === "Escape" && active && !split?.merging) merge(category.key);
                 }}
                 onClick={(event) => {
-                  if (event.detail && suppressClick.current !== null) {
-                    suppressClick.current = null;
-                    return;
-                  }
-                  toggleSplit(category.key);
+                  if (event.detail === 0 || !dragged.current) toggleSplit(category.key);
                 }}
               >
                 <span className={styles.orb} data-split={active && !split?.merging || undefined}>
+                  <i className={styles.skin} aria-hidden="true" />
                   <span>{shortLabels[category.key] ?? RADAR_LABEL_SHORT[category.label] ?? category.label}</span>
                 </span>
                 {active && activeBody && (
@@ -338,6 +394,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
                           className={`${styles.orb} ${styles.child}`}
                           style={{ "--x": `${x}px`, "--y": `${y}px`, "--child-size": `${(narrow ? 67 : 87) + 3.5 * tool.level}px` } as CSSProperties}
                         >
+                          <i className={styles.skin} aria-hidden="true" />
                           <span>{tool.label}</span>
                         </span>
                       );
