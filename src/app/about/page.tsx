@@ -115,18 +115,18 @@ export default function About() {
             </section>
 
             <section id="skills" className="mb-24 scroll-mt-24 md:mb-32">
-              <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
+              <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-7 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
                 Skills
               </motion.h2>
-              <div className="flex justify-center flex-wrap gap-3 mb-8">
+              <div className="flex justify-center flex-wrap gap-x-4 gap-y-2 mb-4">
                 {STAGES.map(({ key, label }) => (
                   <button
                     key={key}
                     onClick={() => setStage(key)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
+                    className={`min-h-11 px-2.5 text-sm font-medium underline-offset-8 transition-colors ${
                       stage === key
-                        ? "bg-[#bb5555] text-white border-[#bb5555] shadow-lg shadow-[#bb5555]/20"
-                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+                        ? "text-[#006b59] underline decoration-2"
+                        : "text-gray-600 hover:text-[#006b59]"
                     }`}
                     aria-pressed={stage === key}
                   >
