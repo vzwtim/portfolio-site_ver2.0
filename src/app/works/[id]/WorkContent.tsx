@@ -2,6 +2,7 @@
 'use client';
 
 import styles from './workDetail.module.css';
+import ProjectContext from '@/components/ProjectContext';
 import FadeInImage from '@/components/FadeInImage';
 import BackButton from '@/components/BackButton';
 import { projectMedia } from '@/data/projectMedia';
@@ -111,6 +112,7 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
             >
               {work.title}
             </h1>
+            <div className="mb-5"><ProjectContext projectId={work.id} /></div>
             <p
               className="text-sm leading-relaxed md:pr-12"
               style={{ fontFamily: '"Shippori Mincho", serif' }}

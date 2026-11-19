@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ProjectContext from "@/components/ProjectContext";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,6 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <Link href="/" className={styles.textLink}>← Indexへ戻る</Link>
         <p className={styles.eyebrow} style={{ marginTop: "4rem" }}>{hotelProject.domain} / {hotelProject.index}</p>
         <h1 className={styles.caseTitle}>{hotelProject.title}</h1>
+        <ProjectContext projectId={hotelProject.slug} />
         <p className={styles.body}>{hotelProject.synopsis}</p>
         {hotelProject.image && (
           <figure className={styles.caseHero}>

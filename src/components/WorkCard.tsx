@@ -1,4 +1,5 @@
 import FadeInImage from './FadeInImage';
+import ProjectContext from './ProjectContext';
 import Link from 'next/link';
 import ProjectMotionPreview from './ProjectMotionPreview';
 import { projectMedia } from '@/data/projectMedia';
@@ -21,6 +22,7 @@ export default function WorkCard({ id, title, image, tags = [], bgColor }: WorkC
       </div>
       <h2 className="text-xl md:text-2xl leading-relaxed font-bold mt-4 mb-2 text-gray-900 break-words" style={{ fontFamily:'"Shippori Mincho", serif' }}>{title}<span className="text-[#008877] ml-2" aria-hidden="true">↗</span></h2>
     </Link>}
+    <ProjectContext projectId={id} />
     {tags.length > 0 && <div className="flex flex-wrap gap-x-3 gap-y-1">{tags.map(tag => <Link key={tag} href={`/works?tag=${encodeURIComponent(tag)}`} className="inline-flex items-center min-h-11 text-sm text-[#008877] hover:underline">#{tag}</Link>)}</div>}
   </article>;
 }
