@@ -20,7 +20,7 @@ export default function ProjectContext({ projectId }: { projectId: string }) {
       }}
     >
       {context.period && <>{context.period}<span aria-hidden="true"> ｜ </span></>}
-      {context.stage}<span aria-hidden="true"> · </span>{context.activity}
+      {context.stage}<span aria-hidden="true"> ｜ </span>{context.activity}
     </p>
   );
 }

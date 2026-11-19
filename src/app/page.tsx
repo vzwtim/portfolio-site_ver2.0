@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ProjectContext from "@/components/ProjectContext";
 import Link from "next/link";
 import YouTubeFeature from "@/components/YouTubeFeature";
 import ProjectMotionPreview from "@/components/ProjectMotionPreview";
@@ -99,10 +98,10 @@ export default function Home() {
             {topic.projects.map((project, index) => (
               <article className={`${styles.topicProject} ${index === 0 ? styles.topicProjectLead : ""}`} key={project.href}>
                 {["/works/odo-renovation", "/works/tokyo-time-warp"].includes(project.href) && project.image ? <ProjectMotionPreview image={project.image} href={project.href} title={project.title} ratio={project.ratio} videoSrc={project.href === "/works/tokyo-time-warp" ? "/videos/timemap-product-preview.mp4" : undefined} fit={project.href === "/works/tokyo-time-warp" ? "contain" : "cover"}>
-                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><ProjectContext projectId={project.href.split("/").pop()!} /><p>{project.text}</p></div>
+                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </ProjectMotionPreview> : <Link href={project.href} className={styles.projectLink} aria-label={`${project.title}の詳細を見る`}>
                   {project.image ? <div className={styles.topicImage} data-project-image style={{ "--source-ratio": project.ratio } as React.CSSProperties} data-fit={"fit" in project ? project.fit : "cover"}><Image data-parallax="image" src={project.image} alt="" fill quality={90} style={project.href === "/works/master-thesis" ? { objectFit: "cover" } : undefined} sizes={index === 0 ? "(max-width: 600px) calc(100vw - 40px), (max-width: 899px) 46vw, (max-width: 1506px) 38vw, 540px" : "(max-width: 600px) calc(100vw - 40px), (max-width: 899px) 70vw, (max-width: 1506px) 34vw, 480px"} /></div> : <div className={styles.underwritingVisual} aria-hidden="true"><span>{project.visual ?? "PROJECT / FIELD NOTE"}</span><i /><i /><i /><b>{project.title}</b></div>}
-                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><ProjectContext projectId={project.href.split("/").pop()!} /><p>{project.text}</p></div>
+                  <div className={styles.topicProjectCopy}><p className={styles.meta}>Project {String(index + 1).padStart(2, "0")}</p><h3>{project.title}<span className={styles.titleArrow} aria-hidden="true">↗</span></h3><p>{project.text}</p></div>
                 </Link>}
               </article>
             ))}
