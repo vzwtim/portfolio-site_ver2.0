@@ -1,17 +1,19 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, useReducedMotion } from 'framer-motion';
 // import { useCursor } from '@/context/CursorContext'; // removed
 // import useRepelEffect from '@/hooks/useRepelEffect'; // removed
 
 const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const reducedMotion = useReducedMotion();
+  const isHome = usePathname() === "/";
 
   // useRepelEffect related hooks removed
 
   return (
-    <div className="footerScene">
+    <div className={`footerScene${isHome ? " footerScene--home" : ""}`}>
       <div className="footerLandscape relative w-full overflow-hidden" aria-hidden="true">
       <div className="footerWorld">
       {/* 背景画像 */}
