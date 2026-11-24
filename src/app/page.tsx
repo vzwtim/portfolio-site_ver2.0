@@ -68,7 +68,7 @@ export default function Home() {
         <div className={styles.mastCopy} data-reveal="copy">
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
           <h1 id="home-title" className={styles.title}><span className={styles.titleLine}><MotionLetters text="ぼくは、" /></span><span className={styles.titleLine}><MotionLetters text="五目飯。" /></span></h1>
-          <div id="home-intro" className={styles.heroIntro}><p className={styles.thesis}>建築、不動産、文化、テクノロジー。<br />違う興味を混ぜながら、場所と人の新しい可能性をつくっています。</p>
+          <div id="home-intro" className={styles.heroIntro}><p className={styles.thesis}><span className={styles.introPhrase}>建築、不動産、文化、テクノロジー。</span><br /><span className={styles.introPhrase}>違う興味を混ぜながら、</span><span className={styles.introPhrase}>場所と人の新しい可能性を</span><span className={styles.introPhrase}>つくっています。</span></p>
           <nav className={styles.actions} aria-label="ポートフォリオの見どころ">
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
             <Link className={styles.textLink} href="/apps">My Apps &amp; Sites</Link>

@@ -858,3 +858,9 @@
   .topicProjects .topicProject,.topicProjects .topicImage,.topicProjects .topicImage img { transition:none !important; transform:none !important; translate:none !important; }
   .topicProjects[data-gallery-ready] .topicProject[data-gallery-visible="false"] { opacity:1; }
 }
+
+.introPhrase {
+  display: inline-block;
+  max-width: 100%;
+  line-break: strict;
+}

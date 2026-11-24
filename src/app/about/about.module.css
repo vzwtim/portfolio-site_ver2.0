@@ -1,0 +1,46 @@
+.introJapanese {
+  margin-inline: auto;
+  max-width: 42rem;
+  line-height: 1.9;
+}
+
+.introJapanese p + p {
+  margin-top: 0.75rem;
+}
+
+.introJapanese span,
+.timelineTitle span {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.introEnglish {
+  margin-inline: auto;
+  max-width: 42rem;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+
+.timelineTitle {
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.timelineTitle span + span {
+  margin-left: 0.3em;
+}
+
+.copy {
+  line-break: strict;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+.timelineEnglish {
+  text-wrap: balance;
+}
+
+@media (max-width: 639px) {
+  .introJapanese { font-size: 0.9375rem; }
+  .timelineTitle { font-size: 1.125rem; }
+}
