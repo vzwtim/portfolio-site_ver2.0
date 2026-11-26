@@ -91,7 +91,7 @@ export default function About() {
                   <p><span>建築・社会学を専攻し、</span><span>いまは不動産開発をしています。</span></p>
                   <p><span>東京を歩き、建築を考えながら、</span><span>旧耐震の和室で</span><span>ちゃぶ台を前に暮らしています。</span></p>
                 </div>
-                <p lang="en" className={`text-sm md:text-base text-gray-400 ${styles.introEnglish}`}>
+                <p lang="en" className={`text-sm md:text-base font-medium text-gray-100 ${styles.introEnglish}`}>
                   I majored in architecture and sociology, and now I work in real estate development.
                   I live in a pre-earthquake-code Japanese-style room in Tokyo, in front of a low dining table, while walking around the city and thinking about architecture.
                 </p>
