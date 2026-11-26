@@ -14,7 +14,7 @@ const journeyData = [
   { year: "2015 – 2018", event_jp: "仙台第二高等学校", event_en: "High School", details_jp: "中高ではテニス部に所属。休み時間はゲームするような少しオタク。", details_en: "I was in the tennis club in middle and high school. During breaks, I was a bit of a geek who played games.", image: "/images/me_tennis_1.JPG" },
   { year: "2018 – 2022", event_jp: "東京大学 工学部 建築学科", titleParts: ["東京大学", "工学部 建築学科"], event_en: "University", details_jp: "ものづくり、建築から不良住宅や住環境に関心が広がり、社会にインパクトを与えるアイデアを思考し続ける。", details_en: "My interest expanded from craftsmanship and architecture to substandard housing and living environments, and I continue to think about ideas that have a social impact.", image: "/images/drawing_aris.jpg" },
   { year: "2022 – 2024", event_jp: "東京大学大学院 新領域創成科学研究科 社会文化環境学専攻", titleParts: ["東京大学大学院", "新領域創成科学研究科", "社会文化環境学専攻"], event_en: "Graduate School", details_jp: "社会・環境・人類学などへ関心を広げ、「まちはつくるものか、できてくるものか」を問い続ける。", details_en: "I expanded my interests to sociology, the environment, and anthropology, and continue to ask, 'Are cities made, or do they just happen?'", image: "/images/figure_master.webp" },
-  { year: "2024 – Present", event_jp: "小田急不動産 資産戦略部", titleParts: ["小田急不動産", "資産戦略部"], event_en: "Career", details_jp: "2024年4月に入社し、資産戦略部で用地取得・アセットマネジメント、SPCへのエクイティ出資、売却・ポートフォリオ分析を、案件の発掘から社内決裁・実行まで一貫して担当。当社初のホテル開発用地の取得も主担当した。\nまた、経営企画にて組織風土改善PJに参画、DX勉強会（デジラボ／デジカフェ）を立ち上げるなど、会社の仕組みや意思決定プロセスへの関心を深めている。\n資格：宅地建物取引士、不動産証券化マスター（ARES Certified Manager）。", details_en: "Engaged in land acquisition, project planning, asset management of rental properties, and equity investment in special purpose companies.\nAlso, I am deepening my interest in company structures and decision-making processes by participating in a corporate culture reform project and launching a DX study group in the corporate planning department.", image: "/images/building_osaka.jpg" },
+  { year: "2024 – Present", event_jp: "不動産デベロッパー", event_en: "Career", details_jp: "用地取得・企画開発、保有賃貸不動産のAM、SPCへのエクイティ出資に従事。\nまた、経営企画にて組織風土改善PJに参画、DX勉強会を立ち上げるなど、会社の仕組みや意思決定プロセスへの関心を深めている。", details_en: "Engaged in land acquisition, project planning, asset management of rental properties, and equity investment in special purpose companies.\nAlso, I am deepening my interest in company structures and decision-making processes by participating in a corporate culture reform project and launching a DX study group in the corporate planning department.", image: "/images/building_osaka.jpg" },
   { year: "Future", event_jp: "事業開発・経営", event_en: "Business Development & Management", details_jp: "新規事業の構想・検証から、事業を育てる意思決定と実行まで。組織や事業の課題を見極め、仕組みと現場をつなぎながら、事業を動かし、育てる側に関わりたい。", details_en: "I want to build and grow businesses, from testing new ideas to making decisions and putting them into practice. My interest lies in connecting strategy, organizational systems, and daily operations to help a business develop.", isFuture: true },
   { year: "Future", event_jp: "ホテル開発", event_en: "Hotel Development", details_jp: "旧街道を自転車で巡るなかで、宿場町の建物や土地の歴史に惹かれてきた。街道沿いの風景や暮らしを受け継ぎ、地域の日常と旅人が交わる場を、ホテルとして形にしたい。", details_en: "Cycling historic roads has deepened my interest in post towns, their buildings, and local histories. I want to develop hotels that carry these landscapes and ways of life forward, bringing travelers and local communities together.", isFuture: true },
   { year: "Future", event_jp: "投資・金融", event_en: "Investment & Finance", details_jp: "不動産投資・エクイティ出資を入口に、企業投資やVCにも関心を広げている。事業モデルや成長可能性を見極め、資本と経営支援を通じて、企業や事業が育つ過程に関わりたい。", details_en: "Building on real estate and equity investment, my interests extend to corporate investment and venture capital: understanding business models and growth potential, and helping companies develop through capital and management support.", isFuture: true },
@@ -76,7 +76,6 @@ export default function About() {
         <section
           className="relative min-h-svh py-24 flex flex-col items-center justify-center text-center text-white"
         >
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
           <div className="relative z-10 px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -103,18 +102,6 @@ export default function About() {
         {/* Other sections on white background */}
         <div className="relative bg-white text-gray-800">
           <div className="max-w-5xl mx-auto pt-24 md:pt-32 pb-24 md:pb-32 px-4 md:px-8">
-
-            <section className="mb-24 md:mb-32" aria-label="プロフィール">
-              <div className="flex flex-wrap items-baseline justify-center gap-x-6 gap-y-3 text-center">
-                <p className="text-2xl font-bold text-gray-900">馬場 雄大</p>
-                <p className="text-gray-600">不動産開発 × 建築研究 × デジタル制作</p>
-              </div>
-              <div className="mt-6 flex flex-wrap justify-center gap-2">
-                {["小田急不動産 資産戦略部（2024〜）", "宅地建物取引士", "不動産証券化マスター", "東京大学 建築学専攻 修士（2024）"].map((chip) => (
-                  <span key={chip} className="inline-flex min-h-11 items-center rounded-full border border-[#008877] px-4 py-1 text-sm font-bold text-[#008877]">{chip}</span>
-                ))}
-              </div>
-            </section>
 
             <section className="mb-24 md:mb-32">
               <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-16 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>

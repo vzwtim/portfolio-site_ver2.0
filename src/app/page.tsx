@@ -48,7 +48,7 @@ const topics = [
     projects: [
       { title: "デジカフェ・デジラボ", text: "AIやデジタルを、誰もが試せる道具に。学び合い、小さくつくり、仕事に持ち帰る勉強会。", href: "/works/internal-dx-workshop", image: "/images/portfolio/dx-workshop-01.webp", ratio: "1376 / 768", fit: "contain", visual: "DX / LEARNING" },
       { title: "StudyFlow", text: "学びたいときに、ひと問ずつ。不動産の知識を繰り返し身につけるための学習アプリ。", href: "/works/studyflow", image: "/images/appview_quiz.png", ratio: "4 / 3", fit: "contain" },
-      { title: "東京時間マップ", text: "東京の近さを、距離ではなく時間から考える。待ち合わせに最適な駅を探す「飲む駅」や、家賃と重ねる「住む駅」まで育てている、旗艦の個人制作。", href: "/works/tokyo-time-warp", image: "/images/portfolio/time-map-product-hd.webp", ratio: "8 / 5", fit: "contain", visual: "TOKYO TIME MAP" },
+      { title: "東京時間マップ", text: "東京の近さを、距離ではなく時間から考える。駅を中心に地図が伸縮する、都市の可視化実験。", href: "/works/tokyo-time-warp", image: "/images/portfolio/time-map-product-hd.webp", ratio: "8 / 5", fit: "contain", visual: "TOKYO TIME MAP" },
     ],
   },
 ];
@@ -73,34 +73,12 @@ export default function Home() {
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
             <Link className={styles.textLink} href="/apps">My Apps &amp; Sites</Link>
           </nav></div>
-          <p className={styles.roleLine}>不動産開発 × 建築研究 × デジタル制作</p>
           <Link className={styles.mobileExplore} href="#home-intro">活動を見る <span aria-hidden="true">↓</span></Link>
         </div>
         <figure className={styles.heroPlate}>
           <picture><source media="(max-width: 600px)" srcSet="/_next/image?url=%2Fimages%2Fmv_gomoku_1_mobile.jpg&w=1080&q=75" /><Image className={styles.heroImage} data-parallax="image" src="/images/mv_gomoku_1.jpg" alt="器に盛り付けた五目飯" fill priority sizes="(max-width: 760px) 100vw, 56vw" /></picture>
           <figcaption className={`${styles.plateLabel} ${styles.meta}`}>A portrait in ingredients / 01</figcaption>
         </figure>
-      </section>
-
-      <section className="relative z-[1] px-[clamp(1.25rem,6vw,6rem)] py-[clamp(3.5rem,8vw,6rem)]" style={{ background: "#f1efe7" }} aria-labelledby="featured-timemap-title" data-motion-section>
-        <p className="text-xs font-bold tracking-[0.16em] uppercase" style={{ color: "#008877" }}>Featured Project</p>
-        <div className="mt-6 grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <h2 id="featured-timemap-title" className="text-3xl sm:text-4xl lg:text-5xl font-normal leading-snug" style={{ fontFamily: '"Shippori Mincho", serif', textWrap: "balance" }}>東京時間マップ<span className="mt-2 block text-base sm:text-lg" style={{ color: "#4b5563" }}>東京の距離 / TOKYO TIME WARP</span></h2>
-            <p className="mt-6 leading-loose text-gray-700">東京の近さを、キロメートルではなく「分」で測る時間地図。中心に置いた駅からの所要時間で地図が伸び縮みする表現に、複数人の待ち合わせに最適な駅を探す「飲む駅」、家賃相場と重ねて住む場所を探す「住む駅」、沿線比較までを実装した。大阪にも対応し、家賃相場は11路線251駅分を収録している。</p>
-            <p className="mt-4 leading-loose text-gray-700">つくり方にもこだわった。当初の距離ベースの推定モデルは実際とずれると分かって廃止し、時刻表の実測で検証して作り直し、サイトの誤りはソースまで直して本番へ反映している。</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="https://tokyo-time-map.babachan.workers.dev/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full bg-[#111311] px-5 py-2 text-sm font-bold text-white hover:bg-[#008877] transition-colors">サイトを開く ↗</Link>
-              <Link href="/works/tokyo-time-warp" className="inline-flex min-h-11 items-center rounded-full border border-[#111311] px-5 py-2 text-sm font-bold hover:bg-white transition-colors">制作の詳細</Link>
-              <Link href="https://www.instagram.com/mapl.ab/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-[#bb5555] px-5 py-2 text-sm font-bold text-[#bb5555] hover:bg-white transition-colors">Instagram @mapl.ab（お地図ラボ）↗</Link>
-              <Link href="https://note.com/mapl_ab" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-gray-400 px-5 py-2 text-sm font-bold text-gray-700 hover:bg-white transition-colors">note お地図ラボ ↗</Link>
-            </div>
-          </div>
-          <Link href="/works/tokyo-time-warp" className="block overflow-hidden rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008877]" aria-label="東京時間マップの詳細を見る">
-            <Image src="/images/portfolio/time-map-product-hd.webp" alt="東京時間マップの画面" width={1348} height={936} className="h-auto w-full" sizes="(max-width:1023px) calc(100vw - 40px), 44vw" />
-            <span className="mt-3 block text-sm font-bold text-[#008877]">大きな画面で見る → 制作の詳細へ</span>
-          </Link>
-        </div>
       </section>
 
       {topics.map((topic) => (
@@ -138,7 +116,6 @@ export default function Home() {
           <path d="M-80 80H400Q560 80 640 230T880 360H1520" />
           <path d="M-80 140H320Q480 140 560 290T800 410H1520" />
         </svg>
-        <p className={styles.bridgeCaption}>街も、仕組みも、その先の暮らしへ。</p>
         <span className={styles.bridgeLabel}>BACK TO THE LANDSCAPE</span>
       </section>
     </main>

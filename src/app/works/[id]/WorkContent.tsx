@@ -20,8 +20,6 @@ export type Work = {
   bgColor?: string;
   link?: string;
   relatedLinks?: Array<{ title: string; url: string }>;
-  year?: string;
-  status?: string;
 };
 
 interface WorkContentProps {
@@ -114,12 +112,6 @@ export default function WorkContent({ work, images, dimensions }: WorkContentPro
             >
               {work.title}
             </h1>
-            {(work.year || work.status) && (
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                {work.year && <span className="text-xs font-bold tracking-wider text-gray-500">{work.year}</span>}
-                {work.status && <span className="inline-flex items-center rounded-full border border-[#008877] px-2.5 py-0.5 text-xs font-bold text-[#008877]">{work.status}</span>}
-              </div>
-            )}
             <div className="mb-5"><ProjectContext projectId={work.id} /></div>
             <p
               className="text-sm leading-relaxed md:pr-12"

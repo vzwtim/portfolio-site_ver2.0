@@ -14,8 +14,6 @@
       "design-programming",
       "urbanism"
     ],
-    "year": "2025〜",
-    "status": "公開中",
     "relatedLinks": [
       {
         "title": "Instagram @mapl.ab（お地図ラボ）",
@@ -42,9 +40,7 @@
       "design-programming",
       "artificial-intelligence"
     ],
-    "link": "https://board-hub.babachan.workers.dev/",
-    "year": "2026",
-    "status": "公開中"
+    "link": "https://board-hub.babachan.workers.dev/"
   },
   {
     "id": "railway-led-map",
@@ -60,9 +56,7 @@
     "tags": [
       "crafting",
       "design-programming"
-    ],
-    "year": "2026〜",
-    "status": "制作中"
+    ]
   },
   {
     "id": "tile-atelier",
@@ -79,9 +73,7 @@
       "architecture",
       "design-programming"
     ],
-    "link": "https://tile-atelier.babachan.workers.dev/",
-    "year": "2026",
-    "status": "公開中"
+    "link": "https://tile-atelier.babachan.workers.dev/"
   },
   {
     "id": "internal-dx-workshop",
@@ -115,9 +107,7 @@
       "/images/portfolio/slides/dx-obsidian-1.webp": "Obsidian導入勉強会：ハンズオン編",
       "/images/portfolio/slides/dx-obsidian-8.webp": "ノート同士をリンクでつなぐ",
       "/images/portfolio/digicafe-participant-works.webp": "デジカフェ参加者の制作例：Dandoly（タスク管理）、DX不動産（売却LP）、LiveFlow & Poll（投票・コメント）"
-    },
-    "year": "2025〜",
-    "status": "継続中"
+    }
   },
   {
     "id": "competition-mentor-support",
@@ -133,8 +123,6 @@
       "architecture",
       "workshop"
     ],
-    "year": "2026〜",
-    "status": "運営中",
     "relatedLinks": [
       {
         "title": "公式Instagram @nikko_makicompe",
@@ -176,9 +164,7 @@
       "/images/portfolio/slides/culture-map-slides-18.webp": "マッピングで世界を再解釈する",
       "/images/portfolio/slides/culture-beer-slides-1.webp": "ビールde鑑賞会：企画スライド",
       "/images/portfolio/slides/culture-beer-slides-8.webp": "ビールのコースターを描くワークショップ"
-    },
-    "year": "2024〜",
-    "status": "継続中"
+    }
   },
   {
     "id": "organizational-culture-reform",
@@ -191,9 +177,7 @@
     "tags": [
       "research",
       "workshop"
-    ],
-    "year": "2024〜",
-    "status": "継続中"
+    ]
   },
   {
     "id": "realestate-map2",
@@ -206,9 +190,7 @@
     "tags": [
       "data-analysis",
       "real-estate"
-    ],
-    "year": "2025",
-    "status": "公開中"
+    ]
   },
   {
     "id": "realestate-map1",
@@ -221,9 +203,7 @@
     "tags": [
       "data-analysis",
       "real-estate"
-    ],
-    "status": "アーカイブ",
-    "year": "2025"
+    ]
   },
   {
     "id": "isshu-map",
@@ -238,9 +218,7 @@
       "real-estate",
       "design-programming"
     ],
-    "link": "https://isshu-map.babachan.workers.dev/",
-    "year": "2026",
-    "status": "公開中"
+    "link": "https://isshu-map.babachan.workers.dev/"
   },
   {
     "id": "gomoku-rice",
@@ -255,8 +233,7 @@
     "tags": [
       "food",
       "living"
-    ],
-    "status": "日常"
+    ]
   },
   {
     "id": "mokumoku-pj",
@@ -272,9 +249,7 @@
     "tags": [
       "nature",
       "real-estate"
-    ],
-    "year": "2024",
-    "status": "完了"
+    ]
   },
   {
     "id": "master-thesis",
@@ -302,9 +277,7 @@
       "data-analysis",
       "urbanism",
       "research"
-    ],
-    "year": "2024",
-    "status": "完了"
+    ]
   },
   {
     "id": "sanriku-coast",
@@ -328,9 +301,7 @@
       "photography",
       "research",
       "nature"
-    ],
-    "year": "2023",
-    "status": "完了"
+    ]
   },
   {
     "id": "odo-renovation",
@@ -353,9 +324,7 @@
       "architecture",
       "crafting",
       "nature"
-    ],
-    "year": "2023",
-    "status": "完了"
+    ]
   },
   {
     "id": "odo-campsite",
@@ -374,9 +343,7 @@
       "architecture",
       "nature",
       "landscape"
-    ],
-    "year": "2023",
-    "status": "完了"
+    ]
   },
   {
     "id": "ogawamachi-water-2",
@@ -389,9 +356,7 @@
     "tags": [
       "nature",
       "research"
-    ],
-    "year": "2023",
-    "status": "完了"
+    ]
   },
   {
     "id": "ogawamachi-water",
@@ -407,9 +372,7 @@
     "tags": [
       "nature",
       "workshop"
-    ],
-    "year": "2022",
-    "status": "完了"
+    ]
   },
   {
     "id": "plantbuilding-concept",
@@ -423,9 +386,7 @@
       "architecture",
       "real-estate",
       "nature"
-    ],
-    "year": "2023",
-    "status": "完了"
+    ]
   },
   {
     "id": "kosuge-house",
@@ -442,9 +403,7 @@
     "bgColor": "#778899",
     "tags": [
       "architecture"
-    ],
-    "year": "2021",
-    "status": "完了"
+    ]
   },
   {
     "id": "bachelor-thesis",
@@ -463,9 +422,7 @@
       "data-analysis",
       "urbanism",
       "research"
-    ],
-    "year": "2022",
-    "status": "完了"
+    ]
   },
   {
     "id": "ginza-kk-park",
@@ -485,9 +442,7 @@
       "architecture",
       "urbanism",
       "nature"
-    ],
-    "year": "2021",
-    "status": "完了"
+    ]
   },
   {
     "id": "nishiogi-crane",
@@ -503,9 +458,7 @@
     "tags": [
       "architecture",
       "urbanism"
-    ],
-    "year": "2021",
-    "status": "完了"
+    ]
   },
   {
     "id": "aris-library",
@@ -519,9 +472,7 @@
     "bgColor": "#a9a9a9",
     "tags": [
       "architecture"
-    ],
-    "year": "2020",
-    "status": "完了"
+    ]
   },
   {
     "id": "pavilion-mayfes",
@@ -537,9 +488,7 @@
     "tags": [
       "architecture",
       "crafting"
-    ],
-    "year": "2021",
-    "status": "完了"
+    ]
   },
   {
     "id": "membrane-toilet",
@@ -552,9 +501,7 @@
     "bgColor": "#f0fff0",
     "tags": [
       "architecture"
-    ],
-    "year": "2020",
-    "status": "完了"
+    ]
   },
   {
     "id": "kagurazaka-cinema",
@@ -568,9 +515,7 @@
     "bgColor": "#e0e0e0",
     "tags": [
       "architecture"
-    ],
-    "year": "2020",
-    "status": "完了"
+    ]
   },
   {
     "id": "tama-housing",
@@ -582,9 +527,7 @@
     "bgColor": "#c5cae9",
     "tags": [
       "architecture"
-    ],
-    "year": "2021",
-    "status": "完了"
+    ]
   },
   {
     "id": "studyflow",
@@ -598,9 +541,7 @@
       "design-programming",
       "real-estate"
     ],
-    "link": "https://swift-revise.vercel.app/",
-    "year": "2025",
-    "status": "公開中"
+    "link": "https://swift-revise.vercel.app/"
   },
   {
     "id": "drunk-scheduler",
@@ -613,9 +554,7 @@
     "tags": [
       "design-programming",
       "living"
-    ],
-    "year": "2025",
-    "status": "試作"
+    ]
   },
   {
     "id": "multi-ai-chat",
@@ -628,9 +567,7 @@
     "tags": [
       "design-programming",
       "artificial-intelligence"
-    ],
-    "year": "2025",
-    "status": "試作"
+    ]
   },
   {
     "id": "prop-proposals",
@@ -643,9 +580,7 @@
     "tags": [
       "real-estate",
       "design-programming"
-    ],
-    "year": "2025",
-    "status": "試作"
+    ]
   },
   {
     "id": "shuffle-lunch",
@@ -658,8 +593,6 @@
     "tags": [
       "design-programming",
       "living"
-    ],
-    "year": "2025",
-    "status": "社内限定"
+    ]
   }
 ]

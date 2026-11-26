@@ -6,18 +6,15 @@ export default function Contact() {
           Contact
         </h1>
 
-        {/* SNS Section */}
-        <section className="mb-16" aria-label="SNSと外部リンク">
-          <h2 className="text-2xl font-bold mb-6 text-center" style={{ textWrap: 'balance' }}>
-            SNSでもつながれます
-          </h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            <li><a href="https://www.instagram.com/mapl.ab/" target="_blank" rel="noopener noreferrer" className="flex min-h-11 flex-col justify-center rounded-sm border border-gray-200/80 p-4 hover:border-[#bb5555] transition-colors"><span className="font-bold">Instagram @mapl.ab</span><span className="text-sm text-gray-500">お地図ラボ（東京時間マップの発信）</span></a></li>
-            <li><a href="https://www.instagram.com/nikko_makicompe/" target="_blank" rel="noopener noreferrer" className="flex min-h-11 flex-col justify-center rounded-sm border border-gray-200/80 p-4 hover:border-[#bb5555] transition-colors"><span className="font-bold">Instagram @nikko_makicompe</span><span className="text-sm text-gray-500">今市U35実践アイデアコンペ（運営支援）</span></a></li>
-            <li><a href="https://www.instagram.com/babachan_1222/" target="_blank" rel="noopener noreferrer" className="flex min-h-11 flex-col justify-center rounded-sm border border-gray-200/80 p-4 hover:border-[#bb5555] transition-colors"><span className="font-bold">Instagram @babachan_1222</span><span className="text-sm text-gray-500">個人アカウント</span></a></li>
-            <li><a href="https://note.com/mapl_ab" target="_blank" rel="noopener noreferrer" className="flex min-h-11 flex-col justify-center rounded-sm border border-gray-200/80 p-4 hover:border-[#bb5555] transition-colors"><span className="font-bold">note お地図ラボ</span><span className="text-sm text-gray-500">地図と時間の読みもの</span></a></li>
+        {/* SNS Links */}
+        <nav className="mb-16" aria-label="SNSと外部リンク">
+          <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+            <li><a href="https://www.instagram.com/mapl.ab/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @mapl.ab</a></li>
+            <li><a href="https://www.instagram.com/nikko_makicompe/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @nikko_makicompe</a></li>
+            <li><a href="https://www.instagram.com/babachan_1222/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @babachan_1222</a></li>
+            <li><a href="https://note.com/mapl_ab" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">note お地図ラボ</a></li>
           </ul>
-        </section>
+        </nav>
 
         {/* Contact Form Section */}
         <section className="mb-24 border border-gray-200/80 p-8 rounded-sm bg-white/50">
