@@ -46,9 +46,12 @@ export default async function WorksPage({ searchParams }: WorksPageProps) {
   ).sort((a, b) => TAG_ORDER.indexOf(a) - TAG_ORDER.indexOf(b));
   return (
     <div className="min-h-screen bg-white text-gray-900 px-5 py-8 sm:px-8">
-      <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
-        works?
+      <h1 className="text-5xl font-extrabold mb-4 mt-24 text-center">
+        My Works.
       </h1>
+      <p className="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-gray-600" style={{ textWrap: 'balance' }}>
+        都市開発、建築、そしてデジタル制作の仕事と個人制作。各カードに制作年と現在の状態を示しています。
+      </p>
       <div className="flex justify-center flex-wrap gap-2 mb-12 text-sm" style={{ display: 'none' }}>
         <Link
           href="/works"
@@ -80,10 +83,11 @@ export default async function WorksPage({ searchParams }: WorksPageProps) {
             key={work.id}
             id={work.id}
             title={work.title}
-            
             image={optimizedImage(work.images?.[0])}
             tags={work.tags}
             bgColor={work.bgColor}
+            year={(work as { year?: string }).year}
+            status={(work as { status?: string }).status}
           />
         ))}
       </div>

@@ -14,7 +14,7 @@ const containerVariants: Variants = {
     opacity: [1, 0.9, 0],
     filter: ['blur(0px)', 'blur(2px)'],
     scale: [1, 0.995, 0.99],
-    transition: { duration: 1.1, ease: 'easeInOut', delay: 0.2 },
+    transition: { duration: 0.5, ease: 'easeInOut', delay: 0 },
   },
 };
 

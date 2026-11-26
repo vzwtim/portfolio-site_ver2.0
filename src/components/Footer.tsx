@@ -10,9 +10,12 @@ const Footer = () => {
           <div className="footerCopyright mb-4 md:mb-0 text-center md:text-left">
             <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
           </div>
-          <div className="footerSocials flex items-center space-x-4"><Link href="https://portfolio-site-ver1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs text-[#008877] hover:underline">旧版を見る ↗</Link>
+          <div className="footerSocials flex flex-wrap items-center justify-end gap-x-4 gap-y-1 space-x-0"><Link href="https://www.instagram.com/mapl.ab/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs font-bold text-[#008877] hover:underline">お地図ラボ @mapl.ab ↗</Link>
+            <Link href="https://www.instagram.com/nikko_makicompe/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs font-bold text-[#008877] hover:underline">今市U35 @nikko_makicompe ↗</Link>
+            <Link href="https://note.com/mapl_ab" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs text-[#008877] hover:underline">note お地図ラボ ↗</Link>
+            <Link href="https://portfolio-site-ver1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-xs text-[#008877] hover:underline">旧版を見る ↗</Link>
             <Link
-              href="https://www.instagram.com/babachan_1222/" aria-label="Instagram"
+              href="https://www.instagram.com/babachan_1222/" aria-label="Instagram（個人 @babachan_1222）"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#008877]"

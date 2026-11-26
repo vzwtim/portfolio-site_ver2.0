@@ -10,6 +10,7 @@ export const projectContexts: Record<string, ProjectContext> = {
   "hotel-underwriting": { stage: "社会人", activity: "仕事" },
   "openboard-table": { period: "2026", stage: "社会人3年目", activity: "個人制作" },
   "tokyo-time-warp": { period: "2026", stage: "社会人3年目", activity: "個人制作" },
+  "railway-led-map": { period: "2026〜", stage: "社会人3年目〜", activity: "個人制作・制作中" },
   "tile-atelier": { period: "2026", stage: "社会人3年目", activity: "個人制作" },
   "isshu-map": { period: "2026", stage: "社会人3年目", activity: "個人制作" },
   "internal-dx-workshop": { period: "2025.07〜", stage: "社会人2年目〜", activity: "仕事・自主企画" },

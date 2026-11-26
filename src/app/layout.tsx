@@ -12,9 +12,28 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "ぼくは五目飯",
-  description: "The portfolio of YUDAI, exploring the intersection of architecture and technology.",
+  metadataBase: new URL("https://portfolio-site-ver2.vercel.app"),
+  title: {
+    default: "ぼくは五目飯 | 馬場雄大ポートフォリオ",
+    template: "%s | ぼくは五目飯",
+  },
+  description: "馬場雄大のポートフォリオ。不動産開発 × 建築研究 × デジタル制作。東京時間マップ「東京の距離 / TOKYO TIME WARP」、今市U35実践アイデアコンペの運営、鉄道LEDマップ基板などを掲載。",
   icons: { icon: "/favicon.svg" },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: "https://portfolio-site-ver2.vercel.app",
+    siteName: "ぼくは五目飯",
+    title: "ぼくは五目飯 | 馬場雄大ポートフォリオ",
+    description: "不動産開発 × 建築研究 × デジタル制作。場所と人の新しい可能性をつくっています。",
+    images: [{ url: "/images/mv_gomoku_1.jpg", alt: "器に盛り付けた五目飯" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ぼくは五目飯 | 馬場雄大ポートフォリオ",
+    description: "不動産開発 × 建築研究 × デジタル制作。東京時間マップ、今市U35、鉄道LEDマップ基板などを掲載。",
+    images: ["/images/mv_gomoku_1.jpg"],
+  },
 };
 
 export const viewport: Viewport = {

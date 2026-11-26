@@ -54,7 +54,9 @@ const widePositions = [
 function bubbleRadius(level: number, width: number) {
   const progress = (level / 10) ** 1.85;
   const compact = width < 480;
-  return Math.round((compact ? 26 : 30) + progress * (compact ? 48 : 79));
+  // Minimum diameter stays >= 68px so even low-level bubbles keep a
+  // readable label and a comfortable tap target.
+  return Math.round((compact ? 34 : 38) + progress * (compact ? 40 : 71));
 }
 
 function setBubbleSize(body: BubbleBody) {
@@ -205,7 +207,7 @@ export default function SkillsChart({ stageData }: { stageData: StageSkillData }
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const distance = Math.hypot(dx, dy);
-          const overlap = (a.radius + b.radius) * 0.7 - distance;
+          const overlap = (a.radius + b.radius) * 0.92 - distance;
           if (overlap <= 0 || distance < 0.1) continue;
           const force = overlap * dt * 2.5 / distance;
           if (!anchored(aKey, a)) {

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1348" height="936" viewBox="0 0 1348 936">
+  <rect width="1348" height="936" fill="#0e3b2e"/>
+  <rect x="40" y="40" width="1268" height="856" fill="none" stroke="#d8b25c" stroke-width="4"/>
+  <g stroke="#2f7d5f" stroke-width="10" fill="none">
+    <path d="M120 700 H520 L700 520 H1230"/>
+    <path d="M120 560 H420 L620 360 H1230"/>
+    <path d="M120 420 H340 L560 220 H1230"/>
+    <path d="M260 820 V300"/>
+    <path d="M880 820 V180"/>
+  </g>
+  <g fill="#ffd76a">
+    <circle cx="120" cy="700" r="17"/><circle cx="520" cy="700" r="17"/><circle cx="700" cy="520" r="17"/><circle cx="1230" cy="520" r="17"/>
+    <circle cx="120" cy="560" r="17"/><circle cx="420" cy="560" r="17"/><circle cx="620" cy="360" r="17"/><circle cx="1230" cy="360" r="17"/>
+    <circle cx="120" cy="420" r="17"/><circle cx="340" cy="420" r="17"/><circle cx="560" cy="220" r="17"/><circle cx="1230" cy="220" r="17"/>
+    <circle cx="260" cy="820" r="17"/><circle cx="880" cy="820" r="17"/>
+  </g>
+  <rect x="980" y="640" width="220" height="150" fill="#123f31" stroke="#d8b25c" stroke-width="3"/>
+  <g fill="#9fd4bd" font-family="monospace" font-size="26">
+    <text x="1000" y="690">ESP32</text>
+    <text x="1000" y="730">LED MATRIX</text>
+    <text x="1000" y="770">DRC: 0 ERRORS</text>
+  </g>
+  <g fill="#f2ead2" font-family="sans-serif">
+    <text x="120" y="150" font-size="52" font-weight="bold">RAILWAY LED MAP</text>
+    <text x="120" y="205" font-size="30">PCB DESIGN — WORK IN PROGRESS</text>
+  </g>
+</svg>

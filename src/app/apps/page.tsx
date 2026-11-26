@@ -16,11 +16,14 @@ interface App {
   imageUrl: string;
   bgColor: string;
   workId?: string;
+  meta?: string;
+  extraLink?: { label: string; url: string };
 }
 
 const apps: App[] = [
   {
     name: 'BoardHub',
+    meta: '2026 · 公開中',
     description: 'ボードゲームを見つけて、友人と遊ぶ。お気に入り、AIとのルール改善、ブランチでの試遊をつなぐ、遊びと開発のプラットフォーム。',
     imageUrl: '/images/portfolio/boardhub-product.webp',
     bgColor: '#e8eeeb',
@@ -28,7 +31,18 @@ const apps: App[] = [
     url: 'https://board-hub.babachan.workers.dev/',
   },
   {
+    name: '東京時間マップ',
+    meta: '2025〜 · 公開中',
+    description: '東京の近さを「分」で測る時間地図。飲む駅・住む駅・沿線比較と大阪対応まで実装した旗艦制作。発信はInstagram「お地図ラボ」(@mapl.ab) で運用中。',
+    extraLink: { label: 'Instagram @mapl.ab ↗', url: 'https://www.instagram.com/mapl.ab/' },
+    url: 'https://tokyo-time-map.babachan.workers.dev/',
+    imageUrl: '/images/portfolio/time-map-product-hd.webp',
+    bgColor: '#f1efe7',
+    workId: 'tokyo-time-warp',
+  },
+  {
     name: '一種単価マップ',
+    meta: '2026 · 公開中',
     description: '全国の土地価格と伸び率を比較。地図中央に場所を合わせて、一種単価を調べるWebアプリ。',
     url: 'https://isshu-map.babachan.workers.dev/',
     imageUrl: '/images/portfolio/isshu-map-product.webp',
@@ -36,15 +50,8 @@ const apps: App[] = [
     workId: 'isshu-map',
   },
   {
-    name: '東京時間マップ',
-    description: '駅を中心に地理と時間の距離を行き来する、東京のインタラクティブマップ。',
-    url: 'https://tokyo-time-map.babachan.workers.dev/',
-    imageUrl: '/images/portfolio/time-map-product-hd.webp',
-    bgColor: '#f1efe7',
-    workId: 'tokyo-time-warp',
-  },
-  {
     name: 'タイルアトリエ',
+    meta: '2026 · 公開中',
     description: 'タイルの柄を描き、色や貼り方を変えながら、壁面に並べた仕上がりを試せるデザインツール。',
     url: 'https://tile-atelier.babachan.workers.dev/',
     imageUrl: '/images/portfolio/tile-atelier-product.webp',
@@ -53,6 +60,7 @@ const apps: App[] = [
   },
   {
     name: 'StudyFlow',
+    meta: '2025 · 公開中',
     description: '不動産知識を気軽に復習できる一問一答アプリです。',
     url: 'https://swift-revise.vercel.app/',
     imageUrl: '/images/appview_quiz.png',
@@ -61,6 +69,7 @@ const apps: App[] = [
   },
   {
     name: 'Drunk Scheduler',
+    meta: '2025 · 試作',
     description: '飲み会のスケジュール調整を手早く行うためのWebアプリです。',
     imageUrl: '/images/appview_drunk.png',
     bgColor: '#FFECCE',
@@ -68,6 +77,7 @@ const apps: App[] = [
   },
   {
     name: 'Multi AI Chat',
+    meta: '2025 · 試作',
     description: '複数のAIキャラクターと同時に会話できるマルチチャットです。',
     imageUrl: '/images/appview_chat.png',
     bgColor: '#212121',
@@ -75,6 +85,7 @@ const apps: App[] = [
   },
   {
     name: 'Portfolio Site',
+    meta: 'アーカイブ',
     description: 'このポートフォリオサイトの初期バージョンです。',
     imageUrl: '/images/webview_portfolio.png',
     bgColor: '#008877',
@@ -82,6 +93,7 @@ const apps: App[] = [
   },
   {
     name: 'UT architecture pavilion',
+    meta: '2021 · アーカイブ',
     description: '学生時代に製作したパビリオンを紹介するサイトです。',
     imageUrl: '/images/webview_pavilion.png',
     bgColor: '#DBC9BF',
@@ -89,6 +101,7 @@ const apps: App[] = [
   },
   {
     name: 'Prop Proposals',
+    meta: '2025 · 試作',
     description: '不動産プロジェクトの企画アイデアを素早く検証できるコンセプトサイトです。',
     imageUrl: '/images/webview_prop.png',
     bgColor: '#008877',
@@ -96,6 +109,7 @@ const apps: App[] = [
   },
   {
     name: 'Shuffle Lunch Matching',
+    meta: '2025 · 社内限定',
     description: '社内メンバーをランダムにペアリングしてランチ交流を促す社内限定マッチングアプリです。',
     imageUrl: '/images/appview_shuffle.png',
     bgColor: '#0F9D65',
@@ -142,7 +156,13 @@ const AppsPage: NextPage = () => {
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex-grow">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900">{app.name}</h2>
+                {app.meta && <p className="mb-2 text-xs font-bold tracking-wider text-[#008877]">{app.meta}</p>}
                 <p className="text-gray-600 mb-4">{app.description}</p>
+                {app.extraLink && (
+                  <Link href={app.extraLink.url} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex min-h-11 items-center text-sm font-bold text-[#bb5555] hover:underline">
+                    {app.extraLink.label}
+                  </Link>
+                )}
               </div>
               <div className="flex items-center justify-between text-sm font-semibold">
                 {app.workId ? (

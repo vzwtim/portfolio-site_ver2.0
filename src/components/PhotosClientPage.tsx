@@ -74,13 +74,15 @@ const initialPhotos: Photo[] = rawPhotos.map((p) => ({ ...p, src: optimizedImage
 
 const NavigationButton = ({ direction, onClick }: { direction: 'left' | 'right', onClick: () => void }) => (
   <button
+    type="button"
+    aria-label={direction === 'left' ? '前の写真' : '次の写真'}
     onClick={(e) => {
       e.stopPropagation();
       onClick();
     }}
     className={`absolute top-1/2 -translate-y-1/2 ${
-      direction === 'left' ? 'left-4' : 'right-4'
-    } z-[1001] bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors`}
+      direction === 'left' ? 'left-3 sm:left-6' : 'right-3 sm:right-6'
+    } z-[1001] flex min-w-11 min-h-11 items-center justify-center bg-black/55 text-white p-3 rounded-full shadow-lg ring-1 ring-white/40 backdrop-blur-sm hover:bg-black/70 transition-colors`}
   >
     {direction === 'left' ? <FaChevronLeft /> : <FaChevronRight />}
   </button>
@@ -197,9 +199,12 @@ export default function PhotosClientPage() {
   return (
     <main className="bg-[#ffffff] text-[#232024] py-20 px-4 md:px-8 lg:px-16 min-h-screen">
       <div className="max-w-full mx-auto">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 mt-24 text-center">
-          Gallary
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 mt-24 text-center">
+          Gallery
         </h1>
+        <p className="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-gray-600" style={{ textWrap: 'balance' }}>
+          好きな景色と、気になる瞬間を集めた、静かな記録です。写真をタップすると大きく表示されます。
+        </p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-px">
           {initialPhotos.map((photo, index) => (
             <div
@@ -231,6 +236,14 @@ export default function PhotosClientPage() {
             onClick={closeModal}
             transition={{ backgroundColor: { duration: 1.0, ease: "linear" } }}
           >
+            <button
+              type="button"
+              aria-label="閉じる"
+              onClick={(e) => { e.stopPropagation(); closeModal(); }}
+              className="absolute right-3 top-3 sm:right-6 sm:top-6 z-[1002] flex min-w-11 min-h-11 items-center justify-center rounded-full bg-black/55 text-2xl leading-none text-white shadow-lg ring-1 ring-white/40 backdrop-blur-sm hover:bg-black/70 transition-colors"
+            >
+              ×
+            </button>
             <NavigationButton direction="left" onClick={goToPrevPhoto} />
             <NavigationButton direction="right" onClick={goToNextPhoto} />
             <div
@@ -265,7 +278,7 @@ export default function PhotosClientPage() {
                           quality={90}
                           className="object-contain w-auto h-full"
                         />
-                        <div className="absolute bottom-0 left-0 p-4" style={{ color: textColor }}>
+                        <div className="absolute bottom-3 left-3 max-w-[85%] rounded bg-black/60 px-3 py-2 text-white backdrop-blur-sm">
                           <h2 className="text-lg sm:text-xl font-normal" style={{ fontFamily: '"Shippori Mincho", serif' }}>{photo.alt}</h2>
                         </div>
                       </div>

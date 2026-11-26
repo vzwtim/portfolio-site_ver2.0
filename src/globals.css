@@ -31,6 +31,7 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif; /* Apply Montserrat to headings */
+  text-wrap: balance; /* Avoid orphaned arrows / single characters on the last line */
 }
 
 @layer utilities {
@@ -168,7 +169,7 @@ html.lenis { scroll-behavior:auto !important; }
 .portfolioCursor[data-project="true"] i { transform:scale(1); background:#008877; opacity:.94; }
 .portfolioCursor[data-project="true"] span { opacity:1; }
 .portfolioCursor[data-header="true"] { mix-blend-mode:difference; }
-.portfolioCursor[data-header="true"] i { transform:scale(2.083333); background:#b33953; opacity:1; }
+.portfolioCursor[data-header="true"] i { transform:scale(1.35); background:#b33953; opacity:.85; }
 .portfolioCursor[data-header="true"] span { opacity:0; }
 .workNavigationWipe { position:fixed; inset:0; z-index:9998; pointer-events:none; }
 @media (hover:hover) and (pointer:fine) { [data-project-image] { cursor:none; } }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image'; // Image コンポーネントをインポート
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useCursor } from '@/context/CursorContext';
 import { usePathname } from 'next/navigation';
@@ -9,7 +9,7 @@ const navigationItems = [
   { href: '/', label: 'home' },
   { href: '/about', label: 'about' },
   { href: '/photos', label: 'gallery' },
-  { href: '/works', label: 'works?' },
+  { href: '/works', label: 'works' },
   { href: '/apps', label: 'apps' },
   { href: '/contact', label: 'contact' },
 ];
@@ -22,14 +22,24 @@ interface HeaderProps {
 export default function Header({ textColor }: HeaderProps) {
   const { textEnter, textLeave } = useCursor();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+
+  // Give the fixed header a surface once the page scrolls, so content
+  // no longer slides underneath the logo / menu button unreadably.
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const hoverTextColorClass = 'hover:text-highlight';
   const toggleMenu = (): void => setIsMenuOpen((prev) => !prev);
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full py-4 md:py-8 transition-colors duration-300 bg-transparent ${textColor}`}
+      className={`fixed top-0 left-0 z-50 w-full py-4 md:py-8 transition-all duration-300 ${isScrolled && !isMenuOpen ? 'bg-white/85 backdrop-blur-md shadow-[0_1px_0_rgba(17,19,17,0.08)]' : 'bg-transparent'} ${textColor}`}
       data-site-header
     >
       <div className="w-full grid grid-cols-2 items-center relative z-50">

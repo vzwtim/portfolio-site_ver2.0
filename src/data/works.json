@@ -1,5 +1,33 @@
 [
   {
+    "id": "tokyo-time-warp",
+    "title": "東京時間マップ",
+    "description": "東京の近さを、キロメートルではなく「分」で測る時間地図「東京の距離 / TOKYO TIME WARP」。中心に置いた駅から各駅までの所要時間で地図が伸び縮みする時間地図に加え、複数人の待ち合わせに最適な駅を探す「飲む駅」、家賃相場と重ねて住む場所を探す「住む駅」、沿線ごとの所要時間や時給換算の比較までを一つのサイトに実装した。大阪にも対応し、家賃相場は11路線251駅分を収録。当初は距離から推定するモデルだったが、実際とずれると分かって廃止し、時刻表の実測で検証して作り直した。サイト側に誤りが見つかれば、表示だけ直すのではなくソースのデータとパラメータまで原因を追い、修正して本番へ反映するところまでを自分の作業にしている。発信はInstagram「お地図ラボ」(@mapl.ab) で、待ち合わせ最適駅を題材にしたReelsシリーズとあわせて運用している。",
+    "images": [
+      "/images/portfolio/time-map-product-hd.webp",
+      "/images/portfolio/tokyo-time-warp.webp"
+    ],
+    "link": "https://tokyo-time-map.babachan.workers.dev/",
+    "bgColor": "#f1efe7",
+    "tags": [
+      "data-analysis",
+      "design-programming",
+      "urbanism"
+    ],
+    "year": "2025〜",
+    "status": "公開中",
+    "relatedLinks": [
+      {
+        "title": "Instagram @mapl.ab（お地図ラボ）",
+        "url": "https://www.instagram.com/mapl.ab/"
+      },
+      {
+        "title": "note お地図ラボ",
+        "url": "https://note.com/mapl_ab"
+      }
+    ]
+  },
+  {
     "id": "openboard-table",
     "title": "BoardHub",
     "description": "遊ぶことを入口に、ルールを作り、試し、育てるボードゲーム・プラットフォーム。ホームの運営セレクトと全公開ゲームの探索を分け、お気に入り、友人との対戦、プロジェクトでの開発をつなぐ。個人作家がゲームルールとUIに集中できる、オープンな対戦エンジンを構想・実装。AIとの変更案作成、ブランチでの差分確認・試遊を通じ、オンラインの反応から製品化へつなぐ仕組みを目指している。",
@@ -14,23 +42,27 @@
       "design-programming",
       "artificial-intelligence"
     ],
-    "link": "https://board-hub.babachan.workers.dev/"
+    "link": "https://board-hub.babachan.workers.dev/",
+    "year": "2026",
+    "status": "公開中"
   },
   {
-    "id": "tokyo-time-warp",
-    "title": "東京時間マップ",
-    "description": "駅を中心に、地理と時間の距離を行き来するインタラクティブマップ。出発駅を変えると街の近さが組み替わり、家賃のレイヤーや3D表現から東京の別の輪郭を探れる。構想・UI設計とAIを活用した実装に取り組んだ、概略モデルによる都市の可視化実験。",
+    "id": "railway-led-map",
+    "title": "鉄道LEDマップ基板",
+    "description": "鉄道の路線図がLEDで光る地図基板を、ESP32を載せて自作している制作途中のプロジェクト。回路と基板のパターン設計から進め、改訂版はDRC（デザインルールチェック）を違反0件で通過した。ただし0.20mmの小径穴が製造費を大きく押し上げると分かり、完成を急ぐのではなく、小径穴を避ける設計へ作り直している。「動いた」だけでなく、量産や製造コストまで含めて設計判断を記録しながら進めるための実験でもある。",
     "images": [
-      "/images/portfolio/time-map-product-hd.webp",
-      "/images/portfolio/tokyo-time-warp.webp"
+      "/images/portfolio/led-pcb-placeholder.svg"
     ],
-    "link": "https://tokyo-time-map.babachan.workers.dev/",
-    "bgColor": "#f1efe7",
+    "imageCaptions": {
+      "/images/portfolio/led-pcb-placeholder.svg": "基板パターンの模式図（実物の写真は準備中）"
+    },
+    "bgColor": "#e6ecec",
     "tags": [
-      "data-analysis",
-      "design-programming",
-      "urbanism"
-    ]
+      "crafting",
+      "design-programming"
+    ],
+    "year": "2026〜",
+    "status": "制作中"
   },
   {
     "id": "tile-atelier",
@@ -47,7 +79,9 @@
       "architecture",
       "design-programming"
     ],
-    "link": "https://tile-atelier.babachan.workers.dev/"
+    "link": "https://tile-atelier.babachan.workers.dev/",
+    "year": "2026",
+    "status": "公開中"
   },
   {
     "id": "internal-dx-workshop",
@@ -81,12 +115,14 @@
       "/images/portfolio/slides/dx-obsidian-1.webp": "Obsidian導入勉強会：ハンズオン編",
       "/images/portfolio/slides/dx-obsidian-8.webp": "ノート同士をリンクでつなぐ",
       "/images/portfolio/digicafe-participant-works.webp": "デジカフェ参加者の制作例：Dandoly（タスク管理）、DX不動産（売却LP）、LiveFlow & Poll（投票・コメント）"
-    }
+    },
+    "year": "2025〜",
+    "status": "継続中"
   },
   {
     "id": "competition-mentor-support",
     "title": "日光市今市U35実践アイデアコンペ",
-    "description": "若手の建築・まちづくり提案を地域での実践につなげる日光市今市のコンペ。企画・運営のサポートを通じて、参加者と地域の対話の場づくりに関わっている。",
+    "description": "宿場町・今市を舞台に、35歳以下の実践アイデアを地域で育てるコンペ。一般社団法人まちあそびラボの業務委託として、2026年7月から企画・運営支援に入っている。担っているのは運営そのもので、公式Instagram (@nikko_makicompe) の運用支援や関係先へのDMでの声がけといった広報、告知動画・ポスター・展示用資料などの制作、11月21日のアイデア構築会議の運営まで。展示はイオン今市店から日光市役所へ巡回し、12月19日に市長も参加する公開最終審査会を開く。企画書の中の話で終わらせず、人が集まり、地域で試されるところまでを動かす仕事。",
     "images": [
       "/images/portfolio/maki-competition-cover.webp",
       "/images/portfolio/maki-site-01.webp",
@@ -96,6 +132,14 @@
     "tags": [
       "architecture",
       "workshop"
+    ],
+    "year": "2026〜",
+    "status": "運営中",
+    "relatedLinks": [
+      {
+        "title": "公式Instagram @nikko_makicompe",
+        "url": "https://www.instagram.com/nikko_makicompe/"
+      }
     ]
   },
   {
@@ -132,7 +176,9 @@
       "/images/portfolio/slides/culture-map-slides-18.webp": "マッピングで世界を再解釈する",
       "/images/portfolio/slides/culture-beer-slides-1.webp": "ビールde鑑賞会：企画スライド",
       "/images/portfolio/slides/culture-beer-slides-8.webp": "ビールのコースターを描くワークショップ"
-    }
+    },
+    "year": "2024〜",
+    "status": "継続中"
   },
   {
     "id": "organizational-culture-reform",
@@ -145,7 +191,9 @@
     "tags": [
       "research",
       "workshop"
-    ]
+    ],
+    "year": "2024〜",
+    "status": "継続中"
   },
   {
     "id": "realestate-map2",
@@ -158,7 +206,9 @@
     "tags": [
       "data-analysis",
       "real-estate"
-    ]
+    ],
+    "year": "2025",
+    "status": "公開中"
   },
   {
     "id": "realestate-map1",
@@ -171,7 +221,9 @@
     "tags": [
       "data-analysis",
       "real-estate"
-    ]
+    ],
+    "status": "アーカイブ",
+    "year": "2025"
   },
   {
     "id": "isshu-map",
@@ -186,7 +238,9 @@
       "real-estate",
       "design-programming"
     ],
-    "link": "https://isshu-map.babachan.workers.dev/"
+    "link": "https://isshu-map.babachan.workers.dev/",
+    "year": "2026",
+    "status": "公開中"
   },
   {
     "id": "gomoku-rice",
@@ -201,7 +255,8 @@
     "tags": [
       "food",
       "living"
-    ]
+    ],
+    "status": "日常"
   },
   {
     "id": "mokumoku-pj",
@@ -217,7 +272,9 @@
     "tags": [
       "nature",
       "real-estate"
-    ]
+    ],
+    "year": "2024",
+    "status": "完了"
   },
   {
     "id": "master-thesis",
@@ -245,7 +302,9 @@
       "data-analysis",
       "urbanism",
       "research"
-    ]
+    ],
+    "year": "2024",
+    "status": "完了"
   },
   {
     "id": "sanriku-coast",
@@ -269,7 +328,9 @@
       "photography",
       "research",
       "nature"
-    ]
+    ],
+    "year": "2023",
+    "status": "完了"
   },
   {
     "id": "odo-renovation",
@@ -292,7 +353,9 @@
       "architecture",
       "crafting",
       "nature"
-    ]
+    ],
+    "year": "2023",
+    "status": "完了"
   },
   {
     "id": "odo-campsite",
@@ -311,7 +374,9 @@
       "architecture",
       "nature",
       "landscape"
-    ]
+    ],
+    "year": "2023",
+    "status": "完了"
   },
   {
     "id": "ogawamachi-water-2",
@@ -324,7 +389,9 @@
     "tags": [
       "nature",
       "research"
-    ]
+    ],
+    "year": "2023",
+    "status": "完了"
   },
   {
     "id": "ogawamachi-water",
@@ -340,7 +407,9 @@
     "tags": [
       "nature",
       "workshop"
-    ]
+    ],
+    "year": "2022",
+    "status": "完了"
   },
   {
     "id": "plantbuilding-concept",
@@ -354,7 +423,9 @@
       "architecture",
       "real-estate",
       "nature"
-    ]
+    ],
+    "year": "2023",
+    "status": "完了"
   },
   {
     "id": "kosuge-house",
@@ -371,7 +442,9 @@
     "bgColor": "#778899",
     "tags": [
       "architecture"
-    ]
+    ],
+    "year": "2021",
+    "status": "完了"
   },
   {
     "id": "bachelor-thesis",
@@ -390,7 +463,9 @@
       "data-analysis",
       "urbanism",
       "research"
-    ]
+    ],
+    "year": "2022",
+    "status": "完了"
   },
   {
     "id": "ginza-kk-park",
@@ -410,7 +485,9 @@
       "architecture",
       "urbanism",
       "nature"
-    ]
+    ],
+    "year": "2021",
+    "status": "完了"
   },
   {
     "id": "nishiogi-crane",
@@ -426,7 +503,9 @@
     "tags": [
       "architecture",
       "urbanism"
-    ]
+    ],
+    "year": "2021",
+    "status": "完了"
   },
   {
     "id": "aris-library",
@@ -440,7 +519,9 @@
     "bgColor": "#a9a9a9",
     "tags": [
       "architecture"
-    ]
+    ],
+    "year": "2020",
+    "status": "完了"
   },
   {
     "id": "pavilion-mayfes",
@@ -456,7 +537,9 @@
     "tags": [
       "architecture",
       "crafting"
-    ]
+    ],
+    "year": "2021",
+    "status": "完了"
   },
   {
     "id": "membrane-toilet",
@@ -469,7 +552,9 @@
     "bgColor": "#f0fff0",
     "tags": [
       "architecture"
-    ]
+    ],
+    "year": "2020",
+    "status": "完了"
   },
   {
     "id": "kagurazaka-cinema",
@@ -483,7 +568,9 @@
     "bgColor": "#e0e0e0",
     "tags": [
       "architecture"
-    ]
+    ],
+    "year": "2020",
+    "status": "完了"
   },
   {
     "id": "tama-housing",
@@ -495,7 +582,9 @@
     "bgColor": "#c5cae9",
     "tags": [
       "architecture"
-    ]
+    ],
+    "year": "2021",
+    "status": "完了"
   },
   {
     "id": "studyflow",
@@ -509,7 +598,9 @@
       "design-programming",
       "real-estate"
     ],
-    "link": "https://swift-revise.vercel.app/"
+    "link": "https://swift-revise.vercel.app/",
+    "year": "2025",
+    "status": "公開中"
   },
   {
     "id": "drunk-scheduler",
@@ -522,7 +613,9 @@
     "tags": [
       "design-programming",
       "living"
-    ]
+    ],
+    "year": "2025",
+    "status": "試作"
   },
   {
     "id": "multi-ai-chat",
@@ -535,7 +628,9 @@
     "tags": [
       "design-programming",
       "artificial-intelligence"
-    ]
+    ],
+    "year": "2025",
+    "status": "試作"
   },
   {
     "id": "prop-proposals",
@@ -548,7 +643,9 @@
     "tags": [
       "real-estate",
       "design-programming"
-    ]
+    ],
+    "year": "2025",
+    "status": "試作"
   },
   {
     "id": "shuffle-lunch",
@@ -561,6 +658,8 @@
     "tags": [
       "design-programming",
       "living"
-    ]
+    ],
+    "year": "2025",
+    "status": "社内限定"
   }
 ]
