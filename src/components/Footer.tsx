@@ -25,6 +25,25 @@ const GitHubIcon = () => (
   </svg>
 );
 
+const ArchiveIcon = () => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    width="16"
+    height="16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="shrink-0"
+  >
+    <rect x="2.5" y="3.5" width="19" height="5" rx="1" />
+    <path d="M5 8.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19V8.5" />
+    <path d="M9.5 12.75h5" />
+  </svg>
+);
+
 type AccountLink = {
   name: string;
   href: string;
@@ -39,46 +58,51 @@ const accountLinks: AccountLink[] = [
   { name: '@vzwtim', href: 'https://github.com/vzwtim', icon: 'github', ariaLabel: 'GitHub' },
 ];
 
-const badgeClassName =
-  'inline-flex h-9 items-center gap-1.5 whitespace-nowrap rounded-full border border-[#111311]/25 bg-white px-3.5 text-[13px] leading-none text-[#111311] transition-colors duration-300 hover:border-[#bb5555]/60 hover:text-[#bb5555]';
+// Shared badge style for every footer link (accounts + archive): one height,
+// one padding rhythm, one icon size, so the group reads as a single array.
+// Translucent glass finish: semi-transparent white, soft blur, faint border.
+// Flat otherwise — no shadow, no lift; hover only shifts colour/opacity.
+const badgeBaseClassName =
+  'inline-flex h-9 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-[#111311]/10 bg-white/60 px-3.5 text-[13px] leading-none backdrop-blur-md transition-colors duration-300 hover:border-[#bb5555]/50 hover:bg-white/80 hover:text-[#bb5555] sm:w-auto';
+
+const badgeClassName = `${badgeBaseClassName} text-[#111311]`;
+const badgeMutedClassName = `${badgeBaseClassName} text-[#111311]/60`;
 
 const Footer = () => {
   return (
-    <footer className="text-[#111311] py-4 px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between md:items-end gap-6">
-          <div className="footerCopyright mb-4 md:mb-0 text-center md:text-left">
-            <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
-          </div>
-          <nav className="footerSocials max-w-[calc(100vw-2rem)] sm:max-w-none" aria-label="アカウントと外部リンク">
-            <ul className="flex flex-wrap items-center justify-center gap-2 sm:flex-nowrap sm:justify-end">
-              {accountLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.ariaLabel}
-                    className={badgeClassName}
-                  >
-                    {link.icon === 'instagram' ? <InstagramIcon /> : <GitHubIcon />}
-                    <span>{link.name}</span>
-                  </Link>
-                </li>
-              ))}
-              <li>
+    <footer className="text-[#111311] py-6 px-8">
+      <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
+        <nav className="footerSocials" aria-label="アカウントと外部リンク">
+          <ul className="grid grid-cols-2 gap-2 sm:flex sm:flex-nowrap sm:items-center sm:justify-center">
+            {accountLinks.map((link) => (
+              <li key={link.href}>
                 <Link
-                  href="https://portfolio-site-ver1.vercel.app/"
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center whitespace-nowrap px-2 text-[13px] leading-none text-[#111311]/60 transition-colors duration-300 hover:text-[#bb5555]"
+                  aria-label={link.ariaLabel}
+                  className={badgeClassName}
                 >
-                  旧版を見る
-                  <span aria-hidden="true"> ↗</span>
+                  {link.icon === 'instagram' ? <InstagramIcon /> : <GitHubIcon />}
+                  <span>{link.name}</span>
                 </Link>
               </li>
-            </ul>
-          </nav>
+            ))}
+            <li className="col-span-2 sm:col-span-1">
+              <Link
+                href="https://portfolio-site-ver1.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={badgeMutedClassName}
+              >
+                <ArchiveIcon />
+                <span>旧版を見る</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="footerCopyright text-center">
+          <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
