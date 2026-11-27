@@ -199,12 +199,9 @@ export default function PhotosClientPage() {
   return (
     <main className="bg-[#ffffff] text-[#232024] py-20 px-4 md:px-8 lg:px-16 min-h-screen">
       <div className="max-w-full mx-auto">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 mt-24 text-center">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 mt-24 text-center">
           Gallery
         </h1>
-        <p className="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-gray-600" style={{ textWrap: 'balance' }}>
-          好きな景色と、気になる瞬間を集めた、静かな記録です。写真をタップすると大きく表示されます。
-        </p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-px">
           {initialPhotos.map((photo, index) => (
             <div

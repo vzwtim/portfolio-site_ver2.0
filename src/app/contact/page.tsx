@@ -12,7 +12,6 @@ export default function Contact() {
             <li><a href="https://www.instagram.com/mapl.ab/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @mapl.ab</a></li>
             <li><a href="https://www.instagram.com/nikko_makicompe/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @nikko_makicompe</a></li>
             <li><a href="https://www.instagram.com/babachan_1222/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">Instagram @babachan_1222</a></li>
-            <li><a href="https://note.com/mapl_ab" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-[#bb5555] transition-colors">note お地図ラボ</a></li>
           </ul>
         </nav>
 

@@ -71,7 +71,6 @@ export default function Home() {
           <div id="home-intro" className={styles.heroIntro}><p className={styles.thesis}><span className={styles.introPhrase}>建築、不動産、文化、テクノロジー。</span><br /><span className={styles.introPhrase}>違う興味を混ぜながら、</span><span className={styles.introPhrase}>場所と人の新しい可能性を</span><span className={styles.introPhrase}>つくっています。</span></p>
           <nav className={styles.actions} aria-label="ポートフォリオの見どころ">
             {topics.map((topic) => <Link className={styles.textLink} href={`#${topic.id}`} key={topic.id}>{topic.title}</Link>)}
-            <Link className={styles.textLink} href="/apps">My Apps &amp; Sites</Link>
           </nav></div>
           <Link className={styles.mobileExplore} href="#home-intro">活動を見る <span aria-hidden="true">↓</span></Link>
         </div>
