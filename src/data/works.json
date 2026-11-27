@@ -5,8 +5,18 @@
     "description": "東京の近さを、キロメートルではなく「分」で測る時間地図「東京の距離 / TOKYO TIME WARP」。中心に置いた駅から各駅までの所要時間で地図が伸び縮みする時間地図に加え、複数人の待ち合わせに最適な駅を探す「飲む駅」、家賃相場と重ねて住む場所を探す「住む駅」、沿線ごとの所要時間や時給換算の比較までを一つのサイトに実装した。大阪にも対応し、家賃相場は11路線251駅分を収録。当初は距離から推定するモデルだったが、実際とずれると分かって廃止し、時刻表の実測で検証して作り直した。サイト側に誤りが見つかれば、表示だけ直すのではなくソースのデータとパラメータまで原因を追い、修正して本番へ反映するところまでを自分の作業にしている。発信はInstagram「お地図ラボ」(@mapl.ab) で、待ち合わせ最適駅を題材にしたReelsシリーズとあわせて運用している。",
     "images": [
       "/images/portfolio/time-map-product-hd.webp",
+      "/images/portfolio/time-map-feature-main.svg",
+      "/images/portfolio/time-map-feature-nomueki.svg",
+      "/images/portfolio/time-map-feature-sumueki.svg",
+      "/images/portfolio/time-map-feature-osaka.svg",
       "/images/portfolio/tokyo-time-warp.webp"
     ],
+    "imageCaptions": {
+      "/images/portfolio/time-map-feature-main.svg": "時間地図 — 中心に置いた駅からの所要時間で、地図が伸び縮みする。",
+      "/images/portfolio/time-map-feature-nomueki.svg": "飲む駅 — みんなの出発駅を入れると、全員の到着が一番早い駅を出す。吉祥寺と横浜からは渋谷が最適に。",
+      "/images/portfolio/time-map-feature-sumueki.svg": "住む駅 — 職場の駅と間取り・予算を入れると、通勤と家賃のバランスで住む駅を探せる。",
+      "/images/portfolio/time-map-feature-osaka.svg": "京阪神表示 — 関西にも対応。大阪・京都・神戸・奈良の鉄道網をそのまま時間地図にできる。"
+    },
     "link": "https://tokyo-time-map.babachan.workers.dev/",
     "bgColor": "#f1efe7",
     "tags": [

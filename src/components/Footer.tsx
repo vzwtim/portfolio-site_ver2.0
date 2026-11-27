@@ -40,7 +40,7 @@ const accountLinks: AccountLink[] = [
 ];
 
 const badgeClassName =
-  'inline-flex h-9 items-center gap-1.5 whitespace-nowrap rounded-full border border-black/15 bg-white/85 px-3.5 text-[13px] leading-none text-[#111311] shadow-[0_1px_2px_rgba(17,19,17,0.08)] backdrop-blur-sm transition-colors duration-300 hover:border-[#bb5555]/50 hover:bg-white hover:text-[#bb5555]';
+  'inline-flex h-9 items-center gap-1.5 whitespace-nowrap rounded-full border border-[#111311]/25 bg-white px-3.5 text-[13px] leading-none text-[#111311] transition-colors duration-300 hover:border-[#bb5555]/60 hover:text-[#bb5555]';
 
 const Footer = () => {
   return (
@@ -50,8 +50,8 @@ const Footer = () => {
           <div className="footerCopyright mb-4 md:mb-0 text-center md:text-left">
             <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
           </div>
-          <nav className="footerSocials" aria-label="アカウントと外部リンク">
-            <ul className="flex max-w-md flex-wrap items-center justify-center gap-2 md:justify-end">
+          <nav className="footerSocials max-w-[calc(100vw-2rem)] sm:max-w-none" aria-label="アカウントと外部リンク">
+            <ul className="flex flex-wrap items-center justify-center gap-2 sm:flex-nowrap sm:justify-end">
               {accountLinks.map((link) => (
                 <li key={link.href}>
                   <Link
